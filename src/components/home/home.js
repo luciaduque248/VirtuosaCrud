@@ -10,7 +10,7 @@ function Home() {
 
             <ul className="nav-menu">
                 <li>
-                    <Link to="/VirtuosaCrud/" className="active item">
+                    <Link to="/VirtuosaCrud" className="active item">
                     INICIO</Link>
                 </li>
                 <li>
@@ -25,7 +25,7 @@ function Home() {
                 <li>
                     <a href="/VirtuosaCrud/moda" className="item">MODA <i className="fa-solid fa-angle-down"></i></a>
                     <ul className="submenu">
-                        <li><a href="/VirtuosaCrud/moda-vestidos/">Vestidos</a></li>
+                        <li><a href="/VirtuosaCrud/moda-vestidos">Vestidos</a></li>
                         <li><a href="/VirtuosaCrud/moda-diseña">Diseña tu look</a></li>
                         <li><a href="/VirtuosaCrud/moda-tendencias">Novedades</a></li>
                         <li><a href="/VirtuosaCrud/moda-descuentos">Promociones</a></li>
@@ -40,9 +40,11 @@ function Home() {
                 </li>
 
             </ul>
-            <Link to="/">
-
-            <div className="logo"><img src={logoVirtuosa} alt="logo" /></div></Link>
+            <Link to="/VirtuosaCrud">
+                <div className="logo">
+                    <img src={logoVirtuosa} alt="logo" />
+                </div>
+            </Link>
             
             <ul className="nav-menu">
 
