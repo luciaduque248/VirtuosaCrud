@@ -46,7 +46,7 @@ function AppRoutes() {
                 <Route path='/VirtuosaCrud/nosotros' element={<Nosotros />}></Route>
                 <Route path='/VirtuosaCrud/contacto' element={<Contacto />}></Route>
 
-                <Route path='/VirtuosaCrud/moda-vestidos' element={<Vestidos />}></Route>
+                <Route path='/VirtuosaCrud/moda-vestidos/' element={<Vestidos />}></Route>
                 <Route path='/VirtuosaCrud/moda-descuentos' element={<Descuentos />}></Route>
                 <Route path='/VirtuosaCrud/moda-diseña' element={<Diseña />}></Route>
                 <Route path='/VirtuosaCrud/moda-tendencias' element={<Tendencias />}></Route>
