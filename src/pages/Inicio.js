@@ -13,11 +13,11 @@ function Inicio() {
             <section class="contenido">
         <div class="maquillaje-inicio">
             <h1>DEFINE TU BELLEZA</h1>
-            <button><Link to="*" className="active item">Ver más</Link></button>
+            <button><Link to="/VirtuosaCrud/maquillaje" className="active item">Ver más</Link></button>
         </div>
         <div class="ropa">
             <h1>DISEÑOS EXCLUSIVOS</h1>
-            <button><Link to="/moda" className="active item">Ver más</Link></button>
+            <button><Link to="/VirtuosaCrud/moda" className="active item">Ver más</Link></button>
         </div>
     </section>
 

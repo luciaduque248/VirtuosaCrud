@@ -62,7 +62,7 @@ function CardsPiel() {
       <div className='header-admin'>
         <h1>Cuidado de la piel</h1>
         <BtnMakeup/>
-        <button className='btn btn-white btn-animated'><Link to="/form-cuidadodelapiel">Crear un nuevo producto</Link></button>
+        <button className='btn btn-white btn-animated'><Link to="/VirtuosaCrud/form-cuidadodelapiel">Crear un nuevo producto</Link></button>
       </div>
 
 

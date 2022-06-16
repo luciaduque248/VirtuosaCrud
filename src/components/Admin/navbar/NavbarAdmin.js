@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Logo from "../../assets/img/logo.svg"
 import '../vestidos/EditVST.css'
 import '../Responsive.css'
+
 function NavbarAdmin() {
   return (
     <div>
@@ -15,21 +16,21 @@ function NavbarAdmin() {
           </div>
         </div>
         <div className='atajos'>
-          <Link to="/admin" className='atajos-responsive'>
+          <Link to="/VirtuosaCrud/admin" className='atajos-responsive'>
             <i className="fa-solid fa-house"></i>
             Inicio</Link>
-          <Link to="/edit-vestidos" className='atajos-responsive'>
+          <Link to="/VirtuosaCrud/edit-vestidos" className='atajos-responsive'>
             <i className="fa-solid fa-pen-to-square"></i>
             Editar Vestidos</Link>
-          <Link to="/edit-descuentos" className='atajos-responsive'>
+          <Link to="/VirtuosaCrud/edit-descuentos" className='atajos-responsive'>
             <i className="fa-solid fa-pen-to-square"></i>
             Editar Descuentos</Link>
 
-          <Link to="/edit-maquillaje" className='atajos-responsive'>
+          <Link to="/VirtuosaCrud/edit-maquillaje" className='atajos-responsive'>
             <i className="fa-solid fa-pen-to-square"></i>
             Editar Maquillaje</Link>
 
-          <Link to="/login" className='salir atajos-responsive'>
+          <Link to="/VirtuosaCrud/login" className='salir atajos-responsive'>
             <i className="fa-solid fa-arrow-right-from-bracket"></i>
             Salir
           </Link>

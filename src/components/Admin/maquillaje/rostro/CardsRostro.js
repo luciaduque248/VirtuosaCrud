@@ -62,7 +62,7 @@ function CardsRostro() {
             <div className='header-admin'>
                 <h1>Rostro</h1>
                 <BtnMakeup/>
-                <button className='btn btn-white btn-animated'><Link to="/form-rostro">Crear un nuevo producto</Link></button>
+                <button className='btn btn-white btn-animated'><Link to="/VirtuosaCrud/form-rostro">Crear un nuevo producto</Link></button>
             </div>
 
 

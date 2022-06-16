@@ -61,7 +61,7 @@ function CardsLabios() {
       <div className='header-admin'>
         <h1>Labios</h1>
         <BtnMakeup/>
-        <button className='btn btn-white btn-animated'><Link to="/form-labios">Crear un nuevo producto</Link></button>
+        <button className='btn btn-white btn-animated'><Link to="/VirtuosaCrud/form-labios">Crear un nuevo producto</Link></button>
       </div>
 
 

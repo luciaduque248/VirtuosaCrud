@@ -10,29 +10,29 @@ function Home() {
 
             <ul className="nav-menu">
                 <li>
-                    <Link to="/" className="active item">
+                    <Link to="/VirtuosaCrud/" className="active item">
                     INICIO</Link>
                 </li>
                 <li>
-                    <a href="/maquillaje" className="item">MAQUILLAJE <i className="fa-solid fa-angle-down"></i></a>
+                    <a href="/VirtuosaCrud/maquillaje" className="item">MAQUILLAJE <i className="fa-solid fa-angle-down"></i></a>
                     <ul className="submenu">
-                        <li><a href="/rostro">Rostro</a></li>
-                        <li><a href="/ojos">Ojos</a></li>
-                        <li><a href="/piel">Piel</a></li>
-                        <li><a href="/labios">Labios</a></li>
+                        <li><a href="/VirtuosaCrud/rostro">Rostro</a></li>
+                        <li><a href="/VirtuosaCrud/ojos">Ojos</a></li>
+                        <li><a href="/VirtuosaCrud/piel">Piel</a></li>
+                        <li><a href="/VirtuosaCrud/labios">Labios</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="/moda" className="item">MODA <i className="fa-solid fa-angle-down"></i></a>
+                    <a href="/VirtuosaCrud/moda" className="item">MODA <i className="fa-solid fa-angle-down"></i></a>
                     <ul className="submenu">
-                        <li><a href="/moda-vestidos">Vestidos</a></li>
-                        <li><a href="/moda-diseña">Diseña tu look</a></li>
-                        <li><a href="/moda-tendencias">Novedades</a></li>
-                        <li><a href="/moda-descuentos">Promociones</a></li>
+                        <li><a href="/VirtuosaCrud/moda-vestidos">Vestidos</a></li>
+                        <li><a href="/VirtuosaCrud/moda-diseña">Diseña tu look</a></li>
+                        <li><a href="/VirtuosaCrud/moda-tendencias">Novedades</a></li>
+                        <li><a href="/VirtuosaCrud/moda-descuentos">Promociones</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="/tips" className="item">TIPS <i className="fa-solid fa-angle-down"></i></a>
+                    <a href="/VirtuosaCrud/tips" className="item">TIPS <i className="fa-solid fa-angle-down"></i></a>
                     <ul className="submenu">
                         <li><a href="*">Tips Maquillaje</a></li>
                         <li><a href="*">Tips Ropa</a></li>
@@ -46,9 +46,9 @@ function Home() {
             
             <ul className="nav-menu">
 
-                <li><a href="/experiencias" className="item">EXPERIENCIAS</a></li>
-                <li><a href="/nosotros" className="item">NOSOTROS</a></li>
-                <li><a href="/contacto" className="item">CONTACTO</a></li>
+                <li><a href="/VirtuosaCrud/experiencias" className="item">EXPERIENCIAS</a></li>
+                <li><a href="/VirtuosaCrud/nosotros" className="item">NOSOTROS</a></li>
+                <li><a href="/VirtuosaCrud/contacto" className="item">CONTACTO</a></li>
 
             </ul>
         </nav>

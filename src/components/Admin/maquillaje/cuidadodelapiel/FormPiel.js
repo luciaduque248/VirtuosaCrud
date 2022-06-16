@@ -104,7 +104,7 @@ function FormPiel() {
 
             <div className='btn-form-vestido'>
               <button className='guardar-form'>Guardar</button>
-              <button className='volver-form'><Link to="/edit-cuidadodelapiel" className="volver">Volver</Link></button>
+              <button className='volver-form'><Link to="/VirtuosaCrud/edit-cuidadodelapiel" className="volver">Volver</Link></button>
             </div>
 
           </form>

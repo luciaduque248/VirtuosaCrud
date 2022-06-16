@@ -38,46 +38,46 @@ function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<Inicio />} ></Route>
-                <Route path='/maquillaje' element={<Maquillaje />}></Route>
-                <Route path='/moda' element={<Moda />}></Route>
-                <Route path='/tips' element={<Tips />}></Route>
-                <Route path='/experiencias' element={<Experiencias />}></Route>
-                <Route path='/nosotros' element={<Nosotros />}></Route>
-                <Route path='/contacto' element={<Contacto />}></Route>
+                <Route path='/VirtuosaCrud/' element={<Inicio />} ></Route>
+                <Route path='/VirtuosaCrud/maquillaje' element={<Maquillaje />}></Route>
+                <Route path='/VirtuosaCrud/moda' element={<Moda />}></Route>
+                <Route path='/VirtuosaCrud/tips' element={<Tips />}></Route>
+                <Route path='/VirtuosaCrud/experiencias' element={<Experiencias />}></Route>
+                <Route path='/VirtuosaCrud/nosotros' element={<Nosotros />}></Route>
+                <Route path='/VirtuosaCrud/contacto' element={<Contacto />}></Route>
 
-                <Route path='/moda-vestidos' element={<Vestidos />}></Route>
-                <Route path='/moda-descuentos' element={<Descuentos />}></Route>
-                <Route path='/moda-diseña' element={<Diseña />}></Route>
-                <Route path='/moda-tendencias' element={<Tendencias />}></Route>
+                <Route path='/VirtuosaCrud/moda-vestidos' element={<Vestidos />}></Route>
+                <Route path='/VirtuosaCrud/moda-descuentos' element={<Descuentos />}></Route>
+                <Route path='/VirtuosaCrud/moda-diseña' element={<Diseña />}></Route>
+                <Route path='/VirtuosaCrud/moda-tendencias' element={<Tendencias />}></Route>
 
-                <Route path='/edit-vestidos' element={<AdmVS/>}></Route>
-                <Route path='/form-vestidos' element={<FormVestido/>}></Route>
-                <Route path='/edit-descuentos' element={<CardsDisc/>}></Route>
-                <Route path='/form-descuentos' element={<FormVestido/>}></Route>
+                <Route path='/VirtuosaCrud/edit-vestidos' element={<AdmVS/>}></Route>
+                <Route path='/VirtuosaCrud/form-vestidos' element={<FormVestido/>}></Route>
+                <Route path='/VirtuosaCrud/edit-descuentos' element={<CardsDisc/>}></Route>
+                <Route path='/VirtuosaCrud/form-descuentos' element={<FormVestido/>}></Route>
 
-                <Route path='/edit-maquillaje' element={<EditMaquillaje />}></Route>
+                <Route path='/VirtuosaCrud/edit-maquillaje' element={<EditMaquillaje />}></Route>
 
-                <Route path='/edit-ojos' element={<CardsOjos />}></Route>
-                <Route path='/form-ojos' element={<FormOjos />}></Route>
-                <Route path='/edit-rostro' element={<CardsRostro />}></Route>
-                <Route path='/form-rostro' element={<FormRostro />}></Route>
-                <Route path='/edit-labios' element={<CardsLabios />}></Route>
-                <Route path='/form-labios' element={<FormLabios />}></Route>
-                <Route path='/edit-cuidadodelapiel' element={<CardsPiel />}></Route>
-                <Route path='/form-cuidadodelapiel' element={<FormPiel />}></Route>
+                <Route path='/VirtuosaCrud/edit-ojos' element={<CardsOjos />}></Route>
+                <Route path='/VirtuosaCrud/form-ojos' element={<FormOjos />}></Route>
+                <Route path='/VirtuosaCrud/edit-rostro' element={<CardsRostro />}></Route>
+                <Route path='/VirtuosaCrud/form-rostro' element={<FormRostro />}></Route>
+                <Route path='/VirtuosaCrud/edit-labios' element={<CardsLabios />}></Route>
+                <Route path='/VirtuosaCrud/form-labios' element={<FormLabios />}></Route>
+                <Route path='/VirtuosaCrud/edit-cuidadodelapiel' element={<CardsPiel />}></Route>
+                <Route path='/VirtuosaCrud/form-cuidadodelapiel' element={<FormPiel />}></Route>
                 
-                <Route path='/login' element={<Login/>}></Route>
-                <Route path='/admin' element={<InicioAdmin/>}></Route>
+                <Route path='/VirtuosaCrud/login' element={<Login/>}></Route>
+                <Route path='/VirtuosaCrud/admin' element={<InicioAdmin/>}></Route>
 
-                <Route path='/ojos' element={<Ojos/>}></Route>
-                <Route path='/labios' element={<Labios/>}></Route>
-                <Route path='/piel' element={<Piel/>}></Route>
-                <Route path='/rostro' element={<Rostro/>}></Route>
+                <Route path='/VirtuosaCrud/ojos' element={<Ojos/>}></Route>
+                <Route path='/VirtuosaCrud/labios' element={<Labios/>}></Route>
+                <Route path='/VirtuosaCrud/piel' element={<Piel/>}></Route>
+                <Route path='/VirtuosaCrud/rostro' element={<Rostro/>}></Route>
 
-                <Route path='/*' element={<Navigate to="/" />}></Route>
+                <Route path='/VirtuosaCrud/*' element={<Navigate to="/" />}></Route>
 
-                <Route path='/home' element={<Navigate to={"/"} />}></Route>
+                <Route path='/VirtuosaCrud/home' element={<Navigate to={"/"} />}></Route>
             </Routes>
         </BrowserRouter>
     )
