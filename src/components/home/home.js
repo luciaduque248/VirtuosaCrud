@@ -25,7 +25,7 @@ function Home() {
                 <li>
                     <a href="/VirtuosaCrud/moda" className="item">MODA <i className="fa-solid fa-angle-down"></i></a>
                     <ul className="submenu">
-                        <li><a href="/VirtuosaCrud/moda-vestidos">Vestidos</a></li>
+                        <li><a href="/VirtuosaCrud/moda-vestidos/">Vestidos</a></li>
                         <li><a href="/VirtuosaCrud/moda-diseña">Diseña tu look</a></li>
                         <li><a href="/VirtuosaCrud/moda-tendencias">Novedades</a></li>
                         <li><a href="/VirtuosaCrud/moda-descuentos">Promociones</a></li>
