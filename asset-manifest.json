@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/VirtuosaCrud/static/css/main.8d77bf05.css",
+    "main.js": "/VirtuosaCrud/static/js/main.3c0c7c4c.js",
+    "static/media/ropaIndex.svg": "/VirtuosaCrud/static/media/ropaIndex.2d777b61a3d31440fb65.svg",
+    "static/media/imgContactanos.png": "/VirtuosaCrud/static/media/imgContactanos.c4b57f29ceaa3c53e426.png",
+    "static/media/labios.png": "/VirtuosaCrud/static/media/labios.1e42933888a8c8153b44.png",
+    "static/media/labios2.png": "/VirtuosaCrud/static/media/labios2.1c5b41f8323bd9338c26.png",
+    "static/media/1.jpeg": "/VirtuosaCrud/static/media/1.a4c23b1033ba95a5bdd5.jpeg",
+    "static/media/cuidadopiel.png": "/VirtuosaCrud/static/media/cuidadopiel.689aadf88289af4a6abb.png",
+    "static/media/makeupIndex.svg": "/VirtuosaCrud/static/media/makeupIndex.fbd28f34e1fb42cde912.svg",
+    "static/media/piel.png": "/VirtuosaCrud/static/media/piel.af3f809c3b1fa7468593.png",
+    "static/media/mapa.png": "/VirtuosaCrud/static/media/mapa.819c775c46ea1f838ecd.png",
+    "static/media/5.webp": "/VirtuosaCrud/static/media/5.28e08cae7513444210da.webp",
+    "static/media/6.webp": "/VirtuosaCrud/static/media/6.af9d91b035ef775a2f2e.webp",
+    "static/media/4.jpeg": "/VirtuosaCrud/static/media/4.a84b3452eb2534c90e1f.jpeg",
+    "static/media/3.webp": "/VirtuosaCrud/static/media/3.92871a4209cfd0bf7c87.webp",
+    "static/media/2.jpeg": "/VirtuosaCrud/static/media/2.e35a1de7d5583ed0bb72.jpeg",
+    "static/media/logo 1.svg": "/VirtuosaCrud/static/media/logo 1.70dd897fa37f6a48b5c0625edc51ed5f.svg",
+    "static/media/logo.svg": "/VirtuosaCrud/static/media/logo.a65046cecfb4600317318b8e782fa0b2.svg",
+    "static/media/slick.svg": "/VirtuosaCrud/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/VirtuosaCrud/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/VirtuosaCrud/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/VirtuosaCrud/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/VirtuosaCrud/index.html",
+    "main.8d77bf05.css.map": "/VirtuosaCrud/static/css/main.8d77bf05.css.map",
+    "main.3c0c7c4c.js.map": "/VirtuosaCrud/static/js/main.3c0c7c4c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8d77bf05.css",
+    "static/js/main.3c0c7c4c.js"
+  ]
+}
