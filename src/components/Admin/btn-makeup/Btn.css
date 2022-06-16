@@ -1,0 +1,25 @@
+
+
+.btn-header-makeup .btns-atajos-makeup{
+    border: none;
+    font-family: Montserrat;
+    color: white;
+    font-weight: bold;
+    background-color: #f29778;
+    height: 5vh;
+    width: 100px;
+    padding: 0 1rem;
+    margin: 0.5rem 0.2rem;
+    border-radius: 10px;
+}
+
+.btn-header-makeup{
+    display: flex;
+    justify-content: center;
+    width: 450px;
+}
+
+.btn-header-makeup .btn-piel{
+    width: 180px;
+}
+

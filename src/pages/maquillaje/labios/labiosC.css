@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+    
+/* font-family: 'Bebas Neue', cursive; 
+
+    font-family: 'Montserrat', sans-serif;*/
+
+/* ::::::::::::::::::::::::::::::::::::::::: BODY ::::::::::::::::::::::::::::::::::::::::: */
+
+.maquillaje{
+    background-size: cover;
+    margin-top: 70px;
+    padding-top: 3rem;
+    padding-left: 6rem;
+    display: flex;
+    justify-content: center; 
+}
+
+.ban{
+    background: url(../../../components/assets/img/maquillaje/banner/labios.png) no-repeat;
+    width: 100%;
+    height: 350px;
+}
+.ban:hover {
+    width: 100%;
+    height: 350px;
+    background: url(../../../components/assets/img/maquillaje/banner/labios2.png) no-repeat;
+   
+ 
+}
+
+
+/*--------------------- | RESOLUCIÓN TABLETA | ---------------------*/
+@media screen and (min-width: 768px) {
+    
+
+}
+/*--------------------- | RESOLUCIÓN MEDIA | ---------------------*/
+@media screen and (min-width: 1024px) {
+
+
+}
+
+/*--------------------- | RESOLUCIÓN MACRO | ---------------------*/
+@media screen and (min-width: 1200px) {
+    
+
+}

@@ -1,0 +1,6 @@
+export const api="https://bd-virtuosa.herokuapp.com/vestidos/"
+export const apidiscount="https://bd-virtuosa.herokuapp.com/descuentos/"
+export const apilabios="https://bd-virtuosa.herokuapp.com/labios/"
+export const apipiel="https://bd-virtuosa.herokuapp.com/piel/"
+export const apirostro="https://bd-virtuosa.herokuapp.com/rostro/"
+export const apiojos="https://bd-virtuosa.herokuapp.com/ojos/"

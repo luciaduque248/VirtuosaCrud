@@ -1,0 +1,202 @@
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    /* INICIO ADMIN */
+    .texto-home h1{
+        font-weight: bolder;
+        text-shadow: 1px 1px 9px white;
+    }
+    /* NAV BAR ADMIN */
+    .nav-bar-admin{
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        padding: 2rem 1rem;
+    }
+
+    .atajos{
+        flex-direction: column;
+    }
+
+    .atajos-responsive{
+        margin: 2px 0;
+        border-bottom: 2px solid white;
+        width: 70vw;
+        padding: 5px 0;
+    }
+   
+    /* TITTLE ADMIN */
+    .header-admin{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-admin h1{
+        width: 80vw;
+    }
+    
+    /* PAGE: BtnMakeup.js */
+    .btn-header-makeup{
+        margin: 1rem 0;
+        width: 900px;
+        flex-direction: column;
+    }
+    .btn-header-makeup .btns-atajos-makeup{
+        width: 20px;
+    }
+    .btn-header-makeup .btn-piel{
+        width: 120vw;
+    }
+
+    /* FORM */
+    .btn-form-vestido{
+        flex-direction: column;
+        padding: 0 2rem;
+    }
+    .guardar-form{
+        width: 60vw;
+        margin: 1rem 0;
+    }
+
+    .volver-form{
+        width: 60vw;
+    }
+
+    .text-center{
+        text-align: center;
+    }
+
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    /* NAV BAR ADMIN */
+    .nav-bar-admin{
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        padding: 2rem 5rem;
+    }
+
+    .atajos{
+        flex-direction: column;
+    }
+
+    .atajos-responsive{
+        margin: 2px 0;
+        border-bottom: 2px solid white;
+        width: 60vw;
+        padding: 5px 0;
+    }
+
+    /* TITTLE ADMIN */
+    .header-admin{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-admin h1{
+        width: 80vw;
+    }
+    
+    /* PAGE: BtnMakeup.js */
+    .btn-header-makeup{
+        margin: 1rem 0;
+        width: 900px;
+        flex-direction: row;
+    }
+    .btn-header-makeup .btns-atajos-makeup{
+        width: 20px;
+    }
+    .btn-header-makeup .btn-piel{
+        width: 120vw;
+    }
+
+    /* FORM */
+    .form-nuevo-vestido{
+        width: 95vw;
+    }
+    .btn-form-vestido{
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 0 2rem;
+    }
+    .guardar-form{
+        width: 60vw;
+        margin: 1rem 0;
+    }
+
+    .volver-form{
+        width: 60vw;
+    }
+
+    .text-center{
+        text-align: center;
+    }
+}
+
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    /* NAV BAR ADMIN */
+    .nav-bar-admin{
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        padding: 2rem 5rem;
+    }
+
+    .atajos{
+        flex-direction: column;
+    }
+
+    .atajos-responsive{
+        margin: 2px 0;
+        border-bottom: 2px solid white;
+        width: 60vw;
+        padding: 5px 0;
+    }
+
+    /* TITTLE ADMIN */
+    .header-admin{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-admin h1{
+        width: 80vw;
+    }
+    
+    /* PAGE: BtnMakeup.js */
+    .btn-header-makeup{
+        margin: 1rem 0;
+        width: 900px;
+        flex-direction: row;
+    }
+    .btn-header-makeup .btns-atajos-makeup{
+        width: 20px;
+    }
+    .btn-header-makeup .btn-piel{
+        width: 120vw;
+    }
+
+    /* FORM */
+    .form-nuevo-vestido{
+        width: 95vw;
+    }
+    .btn-form-vestido{
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 0 2rem;
+    }
+    .guardar-form{
+        width: 60vw;
+        margin: 1rem 0;
+    }
+
+    .volver-form{
+        width: 60vw;
+    }
+
+    .text-center{
+        text-align: center;
+    }
+}
