@@ -23,7 +23,7 @@ function Home() {
                     </ul>
                 </li>
                 <li>
-                    <a href="/moda" className="item">MODA <i className="fa-solid fa-angle-down"></i></a>
+                    <a href="/VirtuosaCrud/moda" className="item">MODA <i className="fa-solid fa-angle-down"></i></a>
                     <ul className="submenu">
                         <li><a href="/VirtuosaCrud/moda-vestidos">Vestidos</a></li>
                         <li><a href="/VirtuosaCrud/moda-diseña">Diseña tu look</a></li>
