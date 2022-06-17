@@ -1,0 +1,96 @@
+.banner-tips{
+    background-image: url(https://images.unsplash.com/photo-1439158771502-46975f6e44e9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80);
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    height: 70vh;
+    font-family: 'Bebas Neue', cursive;
+
+    font-family: 'Bebas Neue', cursive;
+    color: white;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    padding: 0 2rem;
+}
+
+.banner-tips h1{
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 5px #403f3f;
+    padding: 1rem;
+    font-size: 150px;
+    font-weight: 300;
+}
+
+.contenido-tips-index{
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.atajos-tips{
+    display: flex;
+    justify-content: center;
+    padding: 1rem 3rem;
+}
+
+.atajo-1-tips{
+    background-color: #aa95c7;
+    padding: 1rem;
+    text-align: center;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    align-items: center;
+    align-content: center;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .banner-tips{
+        height: 50vh;
+    }
+    .banner-tips h1{
+        font-size: 80px;
+        font-weight: 300;
+    }   
+
+    .contenido-tips-index{
+        text-align: center;
+    }
+
+    .atajos-tips{
+        flex-direction: column;
+    }
+
+    .atajo-img-tips{
+        width: 60px;
+    }
+
+    .atajo-1-tips p{
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .banner-tips{
+        height: 30vh;
+    }
+    .banner-tips h1{
+        font-size: 80px;
+        font-weight: 300;
+    }  
+
+    .atajo-img-tips{
+        width: 10vw;
+    }
+
+    .atajo-1-tips p{
+        font-size: 18px;
+    }
+}

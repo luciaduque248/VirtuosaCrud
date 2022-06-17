@@ -1,0 +1,157 @@
+.banner-tips-makeup{
+    width: 100%;
+    background-image: url(https://res.cloudinary.com/colombia/image/upload/v1655504206/kuepa/raphael-lovaski-DEuob2v77wI-unsplash_fllscb.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+
+    display: flex;
+    justify-content: center;
+}
+
+.text-makeup-banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-makeup-banner h1{
+    text-shadow: 0px 2px 10px white;
+    font-family: 'Bebas Neue', cursive;
+    color: #403f3f;
+    display: grid;
+    justify-content: flex-start;
+    align-content: center;
+
+    padding: 0 10px;
+}
+
+.text-5{
+    font-size: 200px;
+}
+
+.texto-2-banner-makeup{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 100;
+}
+
+/* :::::::::::::::::: */
+
+.Makeup-all{
+    background-color: #e9e1fa;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    padding-top: 30px;
+}
+.recuadro-blanco{
+    padding: 3rem 0;
+}
+
+.ImgMakeup{
+    width: 120px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.Makeup p{
+    text-align: justify;
+    
+    font-size: 10px;
+    line-height: 1rem;
+}
+
+.Makeup span h3{
+    font-weight: bold;
+    padding-top: 30px;
+    color: #AA95C7;
+    font-size: 3vw;
+}
+
+.ImgMakeupp{
+    width: 150px;
+    float: right;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: tableta ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+@media screen and (min-width:768px) {
+    .Makeup-all{
+        margin: auto;
+        padding-top: 3rem;
+    }
+
+    .ImgMakeup{
+        min-width: 250px;
+    }
+    .Makeup p{
+        line-height: 1.5rem;
+        font-size: 1.5vw;
+    }
+
+    .Makeup span h3{
+        font-size: 1.5vw;
+    }
+
+    .ImgMakeupp{
+        min-width: 250px;
+    }
+}
+
+/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: medio ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+@media screen and (min-width:1024px) {
+    .Makeup-all{
+        margin: auto;
+        padding-top: 5rem;
+    }
+
+    .ImgMakeup{
+        width: 370px;
+    }
+    .Makeup p{
+        line-height: 2rem;
+    }
+
+    .ImgMakeupp{
+        min-width: 370px;
+    }
+}
+
+/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: grande ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+@media screen and (min-width:1366px) {
+    .Makeup-all{
+        padding: 70px;
+    }
+
+    .ImgMakeup{
+        min-width: 280px;
+        padding-right: 20px;
+    }
+    .Makeup p{
+        line-height: 2rem;
+    }
+
+    .ImgMakeupp{
+        min-width: 250px;
+    }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .banner-tips-makeup{
+        height: 30vh;
+    }
+    
+    .text-5{
+        font-size: 80px;
+    }
+    
+    .texto-2-banner-makeup{
+        font-size: 15px;
+        font-weight: 100;
+    }
+}

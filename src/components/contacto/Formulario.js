@@ -9,7 +9,7 @@ const colores = {
 
 const Formulario = styled.form`
     background: #f7f5fc;
-    padding: 1em;
+    padding: 2em;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 20px;
@@ -21,6 +21,7 @@ const Formulario = styled.form`
 const Label = styled.label`
 	display: block;
 	font-weight: 700;
+	color: #403F3F;
 	padding: 10px;
 	min-height: 40px;
 	cursor: pointer;
@@ -44,6 +45,7 @@ const Input = styled.input`
 	line-height: 45px;
 	padding: 0 40px 0 10px;
 	transition: .3s ease all;
+	border: none;
 	border: 3px solid transparent;
 	&:focus {
 		border: 3px solid ${colores.borde};

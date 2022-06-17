@@ -21,7 +21,6 @@ const Login = () => {
                     if(valores.email === 'admin@gmail.com' && valores.contraseña === 'virtuosa12'){
                         window.location = "/admin"
                     }
-
                     //VALIDACIÓN CORREO
                     if (!valores.email) {
                         errores.email = 'Por favor ingrese su correo electrónico';
@@ -31,8 +30,8 @@ const Login = () => {
                     //VALIDACIÓN CONTRASEÑA
                     }if (!valores.contraseña ) {
                         errores.contraseña = 'Por favor ingrese su contraseña'
-                    }else if(!/^.{4,12}$/.test(valores.contraseña)){
-                        errores.contraseña = 'La contraseña tiene que ser de 4 a 12 dígitos.'
+                    }else if(!/^.{11,12}$/.test(valores.contraseña)){
+                        errores.contraseña = 'La contraseña tiene que ser de 8 a 12 dígitos.'
 
                     }else{
                         Swal.fire({
@@ -50,7 +49,7 @@ const Login = () => {
                 }}>
 
                 {({ values, errors, touched, handleSubmit, handleChange, handleBlur }) => (
-                    <form action='/' className='formulario-login' onSubmit={handleSubmit}>
+                    <form action='/VirtuosaCrud/admin' className='formulario-login' onSubmit={handleSubmit}>
                         <img src={Logo} alt="logo" />
                         <h1>Inicia sesión</h1>
                         <p>Introduzca los datos correspondientes</p>
@@ -71,7 +70,7 @@ const Login = () => {
                         <div className='form-login-group'>
                             <label htmlFor='contraseña'>Contraseña</label>
                             <input
-                                type='text'
+                                type='password'
                                 id='contraseña'
                                 name='contraseña'
                                 placeholder='Ingrese su contraseña'
@@ -81,11 +80,14 @@ const Login = () => {
                                 {touched.contraseña && errors.contraseña && <div className='error'>{errors.contraseña}</div>}
                         </div>
 
-                        <button type='submit'>Iniciar sesión</button>
+                        <div className='botones-login'>
+                            <button type='submit'>Iniciar sesión</button>
 
-                        <div className='volver-login'>
-                            <button><Link to="/">Volver al inicio</Link></button>
+                            <div className='volver-login'>
+                                <button><Link to="/VirtuosaCrud/">Volver al inicio</Link></button>
+                            </div>
                         </div>
+                        
                     </form>
                 )}
 

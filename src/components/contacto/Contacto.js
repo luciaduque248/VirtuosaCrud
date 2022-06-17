@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Formulario, Label, ContenedorTerminos, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError } from './../contacto/Formulario';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import '../contacto/Contact.css'
-import Input from './inputs';
+import '../contacto/Contacto.css'
+import Input from './../assets/componentes/imputs';
 
 const App = () => {
     const [nombre, cambiarNombre] = useState({ campo: '', valido: null });
     const [correo, cambiarCorreo] = useState({ campo: '', valido: null });
     const [telefono, cambiarTelefono] = useState({ campo: '', valido: null });
-    // const [archivo, cambiarArchivo] = useState({campo: '', valido: null});
-    // const [mensaje, cambiarMensaje] = useState({campo: '', valido: null});
+    const [archivo, cambiarArchivo] = useState({campo: '', valido: null});
+    const [mensaje, cambiarMensaje] = useState({campo: '', valido: null});
     const [terminos, cambiarTerminos] = useState(false);
     const [formularioValido, cambiarFormularioValido] = useState(null);
 
@@ -33,18 +33,15 @@ const App = () => {
             nombre.valido === 'true' &&
             correo.valido === 'true' &&
             telefono.valido === 'true' &&
-            // archivo.valido === 'true' &&
-            // mensaje.valido === 'true' &&
+            mensaje.valido === 'true' &&
             terminos
         ) {
             cambiarFormularioValido(true);
             cambiarNombre({ campo: '', valido: null });
             cambiarCorreo({ campo: '', valido: null });
             cambiarTelefono({ campo: '', valido: null });
-            // cambiarArchivo({campo: '', valido: null});
-            // cambiarMensaje({campo: '', valido: null});
+            cambiarMensaje({campo: '', valido: null});
 
-            // ... 
         } else {
             cambiarFormularioValido(false);
         }
@@ -52,7 +49,15 @@ const App = () => {
 
     return (
 
-        <main className='formulario'>
+        <main className='contact-P main'>
+            <div className="contact-info">
+                <div>¡Hola! Gracias por comunicarte con nosotros, por favor déjanos el detalle de tu pregunta, novedad, o problema con el envío.<br /><br />Recuerda que la respuesta por este medio puede tardar entre 1-5 días hábiles sin contar sábados, domingos ni festivos, responderemos lo más pronto posible, y entre más concreto seas con la información de la novedad será más fácil y rápido darte solución.</div>
+                <ul className="conLis ul">
+                    <li><i className="fa-solid fa-envelope"></i> servicliente@virtuosa.com</li>
+                    <li><i className="fa-solid fa-location-dot"></i> Bogotá, Colombia</li>
+                    <li><i className="fa-solid fa-phone"></i> (601) 543 26 11</li>
+                </ul>
+            </div>
 
             <Formulario action="" onSubmit={onSubmit}>
                 <Input
@@ -85,23 +90,27 @@ const App = () => {
                     leyendaError="El telefono solo puede contener numeros y el maximo son 14 dígitos."
                     expresionRegular={expresiones.telefono}
                 />
-                <div>
-                    <label htmlFor="file" className='archivos'><strong>Adjunta archivos</strong></label>
-                    <input 
-                    type="file" 
-                    name='archivo' 
-                    id='idarchivo' 
-                    className='evidencia'/>
-                </div>
 
-                <div className='mensaje'>
-                    <label htmlFor="message"><strong>Mensaje</strong></label>
-                    <textarea 
-                    className='observacion' 
+                <Input
+                    estado={mensaje}
+                    cambiarEstado={cambiarMensaje}
+                    label="Mensaje"
+                    as="text" 
+                    rows={3}
+                    placeholder='Escribe tu observacion, inquietud, duda o sugerencia'
                     name='observacion' 
-                    rows="10" 
-                    placeholder='Escribe tu observacion, inquietud, duda o sugerencia'/>
-                </div>
+                    leyendaError="Por favor ingrese su mensaje." 
+                    expresionRegular={expresiones.mensaje}                  
+                />
+
+                <Input
+                    estado={archivo}
+                    cambiarEstado={cambiarArchivo}
+                    label="Adjunte archivo (opcional)"
+                    tipo="file" 
+                    name='archivo' 
+                    id='idarchivo'
+                />
 
                 <ContenedorTerminos>
                     <Label>
@@ -126,19 +135,7 @@ const App = () => {
                     {formularioValido === true && <MensajeExito>Formulario enviado exitosamente!</MensajeExito>}
                 </ContenedorBotonCentrado>
 
-
-                
-
             </Formulario>
-
-            <div className="contact-info">
-                    <div>¡Hola! Gracias por comunicarte con nosotros, por favor déjanos el detalle de tu pregunta, novedad, o problema con el envío.<br /><br />Recuerda que la respuesta por este medio puede tardar entre 1-5 días hábiles sin contar sábados, domingos ni festivos, responderemos lo más pronto posible, y entre más concreto seas con la información de la novedad será más fácil y rápido darte solución.</div><br/>
-                    <ul>
-                        <li><i className="fa-solid fa-envelope"></i> servicioalcliente@virtuosa.com</li><br/>
-                        <li><i className="fa-solid fa-location-dot"></i> Bogotá, Colombia</li><br/>
-                        <li><i className="fa-solid fa-phone"></i> (601) 543 26 11</li><br/>
-                    </ul>
-                </div>
         </main>
     );
 }

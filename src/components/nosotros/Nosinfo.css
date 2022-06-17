@@ -1,0 +1,172 @@
+.banner-tips-nosotros{
+    width: 100%;
+    background-image: url(https://res.cloudinary.com/colombia/image/upload/v1655503749/kuepa/marivi-pazos-4kX1uoAAohY-unsplash_hynube.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.text-tips-banner-nosotros{
+    text-shadow: 2px 2px 7px white;
+    font-family: 'Bebas Neue', cursive;
+    color: #403f3f;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+
+    padding: 0 10px;
+    font-size: 70px;
+}
+
+.logRoss{
+    margin: 20px;
+    width: 150px;
+}
+
+.recuadro-blanco{
+    padding: 3rem 0;
+}
+
+.Nosotros-all{
+    background-color: #e9e1fa;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    padding-top: 30px;
+}
+
+.Imglogo{
+    width: 150px;
+    margin-left: 50px;
+}
+
+.nosotros h2{
+    text-align: center;
+    font-size: 3vw;
+}
+.nosotros p{
+    text-align: justify;
+    margin-bottom: 20px;
+    font-size: 3vw;
+}
+
+.pont{
+    padding-left: 20px;
+}
+
+.nosotros span{
+    font-weight: bold;
+    font-size: 3vw;
+    color: #AA95C7;
+}
+
+/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: tableta ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+@media screen and (min-width:768px){
+    .Makeup-all{
+        margin: auto;
+        padding-top: 3rem;
+    }
+
+    .Imglogo{
+        width: 200px;
+        margin-left: -10px;
+        float: left;
+    }
+    
+    .nosotros h2{
+        font-size: 1.5vw;
+        text-align: center;
+        padding-bottom: 30px;
+    }
+    
+    .nosotros p{
+        margin-bottom: 20px;
+        line-height: 1.5rem;
+        font-size: 1.5vw;
+    }   
+
+    .nosotros span{
+        font-size: 1.5vw;
+    }
+}
+
+/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: medio ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+@media screen and (min-width:1024px) {
+    .logRoss{
+        margin: 20px;
+        width: 350px;
+    }
+
+    .Imglogo{
+        width: 300px;
+    }
+    
+    .nosotros h2{
+        font-size: 20px;
+        padding-bottom: 3rem;
+        padding-top: 2rem;
+    }
+    
+    .nosotros p{
+        margin-bottom: 20px;
+        line-height: 2rem;
+    }
+
+    .pont{
+        padding-left: 25px;
+    }
+}
+
+/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: grande ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+@media screen and (min-width:1366px) {
+    .Imglogo{
+        width: 400px;
+    }
+    
+    .nosotros p{
+        margin-bottom: 20px;
+        line-height: 2rem;
+        font-size: 1.5vw;
+    }
+
+    .Nosotros-all{
+        padding: 70px;
+    }
+    .pont{
+        padding-left: 3rem;
+    }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+    .banner-tips-nosotros{
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        height: 50vh;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 2rem;
+    }
+
+    .text-tips-banner-nosotros{
+        text-shadow: 2px 2px 7px white;
+        font-family: 'Bebas Neue', cursive;
+        color: #403f3f;
+        display: flex;
+        justify-content: flex-start;
+        align-content: center;
+    
+        padding: 0 10px;
+        font-size: 30px;
+    }
+
+}

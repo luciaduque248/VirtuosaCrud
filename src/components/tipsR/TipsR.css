@@ -1,0 +1,140 @@
+.banner-tips-ropa{
+    width: 100%;
+    background-image: url(https://res.cloudinary.com/colombia/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1655502186/kuepa/thom-bradley-mwa_nzFpnJw-unsplash_oeadvi.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+
+    display: flex;
+    justify-content: center;
+}
+
+.text-tips-banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-tips-banner h1{
+    text-shadow: 2px 2px 2px white;
+    font-family: 'Bebas Neue', cursive;
+    color: #403f3f;
+    display: grid;
+    justify-content: flex-start;
+    align-content: center;
+
+    padding: 0 10px;
+}
+
+.text-7{
+    font-size: 200px;
+}
+
+.texto-2-banner-tips{
+    font-size: 40px;
+    font-weight: 100;
+}
+
+.recuadro-blanco{
+    padding: 3rem 0;
+}
+
+.ropaTips{
+    background-color: #e9e1fa;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    padding-top: 30px;
+}
+
+.ImgRopa{
+    float: left;
+    width: 110px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.texRopa p{
+    text-align: justify;
+    
+    line-height: 1rem;
+    font-size: 10px;
+}
+
+.texRopa span h3{
+    font-weight: bold;
+    padding-top: 30px;
+    font-size: 10px;
+    color: #AA95C7;
+}
+
+/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: tableta ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+@media screen and (min-width:768px) {
+    .ImgRopa{
+        width: 168px;
+    }
+
+    .texRopa{
+        padding-top: 2rem;
+    }
+
+    .texRopa p{
+        line-height: 1.5rem;
+        font-size: 1.5vw;
+    }
+
+    .texRopa span h3{
+        font-size: 1.5vw;
+    }
+}
+
+/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: medio ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+@media screen and (min-width:1024px) {
+    .ropaTips{
+        padding: 70px;
+    }
+
+    .ImgRopa{
+        width: 310px
+    }
+    .texRopa p{
+        line-height: 2rem;
+    }
+}
+
+/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: grande ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+@media screen and (min-width:1366px) and (max-width:1440px) {
+    .ropaTips{
+        padding: 50px;
+    }
+
+    .ImgRopa{
+        width: 488px;
+        height: 1229px;
+        margin-right: 2rem;
+    }
+    .texRopa p{
+        font-size: 16px;
+        line-height: 2rem;
+    }
+
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .banner-tips-ropa{
+        height: 30vh;
+    }
+    .text-tips-banner h1{
+        padding: 0 10px;
+    }
+    
+    .text-7{
+        font-size: 80px;
+    }
+    
+    .texto-2-banner-tips{
+        font-size: 15px;
+        font-weight: 100;
+    }
+}

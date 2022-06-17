@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input, Label, GrupoInput, LeyendaError, IconoValidacion} from './Formulario';
+import {Input, Label, GrupoInput, LeyendaError, IconoValidacion} from './../../contacto/Formulario';
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 const ComponenteInput = ({estado, cambiarEstado, tipo, label, placeholder, name, leyendaError, expresionRegular, funcion}) => {
@@ -24,7 +24,6 @@ const ComponenteInput = ({estado, cambiarEstado, tipo, label, placeholder, name,
 	return (
 		<div>
 			<Label htmlFor={name} valido={estado.valido}>{label}</Label>
-            
 			<GrupoInput>
 				<Input 
 					type={tipo}
@@ -40,10 +39,7 @@ const ComponenteInput = ({estado, cambiarEstado, tipo, label, placeholder, name,
 					icon={estado.valido === 'true' ? faCheckCircle : faTimesCircle}
 					valido={estado.valido}
 				/>
-                
 			</GrupoInput>
-
-
 			<LeyendaError valido={estado.valido}>{leyendaError}</LeyendaError>
 		</div>
 	);

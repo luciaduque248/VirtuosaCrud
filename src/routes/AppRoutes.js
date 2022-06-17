@@ -33,6 +33,9 @@ import FormPiel from '../components/Admin/maquillaje/cuidadodelapiel/FormPiel'
 import EditMaquillaje from '../components/Admin/maquillaje/EditMaquillaje';
 import CardsDisc from '../components/Admin/descuentos/CardsDisc';
 
+import TipsM from '../pages/TipsM'
+import TipsR from '../pages/TipsR'
+
 
 function AppRoutes() {
     return (
@@ -41,7 +44,11 @@ function AppRoutes() {
                 <Route path='/VirtuosaCrud/' element={<Inicio />} ></Route>
                 <Route path='/VirtuosaCrud/maquillaje' element={<Maquillaje />}></Route>
                 <Route path='/VirtuosaCrud/moda' element={<Moda />}></Route>
+
                 <Route path='/VirtuosaCrud/tips' element={<Tips />}></Route>
+                <Route path='/VirtuosaCrud/tips/maquillaje' element={<TipsM />}></Route>
+                <Route path='/VirtuosaCrud/tips/ropa' element={<TipsR />}></Route>
+
                 <Route path='/VirtuosaCrud/experiencias' element={<Experiencias />}></Route>
                 <Route path='/VirtuosaCrud/nosotros' element={<Nosotros />}></Route>
                 <Route path='/VirtuosaCrud/contacto' element={<Contacto />}></Route>

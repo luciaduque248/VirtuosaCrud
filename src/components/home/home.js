@@ -1,6 +1,7 @@
 import React from "react";
 import logoVirtuosa from '../assets/img/logo 1.svg';
 import { Link } from 'react-router-dom';
+import '../header/header.css'
 
 function Home() {
     return (
@@ -34,8 +35,8 @@ function Home() {
                 <li>
                     <Link to="/VirtuosaCrud/tips" className="item">TIPS <i className="fa-solid fa-angle-down"></i></Link>
                     <ul className="submenu">
-                        <li><Link to="/VirtuosaCrud/*">Tips Maquillaje</Link></li>
-                        <li><Link to="/VirtuosaCrud/*">Tips Ropa</Link></li>
+                        <li><Link to="/VirtuosaCrud/tips/maquillaje">Tips Maquillaje</Link></li>
+                        <li><Link to="/VirtuosaCrud/tips/ropa">Tips Ropa</Link></li>
                     </ul>
                 </li>
 

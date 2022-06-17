@@ -1,0 +1,163 @@
+.banner-tips-contacto{
+    width: 100%;
+    background-image: url(https://res.cloudinary.com/colombia/image/upload/v1655503193/kuepa/95cdfeef_l8mjte.jpg);
+    background-size: cover;
+    background-position: top;
+    height: 70vh;
+
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.text-tips-banner-contacto{
+    text-shadow: 2px 2px 2px white;
+    font-family: 'Bebas Neue', cursive;
+    color: #403f3f;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+
+    padding: 0 10px;
+    font-size: 70px;
+}
+
+.contact-P{
+    max-width:100vw;
+    font-size: 20px;
+    line-height: 1rem;
+    justify-content: center;
+}
+
+/* .contactenos{
+    font-size: 3vw;
+} */
+
+.container {
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5em;
+}
+
+.conLis{
+    padding-top: 20px;
+}
+
+.ul {
+    list-style: none;
+    padding: 0;
+}
+
+.main {
+	width: 150vw;
+	margin: auto;
+	padding: 40px;
+
+    padding: 1.5em;
+    
+}
+
+/* CONTACT INFO */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+    height: 50vh;
+    width: 100%;
+    
+    background: #c2bfbf;
+    text-align: justify;
+}
+
+.contact-info h4, .contact-info ul, .contact-info p {
+    text-align: center;
+    margin: 0 0 1rem 0;
+}
+.contact-info i{
+    color: #f29778;
+}
+
+.mensaje{
+    display: flex;
+    flex-direction: column;
+}
+.archivos{
+    margin-left: 1rem;
+}
+.evidencia{
+    padding-top: 2rem;
+}
+
+
+/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: tableta ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+@media screen and (min-width:768px){
+    .contactenos{
+        font-size: 2vw;
+        padding: 20px;
+    }
+
+    .contact-P {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        line-height: 1.6rem;
+        
+    }
+    .contact-P > * {
+        padding: 2em;
+
+    }
+    .contact-info h4,
+    .contact-info ul,
+    .contact-info p {
+        text-align: left;
+    }
+    .contact-info{
+        height: 100vh;
+    }
+}
+
+/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: medio ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+@media screen and (min-width:1024px) {
+    .contactenos{
+        font-size: 0.5vw;
+        padding: 2vh;
+    }
+    
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .contact-P{
+        max-width:100vw;
+        font-size: 10px;
+        line-height: 1rem;
+        justify-content: center;
+    }
+
+    .banner-tips-contacto{
+        width: 100%;
+        background-size: cover;
+        background-position: top;
+        height: 50vh;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 2rem;
+    }
+
+    .text-tips-banner-contacto{
+        text-shadow: 2px 2px 2px white;
+        font-family: 'Bebas Neue', cursive;
+        color: #403f3f;
+        display: flex;
+        justify-content: flex-start;
+        align-content: center;
+    
+        padding: 0 10px;
+        font-size: 30px;
+    }
+
+}

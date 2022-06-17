@@ -29,7 +29,7 @@
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    width: 35%;
+    width: 35vw;
     border-radius: 10px;
     height: 80%;
     align-items: center;
@@ -74,8 +74,62 @@
     margin-top: 1rem;
 }
 
+.botones-login{
+    display: flex;
+    flex-direction: column;
+}
+
 .error{
     color: red;
     font-size: 12px;
     margin-bottom: 1rem;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .formulario-login{
+        width: 80vw;
+    }
+
+    .formulario-login h1{
+        font-size: 20px;
+    }
+
+    .formulario-login p{
+        text-align: center;
+    }
+
+    .formulario-login img{
+        width: 20vw;
+    }
+
+    .form-login-group input{
+        width: 60vw;
+    }
+
+    .botones-login{
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .formulario-login{
+        text-align: center;
+    }
+    .formulario-login img{
+        width:15vw;
+    }
+
+    .formulario-login h1{
+        font-size: 15px;
+    }
+
+    .formulario-login p{
+        font-size: 2vw;
+    }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .formulario-login{
+        text-align: center;
+    }
 }
