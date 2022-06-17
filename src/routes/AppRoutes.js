@@ -40,7 +40,7 @@ function AppRoutes() {
             <Routes>
                 <Route path='/VirtuosaCrud/' element={<Inicio />} ></Route>
                 <Route path='/VirtuosaCrud/maquillaje' element={<Maquillaje />}></Route>
-                <Route path='/VirtuosaCrud/moda' element={<Moda />}></Route>
+                <Route path='/moda' element={<Moda />}></Route>
                 <Route path='/VirtuosaCrud/tips' element={<Tips />}></Route>
                 <Route path='/VirtuosaCrud/experiencias' element={<Experiencias />}></Route>
                 <Route path='/VirtuosaCrud/nosotros' element={<Nosotros />}></Route>
