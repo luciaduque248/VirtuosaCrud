@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/VirtuosaCrud/static/css/main.9a137fff.css",
-    "main.js": "/VirtuosaCrud/static/js/main.bd6f0db1.js",
+    "main.css": "/VirtuosaCrud/static/css/main.164b2db1.css",
+    "main.js": "/VirtuosaCrud/static/js/main.1dff6a77.js",
     "static/media/ropaIndex.svg": "/VirtuosaCrud/static/media/ropaIndex.2d777b61a3d31440fb65.svg",
     "static/media/imgTipsRopa.png": "/VirtuosaCrud/static/media/imgTipsRopa.77315a9fc37345e4302f.png",
     "static/media/labios.png": "/VirtuosaCrud/static/media/labios.1e42933888a8c8153b44.png",
     "static/media/labios2.png": "/VirtuosaCrud/static/media/labios2.1c5b41f8323bd9338c26.png",
     "static/media/1.jpeg": "/VirtuosaCrud/static/media/1.a4c23b1033ba95a5bdd5.jpeg",
+    "static/media/descuentos.png": "/VirtuosaCrud/static/media/descuentos.22b7aa42ae29af457423.png",
     "static/media/cuidadopiel.png": "/VirtuosaCrud/static/media/cuidadopiel.689aadf88289af4a6abb.png",
     "static/media/makeupIndex.svg": "/VirtuosaCrud/static/media/makeupIndex.fbd28f34e1fb42cde912.svg",
     "static/media/piel.png": "/VirtuosaCrud/static/media/piel.af3f809c3b1fa7468593.png",
@@ -25,11 +26,11 @@
     "static/media/slick.ttf": "/VirtuosaCrud/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/VirtuosaCrud/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/VirtuosaCrud/index.html",
-    "main.9a137fff.css.map": "/VirtuosaCrud/static/css/main.9a137fff.css.map",
-    "main.bd6f0db1.js.map": "/VirtuosaCrud/static/js/main.bd6f0db1.js.map"
+    "main.164b2db1.css.map": "/VirtuosaCrud/static/css/main.164b2db1.css.map",
+    "main.1dff6a77.js.map": "/VirtuosaCrud/static/js/main.1dff6a77.js.map"
   },
   "entrypoints": [
-    "static/css/main.9a137fff.css",
-    "static/js/main.bd6f0db1.js"
+    "static/css/main.164b2db1.css",
+    "static/js/main.1dff6a77.js"
   ]
 }
