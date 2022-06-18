@@ -11,7 +11,6 @@ import Tendencias from '../pages/ropa/TendenciasRS'
 import Vestidos from '../pages/ropa/VestidosRS'
 import Tips from '../pages/Tips'
 import Contacto from '../pages/Contacto';
-import Diseña from '../pages/ropa/DiseñaRS';
 import AdmVS from '../components/Admin/AdmVS';
 import FormVestido from '../components/Admin/vestidos/FormVestido';
 import InicioAdmin from '../components/Admin/InicioAdmin';
@@ -55,7 +54,6 @@ function AppRoutes() {
 
                 <Route path='/VirtuosaCrud/moda-vestidos' element={<Vestidos />}></Route>
                 <Route path='/VirtuosaCrud/moda-descuentos' element={<Descuentos />}></Route>
-                <Route path='/VirtuosaCrud/moda-diseña' element={<Diseña />}></Route>
                 <Route path='/VirtuosaCrud/moda-tendencias' element={<Tendencias />}></Route>
 
                 <Route path='/VirtuosaCrud/edit-vestidos' element={<AdmVS/>}></Route>
