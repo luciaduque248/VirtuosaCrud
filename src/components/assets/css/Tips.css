@@ -51,6 +51,10 @@
     align-content: center;
 }
 
+.atajo-img-tips{
+    width: 10vw;
+}
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     .banner-tips{
         height: 50vh;
