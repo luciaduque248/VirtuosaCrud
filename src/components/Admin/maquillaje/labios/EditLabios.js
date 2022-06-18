@@ -16,11 +16,11 @@ function EditLabios({ labio, close }) {
     close(false)
   }
   return (
-    <div className='modalEdit'>
+    <div className='modalEdit' >
       <div className='formulario'>
         <h1>Editar producto de maquillaje</h1>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='formulario-modal'>
           <label>Producto</label>
           <input
             type="text"
@@ -43,8 +43,10 @@ function EditLabios({ labio, close }) {
             name="descripción"
             id='descripción' />
 
-          <button onClick={handleClose}>Cerrar</button>
-          <button type='submit'>Guardar cambios</button>
+          <div className='botones-editar-modal'>
+            <button onClick={handleClose}>Cerrar</button>
+            <button type='submit'>Guardar cambios</button>
+          </div>
 
         </form>
       </div>

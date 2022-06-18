@@ -22,7 +22,7 @@ function EditVestido({ vestido, close }) {
             <div className='formulario'>
                 <h1>Editar producto</h1>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className='formulario-modal'>
                     <label>Producto</label>
                     <input
                         type="text"
@@ -45,8 +45,11 @@ function EditVestido({ vestido, close }) {
                         name="descripcion"
                         id='descripcion' />
 
-                    <button onClick={handleClose}>Cerrar</button>
-                    <button type='submit'>Guardar cambios</button>
+                    <div className='botones-editar-modal'>
+                        <button onClick={handleClose}>Cerrar</button>
+                        <button type='submit'>Guardar cambios</button>
+                    </div>
+                    
 
                 </form>
             </div>

@@ -245,7 +245,8 @@
 }
 
 .formulario{
-    width: 80%;
+    border-radius: 30px;
+    width: 40vw;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
@@ -255,6 +256,44 @@
 }
 .botons{
     margin: 2rem auto;
+}
+
+.formulario-modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-modal input{
+    padding: 0.5rem 1rem;
+    width: 20vw;
+    border-radius: 10px;
+    border: 2px solid grey;
+    font-size: Montserrat;
+}
+
+.formulario-modal label{
+    margin: 1rem 0;
+}
+
+.botones-editar-modal{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.botones-editar-modal button{
+    border: none;
+    padding: 1rem;
+    margin-left: 1rem;
+    border-radius: 10px;
+    font-family: Montserrat;
+    font-weight: 500;
+    color: white;
+    background-color: #ef594c;
+
 }
 
 .btn-edit-delete{
@@ -278,4 +317,14 @@
     font-weight: bolder;
     font-family: Montserrat;
     margin-bottom: 1rem;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+    .formulario{
+        width: 70vw;
+    }
+
+    .formulario-modal input{
+        width: 50vw;
+    }
 }
