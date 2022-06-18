@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Footer from '../../../components/footer/footer'
-import NoAlert from '../../../components/header/NoAlert'
+import Header from '../../../components/header/header';
 import Home from '../../../components/home/home'
 import { apirostro } from '../../../utils/peticiones'
 import './rostroC.css'
@@ -17,7 +17,7 @@ function Rostro() {
   }, [])
   return (
     <div>
-      <NoAlert />
+      <Header/>
       <Home />
       <div class="banner-rostro">
         <h1>QUE EL CONTOURING <strong>NO</strong> TE <em>CONFUNDA</em></h1>

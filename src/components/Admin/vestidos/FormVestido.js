@@ -133,7 +133,7 @@ function FormVestido() {
                         </div>
                         <div className='btn-form-vestido'>
                             <button className='guardar-form'>Guardar</button>
-                            <button className='volver-form'><Link to="/edit-vestidos" className="volver">Volver</Link></button>
+                            <button className='volver-form'><Link to="/VirtuosaCrud/edit-vestidos" className="volver">Volver</Link></button>
                         </div>
                         
                     </form>

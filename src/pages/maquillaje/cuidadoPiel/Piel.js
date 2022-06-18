@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Footer from '../../../components/footer/footer'
-import NoAlert from '../../../components/header/NoAlert'
+import Header from '../../../components/header/header';
 import Home from '../../../components/home/home'
 import { apipiel } from '../../../utils/peticiones';
 import './cuidadoPiel.css'
@@ -17,7 +17,7 @@ function Piel() {
   }, [])
   return (
     <div>
-      <NoAlert />
+      <Header />
       <Home />
       <div class="banner-piel"></div>
 

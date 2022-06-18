@@ -52,6 +52,7 @@ header {
 
 nav {
     grid-area: navbar;
+    background-color: #621ced;
 }
 
 .container-grid {
@@ -64,42 +65,32 @@ nav {
     ;
     text-align: center;
 }
-a{
-    color:#313030;
+
+a {
+    color: #313030;
 }
+
 /* ----------------------------------  | HEADER | ----------------------------------*/
 .grayLine {
     grid-area: gline;
-    height: 15px;
+    height: 10px;
     width: 100%;
     background-color: var(--c2-color);
     margin-bottom: 0;
 }
 
 .headerBox {
+    margin-bottom: 0rem;
     display: flex;
     grid-area: boxline;
-    height: 30px;
+    height: 25px;
     width: 100%;
     background-color: #655F5F;
     align-items: center;
     justify-content: center;
-    padding: 20px;
     margin-top: 0;
 }
 
-/* ----------------------------------  | SIN ALERTA | ----------------------------------*/
-.headerBox-NoAlert {
-    display: flex;
-    grid-area: boxline;
-    height: 3vh;
-    width: 100%;
-    background-color: #655F5F;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    margin-top: 0;
-}
 
 /* --------------------------------------------------------------------------*/
 .headerBox p {
@@ -108,14 +99,107 @@ a{
     color: var(--c9-color);
 }
 
+.fondonav {
+    width: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: -60px;
+}
+
 .icons {
-    position: absolute;
-    top: 12%;
-    left: 85%;
-    color: #312B89;
+    padding-top: 1rem;
+    height: 5px;
+    margin-right: 3rem;
+}
+
+.logo-responsive {
     display: none;
+}
+
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .fondonav {
+        position: fixed;
+    }
+
+    .logo-responsive {
+        display: block;
+    }
+
+    .logo-responsive img {
+        width: 35%;
+        margin-top: 40px;
+    }
+
+    .icons {
+        width: 50vw;
+        margin-left: 1rem;
+        margin-top: -5px;
+    }
 
 }
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .fondonav {
+        margin-top: -10px;
+    }
+
+    .logo-responsive {
+        display: block;
+    }
+
+    .fondonav {
+        position: fixed;
+    }
+
+    .logo-responsive {
+        display: block;
+    }
+
+    .logo-responsive img {
+        width: 35%;
+        margin-top: 45px;
+    }
+
+    .icons {
+        width: 50vw;
+        margin-left: 1rem;
+        margin-top: 5px;
+    }
+}
+
+body {
+    overflow-x: hidden;
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .icons {
+        width: 50vw;
+        margin-left: 28rem;
+        margin-top: 5px;
+    }
+}
+
+.iniciar-sesion,
+.btns-header,
+.btn-search {
+    background-color: transparent;
+    border: none;
+    margin-right: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #655F5F;
+
+}
+
+.iniciar-sesion:hover,
+.btns-header:hover,
+.btn-search:hover {
+    color: #621ced;
+}
+
 
 .fa-derecha {
     margin: 0 1rem;
@@ -123,13 +207,17 @@ a{
 
 nav {
     background-color: white;
+
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
     padding: 1rem;
     justify-content: center;
+    padding: 1rem;
+    padding-left: 0;
 }
+
 
 .nav-menu .nav-menu li a {
     line-height: 50px;
@@ -206,6 +294,13 @@ nav {
 }
 
 /* ::::::::::::::::::::::::::::::::::::::::: FOOTER ::::::::::::::::::::::::::::::::::::::::: */
+footer .mapa {
+    margin: 1rem auto;
+    position: relative;
+    left: 0.5rem;
+    width: 100%;
+}
+
 footer {
     background-color: #655F5F;
     color: #fff;
@@ -220,40 +315,34 @@ footer .grupo-1 {
     position: relative;
 }
 
-footer .grupo-1 .box {
+footer .grupo-1 .box-footer {
     text-align: left;
 }
 
-footer .grupo-1 .box h4 {
+footer .grupo-1 .box-footer h4 {
     text-align: center;
     font-size: 2vw;
     font-weight: 300;
 
 }
 
-footer .mapa{
-    margin: 1rem auto;
-    position: relative;
-    left: 0.5rem;
-    width: 100%;
-}
 
-footer .grupo-1 .box h2 {
+footer .grupo-1 .box-footer h2 {
     text-align: center;
     margin-bottom: 10px;
     font-size: 2vw;
     font-weight: 400;
 }
 
-footer .grupo-1 .box .informacion h2,
-footer .grupo-1 .box .informacion h2 {
+footer .grupo-1 .box-footer .informacion-footer h2,
+footer .grupo-1 .box-footer .informacion-footer h2 {
     margin-top: 1.5rem;
     position: relative;
     left: 1.2rem;
     color: #fff;
 }
 
-footer .grupo-1 .box p {
+footer .grupo-1 .box-footer p {
     margin-left: 8rem;
     margin-bottom: 5px;
     line-height: 2rem;
@@ -265,7 +354,7 @@ footer .grupo-1 .box p {
     color: #fff;
 }
 
-footer .grupo-1 .box a {
+footer .grupo-1 .box-footer a {
     color: #f5f5f5;
     text-decoration: none;
     margin-top: 1rem;
@@ -277,18 +366,18 @@ footer .grupo-1 a {
 
 }
 
-.atajos {
+.atajos-footer {
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
     margin-left: 8rem;
 }
 
-.atajos li{
+.atajos-footer li {
     margin-bottom: 1rem;
 }
 
-.atajos i {
+.atajos-footer i {
     margin: 0.5rem 0.5rem;
     margin-left: -2rem;
     color: var(--c2-color);
@@ -335,6 +424,8 @@ footer .grupo-2 {
 footer .grupo-2 small {
     font-size: 15px;
 }
+
+
 
 /*--------------------- | RESOLUCIÓN TABLETA | ---------------------*/
 @media screen and (min-width: 768px) {
@@ -386,7 +477,7 @@ footer .grupo-2 small {
         padding: 45px 2rem;
     }
 
-    footer .grupo-1 .box a {
+    footer .grupo-1 .box-footer a {
         color: #313030;
         text-decoration: none;
         margin-top: 1rem;
@@ -424,9 +515,50 @@ footer .grupo-2 small {
 
 }
 
+@media (min-width: 481px) and (max-width: 767px) {
+    footer .grupo-1 .box-footer h2 {
+        font-size: 20px;
+    }
+
+    footer .grupo-1 .box-footer h4 {
+        font-size: 20px;
+    }
+
+    footer .grupo-1 .box-footer p {
+        font-size: 13px;
+    }
+
+    .box-footer .mapa {
+        align-items: center;
+        margin: 1rem auto;
+        margin-left: 20vw;
+        width: 50%;
+    }
+
+    .suscribete h6 {
+        font-size: 15px;
+    }
+
+    .suscribete button {
+        font-size: 20px;
+        margin-left: 8vw;
+    }
+
+    .red-social {
+        margin-left: 8vw;
+    }
+}
+
 
 /*--------------------- | RESOLUCIÓN CELULAR | ---------------------*/
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    footer .mapa {
+        margin: 1rem auto;
+        position: relative;
+        left: 0.5rem;
+        width: 100%;
+    }
+
     footer .grupo-1 {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
@@ -434,25 +566,27 @@ footer .grupo-2 small {
         position: relative;
     }
 
-    footer .grupo-1 .box h2 {
+    footer .grupo-1 .box-footer h2 {
         text-align: center;
         font-size: 5vw;
         font-weight: 300;
-    
+
     }
-    footer .grupo-1 .box h4 {
+
+    footer .grupo-1 .box-footer h4 {
         text-align: center;
         font-size: 5vw;
         font-weight: 300;
     }
 
-    footer .grupo-1 .box p {
+    footer .grupo-1 .box-footer p {
         margin-left: 4rem;
         margin-bottom: 5px;
         line-height: 2rem;
         font-size: 4vw;
     }
-    .atajos {
+
+    .atajos-footer {
         display: flex;
         flex-direction: column;
         margin-top: 2rem;
@@ -483,5 +617,22 @@ footer .grupo-2 small {
         position: relative;
         left: 3rem;
         top: 2rem;
+    }
+}
+
+.angle-symbol {
+    padding: 1rem 2rem;
+}
+
+.angle-symbol i{
+    padding: 0 8px;
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .angle-symbol {
+        padding: 1rem 0.5rem;
+    }
+    .angle-symbol i{
+        padding: 0 5px;
     }
 }

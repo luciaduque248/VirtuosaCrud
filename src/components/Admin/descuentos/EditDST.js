@@ -18,6 +18,9 @@ function EditDST({ descuento, close }) {
   return (
     <div className='modalEdit'>
       <div className='formulario'>
+        <div className='cerrar-modal-edit'>
+          <button onClick={handleClose}>X</button>
+        </div>
         <h1>Editar producto</h1>
 
         <form onSubmit={handleSubmit} className='formulario-modal'>
@@ -44,9 +47,10 @@ function EditDST({ descuento, close }) {
             id='descripcion' />
 
           <div className='botones-editar-modal'>
-            <button onClick={handleClose}>Cerrar</button>
+
             <button type='submit'>Guardar cambios</button>
           </div>
+
 
         </form>
       </div>

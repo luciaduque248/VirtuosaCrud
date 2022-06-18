@@ -59,7 +59,7 @@ function CardsDisc() {
       <NavbarAdmin />
       <div className='header-admin'>
         <h1>Descuentos</h1>
-        <button className='btn btn-white btn-animated'><Link to="/form-descuentos">Crear un nuevo producto</Link></button>
+        <button className='btn btn-white btn-animated'><Link to="/VirtuosaCrud/form-descuentos">Crear un nuevo producto</Link></button>
       </div>
 
 

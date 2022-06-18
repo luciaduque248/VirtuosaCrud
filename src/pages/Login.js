@@ -19,7 +19,7 @@ const Login = () => {
                     let errores = {}
                     //VALIDACIÓN CORREO Y CONTRASEÑA DEL ADMIN
                     if(valores.email === 'admin@gmail.com' && valores.contraseña === 'virtuosa12'){
-                        window.location = "/admin"
+                        window.location = "/VirtuosaCrud/admin"
                     }
                     //VALIDACIÓN CORREO
                     if (!valores.email) {
@@ -30,7 +30,7 @@ const Login = () => {
                     //VALIDACIÓN CONTRASEÑA
                     }if (!valores.contraseña ) {
                         errores.contraseña = 'Por favor ingrese su contraseña'
-                    }else if(!/^.{11,12}$/.test(valores.contraseña)){
+                    }else if(!/^.{12,12}$/.test(valores.contraseña)){
                         errores.contraseña = 'La contraseña tiene que ser de 8 a 12 dígitos.'
 
                     }else{

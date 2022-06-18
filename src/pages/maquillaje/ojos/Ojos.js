@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Footer from '../../../components/footer/footer'
-import NoAlert from '../../../components/header/NoAlert'
+import Header from '../../../components/header/header';
 import Home from '../../../components/home/home'
 import { apiojos } from '../../../utils/peticiones'
 import './ojosC.css'
@@ -17,7 +17,7 @@ function Ojos() {
   }, [])
   return (
     <div>
-      <NoAlert />
+      <Header />
       <Home />
       <section className="ojos">
         <h1>TUS OJOS SON EL REFLEJO DE TU SER</h1>

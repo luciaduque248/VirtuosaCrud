@@ -1,14 +1,14 @@
 
 import Home from '../components/home/home';
 import Footer from '../components/footer/footer';
-import NoAlert from '../components/header/NoAlert';
 import Makeup from './maquillaje/Makeup';
+import Header from '../components/header/header';
 
 
 function Maquillaje() {
     return(
         <div>
-            <NoAlert />
+            <Header />
             <Home />
             <Makeup/>
             <Footer />

@@ -19,7 +19,11 @@ function EditVestido({ vestido, close }) {
 
     return (
         <div className='modalEdit'>
+            
             <div className='formulario'>
+                <div className='cerrar-modal-edit'>
+                    <button onClick={handleClose}>X</button>
+                </div>
                 <h1>Editar producto</h1>
 
                 <form onSubmit={handleSubmit} className='formulario-modal'>
@@ -37,16 +41,16 @@ function EditVestido({ vestido, close }) {
                         name="precio" 
                         id='precio'/>
 
-                    <label>Descripcion</label>
+                    <label>Descripción</label>
                     <input
                         type="textarea"
                         rows={3}
-                        placeholder="Digite la descripcion del producto"
+                        placeholder="Digite la descripción del producto"
                         name="descripcion"
                         id='descripcion' />
 
                     <div className='botones-editar-modal'>
-                        <button onClick={handleClose}>Cerrar</button>
+                        
                         <button type='submit'>Guardar cambios</button>
                     </div>
                     

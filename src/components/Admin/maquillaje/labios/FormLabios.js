@@ -103,7 +103,7 @@ function FormLabios() {
 
             <div className='btn-form-vestido'>
               <button className='guardar-form'>Guardar</button>
-              <button className='volver-form'><Link to="/edit-labios" className="volver">Volver</Link></button>
+              <button className='volver-form'><Link to="/VirtuosaCrud/edit-labios" className="volver">Volver</Link></button>
             </div>
 
           </form>

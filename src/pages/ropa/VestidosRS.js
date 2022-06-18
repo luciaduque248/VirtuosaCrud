@@ -1,4 +1,4 @@
-import NoAlert from '../../components/header/NoAlert';
+
 import Footer from '../../components/footer/footer';
 import Home from '../../components/home/home';  // nav bar
 
@@ -9,6 +9,7 @@ import axios from 'axios';
 import SliderCarousel from '../../components/carousel/ropa/vestidos/Slider';
 import { api } from '../../utils/peticiones';
 import uuid from 'react-uuid';
+import Header from '../../components/header/header';
 
 function Vestidos() {
     const [vestidos, setVestidos] = useState([]);
@@ -22,7 +23,7 @@ function Vestidos() {
 
     return (
         <div>
-            <NoAlert />
+            <Header/>
             <Home />
             <section className="viste-a-la-moda">
                 <h1>VISTE A LA MODA</h1>

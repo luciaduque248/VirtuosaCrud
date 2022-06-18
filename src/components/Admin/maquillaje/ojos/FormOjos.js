@@ -104,7 +104,7 @@ function FormOjos() {
 
                         <div className='btn-form-vestido'>
                             <button className='guardar-form'>Guardar</button>
-                            <button className='volver-form'><Link to="/edit-ojos" className="volver">Volver</Link></button>
+                            <button className='volver-form'><Link to="/VirtuosaCrud/edit-ojos" className="volver">Volver</Link></button>
                         </div>
 
                     </form>

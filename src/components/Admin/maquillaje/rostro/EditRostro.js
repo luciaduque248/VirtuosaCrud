@@ -19,6 +19,9 @@ function EditRostro({ rostro, close }) {
   return (
     <div className='modalEdit'>
       <div className='formulario'>
+      <div className='cerrar-modal-edit'>
+          <button onClick={handleClose}>X</button>
+        </div>
         <h1>Editar producto de maquillaje</h1>
 
         <form onSubmit={handleSubmit} className='formulario-modal'>
@@ -45,7 +48,6 @@ function EditRostro({ rostro, close }) {
             id='descripción' />
 
           <div className='botones-editar-modal'>
-            <button onClick={handleClose}>Cerrar</button>
             <button type='submit'>Guardar cambios</button>
           </div>
 

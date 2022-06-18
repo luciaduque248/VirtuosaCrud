@@ -62,7 +62,7 @@ function AdmVS() {
             <NavbarAdmin />
             <div className='header-admin'>
                 <h1>Vestidos</h1>
-                <button className='btn btn-white btn-animated'><Link to="/form-vestidos">Crear un nuevo producto</Link></button>
+                <button className='btn btn-white btn-animated'><Link to="/VirtuosaCrud/form-vestidos">Crear un nuevo producto</Link></button>
             </div>
 
 

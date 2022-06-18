@@ -1,14 +1,14 @@
 import React from 'react'
-import NoAlert from '../components/header/NoAlert'
 import Home from '../components/home/home'
 import '../components/assets/css/Tips.css'
 import { Link } from 'react-router-dom'
 import Footer from '../components/footer/footer'
+import Header from '../components/header/header'
 
 function Tips() {
   return (
     <div>
-      <NoAlert />
+      <Header />
       <Home />
       <div className='banner-tips'>
         <h1>NUESTROS TIPS</h1>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
 
-import Experiencias from '../pages/Experiencias'
 import Inicio from '../pages/Inicio'
 import Maquillaje from '../pages/Maquillaje'
 import Moda from '../pages/Moda'
@@ -34,6 +33,7 @@ import CardsDisc from '../components/Admin/descuentos/CardsDisc';
 
 import TipsM from '../pages/TipsM'
 import TipsR from '../pages/TipsR'
+import FormDisc from '../components/Admin/descuentos/FormDisc';
 
 
 function AppRoutes() {
@@ -48,7 +48,6 @@ function AppRoutes() {
                 <Route path='/VirtuosaCrud/tips/maquillaje' element={<TipsM />}></Route>
                 <Route path='/VirtuosaCrud/tips/ropa' element={<TipsR />}></Route>
 
-                <Route path='/VirtuosaCrud/experiencias' element={<Experiencias />}></Route>
                 <Route path='/VirtuosaCrud/nosotros' element={<Nosotros />}></Route>
                 <Route path='/VirtuosaCrud/contacto' element={<Contacto />}></Route>
 
@@ -59,7 +58,7 @@ function AppRoutes() {
                 <Route path='/VirtuosaCrud/edit-vestidos' element={<AdmVS/>}></Route>
                 <Route path='/VirtuosaCrud/form-vestidos' element={<FormVestido/>}></Route>
                 <Route path='/VirtuosaCrud/edit-descuentos' element={<CardsDisc/>}></Route>
-                <Route path='/VirtuosaCrud/form-descuentos' element={<FormVestido/>}></Route>
+                <Route path='/VirtuosaCrud/form-descuentos' element={<FormDisc/>}></Route>
 
                 <Route path='/VirtuosaCrud/edit-maquillaje' element={<EditMaquillaje />}></Route>
 

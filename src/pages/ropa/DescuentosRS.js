@@ -1,4 +1,4 @@
-import NoAlert from '../../components/header/NoAlert';
+
 import Footer from '../../components/footer/footer';
 import Home from '../../components/home/home';  // nav bar
 
@@ -8,6 +8,7 @@ import axios from 'axios';
 import { apidiscount } from '../../utils/peticiones';
 import uuid from 'react-uuid';
 import SliderCarouselDisc from '../../components/carousel/ropa/descuentos/SliderDisc';
+import Header from '../../components/header/header';
 
 
 function Descuentos() {
@@ -22,7 +23,7 @@ function Descuentos() {
 
     return (
         <div>
-            <NoAlert />
+            <Header/>
             <Home />
             <section class="banner-descuentos">
                 <h1>SALES</h1>

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Footer from '../../../components/footer/footer'
-import NoAlert from '../../../components/header/NoAlert'
+import Header from '../../../components/header/header';
 import Home from '../../../components/home/home'
 import { apilabios } from '../../../utils/peticiones'
 import './labiosC.css';
@@ -19,7 +19,7 @@ function Labios() {
 
   return (
     <div>
-      <NoAlert />
+      <Header />
       <Home />
       <section className="ban">
         

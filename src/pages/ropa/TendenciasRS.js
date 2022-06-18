@@ -1,4 +1,4 @@
-import NoAlert from '../../components/header/NoAlert';
+
 import Footer from '../../components/footer/footer';
 import Home from '../../components/home/home';  // nav bar
 
@@ -11,11 +11,12 @@ import Nov4 from '../../components/assets/img/ropa/banner/apartados/tendencias/4
 import Nov5 from '../../components/assets/img/ropa/banner/apartados/tendencias/5.webp';
 import Nov6 from '../../components/assets/img/ropa/banner/apartados/tendencias/6.webp';
 import { Link } from 'react-router-dom';
+import Header from '../../components/header/header';
 
 function Tendencias() {
     return (
         <div>
-            <NoAlert/>
+            <Header/>
             <Home />
             <section className="banner-nov">
                 <h1>NOVEDADES<br />TENDENCIAS</h1>
