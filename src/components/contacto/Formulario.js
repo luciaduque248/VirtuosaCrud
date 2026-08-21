@@ -8,11 +8,11 @@ const colores = {
 }
 
 const Formulario = styled.form`
-    background: #f7f5fc;
-    padding: 2em;
+    background: #f7f3f1;
+    padding: clamp(32px, 5vw, 64px);
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 20px;
+	gap: 24px 20px;
 	@media (max-width: 800px){
 		grid-template-columns: 1fr;
 	}
@@ -21,9 +21,11 @@ const Formulario = styled.form`
 const Label = styled.label`
 	display: block;
 	font-weight: 700;
-	color: #403F3F;
-	padding: 10px;
-	min-height: 40px;
+	color: #3b343c;
+	padding: 0 2px 9px;
+	min-height: 0;
+    font-size: 11px;
+    letter-spacing: .4px;
 	cursor: pointer;
 	${props => props.valido === 'false' && css`
 		color: ${colores.error};
@@ -40,23 +42,23 @@ const GrupoInput = styled.div`
 const Input = styled.input`
 	width: 100%;
 	background: #fff;
-	border-radius: 3px;
-	height: 45px;
-	line-height: 45px;
-	padding: 0 40px 0 10px;
+	border-radius: 12px;
+	height: 54px;
+	line-height: 54px;
+	padding: 0 44px 0 16px;
 	transition: .3s ease all;
 	border: none;
-	border: 3px solid transparent;
+	border: 1px solid #d4cad2;
 	&:focus {
-		border: 3px solid ${colores.borde};
+		border: 1px solid ${colores.borde};
 		outline: none;
-		box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+		box-shadow: 0 0 0 4px rgba(170,149,199,.14);
 	}
 	${props => props.valido === 'true' && css`
-		border: 3px solid transparent;
+		border: 1px solid #d4cad2;
 	`}
 	${props => props.valido === 'false' && css`
-		border: 3px solid ${colores.error} !important;
+		border: 1px solid ${colores.error} !important;
 	`}
 `;
 
@@ -111,18 +113,23 @@ const ContenedorBotonCentrado = styled.div`
 `;
 
 const Boton = styled.button`
-	height: 45px;
-	line-height: 45px;
-	width: 30%;
-	background: #ef594c;
+	height: 56px;
+	line-height: 56px;
+	width: min(100%, 320px);
+	background: #332d35;
 	color: #fff;
 	font-weight: bold;
 	border: none;
-	border-radius: 3px;
+	border-radius: 999px;
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 	cursor: pointer;
 	transition: .1s ease all;
 	&:hover {
-		box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+		background: #725b77;
+		box-shadow: 0 12px 30px rgba(51,45,53,.18);
 	}
 `;
 

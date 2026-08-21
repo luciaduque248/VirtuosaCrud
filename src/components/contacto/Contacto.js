@@ -49,9 +49,12 @@ const App = () => {
 
     return (
 
-        <main className='contact-P main'>
+        <section className='contact-layout' id='contact-form' aria-labelledby='contact-form-title'>
             <div className="contact-info">
-                <div>¡Hola! Gracias por comunicarte con nosotros, por favor déjanos el detalle de tu pregunta, novedad, o problema con el envío.<br /><br />Recuerda que la respuesta por este medio puede tardar entre 1-5 días hábiles sin contar sábados, domingos ni festivos, responderemos lo más pronto posible, y entre más concreto seas con la información de la novedad será más fácil y rápido darte solución.</div>
+                <span>Contacto directo</span>
+                <h2 id='contact-form-title'>Cuéntanos cómo podemos ayudarte.</h2>
+                <p>Déjanos el detalle de tu pregunta, novedad o problema con el envío. Entre más clara sea la información, más rápido podremos acompañarte.</p>
+                <p className='contact-response-note'>Respondemos entre 1 y 5 días hábiles.</p>
                 <ul className="conLis ul">
                     <li><i className="fa-solid fa-envelope"></i> servicliente@virtuosa.com</li>
                     <li><i className="fa-solid fa-location-dot"></i> Bogotá, Colombia</li>
@@ -124,19 +127,19 @@ const App = () => {
                         Acepto los Terminos y Condiciones
                     </Label>
                 </ContenedorTerminos>
-                {formularioValido === false && <MensajeError>
+                {formularioValido === false ? <MensajeError>
                     <p>
                         <FontAwesomeIcon icon={faExclamationTriangle} />
                         <b>Error:</b> Por favor rellena el formulario correctamente.
                     </p>
-                </MensajeError>}
+                </MensajeError> : null}
                 <ContenedorBotonCentrado>
                     <Boton type="submit">Enviar</Boton>
-                    {formularioValido === true && <MensajeExito>Formulario enviado exitosamente!</MensajeExito>}
+                    {formularioValido === true ? <MensajeExito>Formulario enviado exitosamente!</MensajeExito> : null}
                 </ContenedorBotonCentrado>
 
             </Formulario>
-        </main>
+        </section>
     );
 }
 
