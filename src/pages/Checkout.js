@@ -255,8 +255,15 @@ function Checkout() {
                         </p>
 
                         <Link
-                            to="/VirtuosaCrud/"
+                            to={`/VirtuosaCrud/seguimiento?reference=${encodeURIComponent(completedOrder.reference)}&email=${encodeURIComponent(completedOrder.customer_email || form.customerEmail)}`}
                             className="checkout-primary-link"
+                        >
+                            Seguir mi pedido
+                        </Link>
+
+                        <Link
+                            to="/VirtuosaCrud/"
+                            className="checkout-secondary-link"
                         >
                             Volver a la tienda
                         </Link>

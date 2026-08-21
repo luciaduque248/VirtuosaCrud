@@ -317,6 +317,33 @@ const findById = async (
     };
 };
 
+const findByReferenceAndEmail = async (
+    reference,
+    email
+) => {
+    const orderResult = await pool.query(
+        `
+        SELECT
+            id, reference, customer_name, customer_email,
+            shipping_city, shipping_department,
+            subtotal, shipping_cost, total,
+            status, payment_status, payment_method,
+            created_at, updated_at
+        FROM orders
+        WHERE UPPER(reference) = UPPER($1)
+          AND LOWER(customer_email) = LOWER($2);
+        `,
+        [reference, email]
+    );
+    const order = orderResult.rows[0];
+    if (!order) return null;
+    const itemsResult = await pool.query(
+        `SELECT id, product_id, product_name, product_image_url, size, unit_price, quantity, subtotal FROM order_items WHERE order_id = $1 ORDER BY id;`,
+        [order.id]
+    );
+    return { ...order, items: itemsResult.rows };
+};
+
 const findByIdForUpdate = async (
     client,
     id
@@ -383,6 +410,7 @@ module.exports = {
     restoreStock,
     findAll,
     findById,
+    findByReferenceAndEmail,
     findByIdForUpdate,
     findItemsByOrderId,
     updateStatus,

@@ -10,6 +10,7 @@ import "./HeaderCart.css";
 
 const searchDestinations = [
     { label: "Todos los productos", detail: "Explora la tienda completa", path: "/VirtuosaCrud/productos", keywords: "productos tienda catálogo" },
+    { label: "Seguir mi pedido", detail: "Consulta el estado de tu compra", path: "/VirtuosaCrud/seguimiento", keywords: "pedido compra seguimiento estado" },
     { label: "Maquillaje", detail: "Explora maquillaje y belleza", path: "/VirtuosaCrud/maquillaje", keywords: "maquillaje belleza cosméticos" },
     { label: "Moda", detail: "Colecciones y tendencias", path: "/VirtuosaCrud/moda", keywords: "moda ropa colección" },
     { label: "Vestidos", detail: "Vestidos para cada ocasión", path: "/VirtuosaCrud/moda-vestidos", keywords: "vestidos ropa" },

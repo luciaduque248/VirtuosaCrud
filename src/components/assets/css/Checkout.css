@@ -415,6 +415,16 @@
     padding: 0 24px;
 }
 
+.checkout-confirmation .checkout-secondary-link {
+    display: inline-block;
+    margin: 16px 0 0;
+    color: #5f5260;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
 @media (max-width: 960px) {
     .checkout-layout {
         grid-template-columns: 1fr;

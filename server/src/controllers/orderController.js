@@ -759,6 +759,23 @@ const getOrderById =
         }
     };
 
+const trackOrder = async (req, res, next) => {
+    try {
+        const reference = String(req.query.reference || "").trim();
+        const email = String(req.query.email || "").trim();
+        if (!reference || !email || !email.includes("@")) {
+            return res.status(400).json({ success: false, message: "Referencia y correo son obligatorios." });
+        }
+        const order = await Order.findByReferenceAndEmail(reference, email);
+        if (!order) {
+            return res.status(404).json({ success: false, message: "No encontramos un pedido con esos datos." });
+        }
+        return res.status(200).json({ success: true, data: order });
+    } catch (error) {
+        return next(error);
+    }
+};
+
 /* =========================================================
    ADMIN - UPDATE STATUS
 ========================================================= */
@@ -922,6 +939,7 @@ const updateOrderStatus =
 
 module.exports = {
     createOrder,
+    trackOrder,
     getOrders,
     getOrderById,
     updateOrderStatus,
