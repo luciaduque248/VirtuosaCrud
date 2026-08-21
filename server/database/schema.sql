@@ -145,6 +145,17 @@ CREATE TABLE IF NOT EXISTS order_items (
         ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS audit_logs (
+    id BIGSERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+    action VARCHAR(80) NOT NULL,
+    entity_type VARCHAR(50) NOT NULL,
+    entity_id VARCHAR(80),
+    metadata JSONB NOT NULL DEFAULT '{}'::jsonb,
+    ip_address VARCHAR(64),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 -- =========================================================
 -- INDEXES
 -- =========================================================
@@ -183,6 +194,9 @@ CREATE INDEX IF NOT EXISTS idx_order_items_order
 
 CREATE INDEX IF NOT EXISTS idx_order_items_product
     ON order_items(product_id);
+
+CREATE INDEX IF NOT EXISTS idx_audit_logs_created_at ON audit_logs(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_audit_logs_user ON audit_logs(user_id);
 
 -- =========================================================
 -- UPDATED_AT FUNCTION

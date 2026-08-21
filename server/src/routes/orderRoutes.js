@@ -15,6 +15,7 @@ const {
 } = require("../middleware/authMiddleware");
 
 const router = express.Router();
+const { auditAdminAction } = require("../middleware/auditMiddleware");
 
 /* =========================================================
    PUBLIC CHECKOUT RATE LIMIT
@@ -82,6 +83,7 @@ router.patch(
     "/:id/status",
     requireAuth,
     requireAdmin,
+    auditAdminAction("order.status.update", "order"),
     updateOrderStatus
 );
 

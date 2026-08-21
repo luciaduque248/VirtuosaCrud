@@ -6,6 +6,7 @@ const jwt =
 
 const User =
     require("../models/userModel");
+const { normalizeEmail, isValidEmail } = require("../utils/validation");
 
 
 /* =========================================================
@@ -37,10 +38,11 @@ const login =
                     });
             }
 
-            const normalizedEmail =
-                String(email)
-                    .trim()
-                    .toLowerCase();
+            const normalizedEmail = normalizeEmail(email);
+
+            if (!isValidEmail(normalizedEmail) || String(password).length > 128) {
+                return res.status(400).json({ success: false, message: "Los datos de acceso no son válidos." });
+            }
 
             const user =
                 await User.findByEmail(
