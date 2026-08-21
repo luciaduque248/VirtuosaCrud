@@ -1,26 +1,86 @@
-.contenido { display: grid; gap: 10px; padding: 10px; background: #f5f1f6; }
-.maquillaje-inicio, .ropa { min-height: clamp(360px,58vw,690px); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(28px,7vw,90px); background-position: center; background-size: cover; background-repeat: no-repeat; }
-.maquillaje-inicio { background-image: linear-gradient(90deg,rgba(35,25,40,.48),rgba(35,25,40,.02)),url(../img/makeupIndex.svg); }
-.ropa { background-image: linear-gradient(90deg,rgba(35,25,40,.48),rgba(35,25,40,.02)),url(../img/ropaIndex.svg); }
-.maquillaje-inicio h1, .ropa h1 { max-width: 650px; margin: 0; padding-left: clamp(16px,3vw,32px); border-left: 7px solid rgba(255,255,255,.92); color: white; font-family: "Bebas Neue",sans-serif; font-size: clamp(48px,8vw,104px); font-weight: 400; line-height: .92; text-shadow: 0 4px 20px rgba(30,20,35,.35); }
-.maquillaje-inicio button, .ropa button { margin: 28px 0 0 clamp(23px,3vw,39px); padding: 0; border: 0; border-radius: 999px; background: white; box-shadow: 0 8px 25px rgba(30,20,35,.16); }
-.maquillaje-inicio button a, .ropa button a { min-height: 45px; display: inline-flex; align-items: center; padding: 0 24px; color: #4b4050; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-.rosa { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; padding: 0; background: #d8c9d1; }
-.rosa .rose { min-height: 115px; display: flex; align-items: center; justify-content: center; gap: 15px; padding: 22px; background: #e5c4c6; color: #352f38; }
-.iconoRose { font-size: 25px; color: #765f8e; }
-.contentRose h3, .contentRose h4, .contentRose p { margin: 0; font-size: 12px; line-height: 1.5; }
-.contentRose h3 { font-weight: 700; letter-spacing: .7px; }
-.contentRose h4, .contentRose p { font-weight: 400; }
-
-@media (max-width: 800px) {
-    .rosa { grid-template-columns: repeat(2,1fr); }
+.home-page { --home-ink: #2f2932; --home-plum: #715879; --home-blush: #ead5d6; --home-cream: #f8f5f1; color: var(--home-ink); background: #fff; }
+.home-page main { overflow: hidden; }
+.home-eyebrow { display: block; color: var(--home-plum); font-size: 11px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; }
+.home-hero { min-height: min(760px,calc(100vh - 170px)); display: grid; grid-template-columns: minmax(320px,.82fr) minmax(480px,1.18fr); grid-template-rows: 1fr auto; gap: 0; margin: 10px; background: var(--home-cream); }
+.home-hero-copy { z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(54px,7vw,110px); }
+.home-hero-copy h1 { max-width: 650px; margin: 20px 0 24px; font-family: Georgia,"Times New Roman",serif; font-size: clamp(54px,6.3vw,104px); font-weight: 400; line-height: .93; letter-spacing: -4px; }
+.home-hero-copy p { max-width: 540px; margin: 0; color: #625b65; font-size: clamp(15px,1.25vw,18px); line-height: 1.75; }
+.home-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+.home-button { min-height: 52px; display: inline-flex; align-items: center; justify-content: center; padding: 0 25px; border: 1px solid var(--home-ink); border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; transition: transform .2s ease,background .2s ease,color .2s ease; }
+.home-button:hover { transform: translateY(-2px); }
+.home-button-primary { background: var(--home-ink); color: #fff; }
+.home-button-primary:hover { background: var(--home-plum); border-color: var(--home-plum); }
+.home-button-secondary { background: transparent; }
+.home-button-secondary:hover { background: #fff; }
+.home-hero-visual { position: relative; min-height: 600px; background-image: linear-gradient(180deg,rgba(48,39,49,.03),rgba(48,39,49,.18)),url(../img/makeupIndex.svg); background-position: center; background-size: cover; }
+.home-hero-stamp { position: absolute; right: 30px; bottom: 30px; width: 116px; height: 116px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; color: #fff; font-family: Georgia,"Times New Roman",serif; font-size: 18px; font-style: italic; line-height: 1.15; text-align: center; transform: rotate(-8deg); backdrop-filter: blur(5px); }
+.home-hero-note { grid-column: 1/-1; margin: 0; padding: 15px 24px; border-top: 1px solid #dfd9d7; color: #786f78; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+.home-intro { width: min(1280px,calc(100% - 48px)); display: grid; grid-template-columns: 70px minmax(0,1.4fr) minmax(260px,.6fr); align-items: end; gap: 34px; margin: 0 auto; padding: clamp(90px,10vw,150px) 0 64px; }
+.home-section-number { align-self: start; padding-top: 7px; border-top: 1px solid #a69ca7; color: #8f8490; font-size: 11px; }
+.home-intro h2 { max-width: 800px; margin: 12px 0 0; font-family: Georgia,"Times New Roman",serif; font-size: clamp(38px,4vw,64px); font-weight: 400; line-height: 1.06; letter-spacing: -1.8px; }
+.home-intro > p { margin: 0; color: #6e6670; font-size: 15px; line-height: 1.8; }
+.home-worlds { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+.home-world { position: relative; min-height: 720px; display: flex; align-items: flex-end; overflow: hidden; background-position: center; background-size: cover; }
+.home-world::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,transparent 30%,rgba(26,20,27,.78)); transition: background .35s ease; }
+.home-world:hover::before { background: linear-gradient(180deg,rgba(26,20,27,.03) 18%,rgba(26,20,27,.84)); }
+.home-world-beauty { background-image: url(../img/maquillaje/slidemakeup2.png); }
+.home-world-fashion { background-image: url(../img/ropa/banner/diseñatulook.png); background-position: center top; }
+.home-world-content { z-index: 1; max-width: 580px; padding: clamp(32px,5vw,70px); color: #fff; }
+.home-world-content > span { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.home-world-content h2 { margin: 14px 0; font-family: Georgia,"Times New Roman",serif; font-size: clamp(38px,4.2vw,68px); font-weight: 400; line-height: 1; letter-spacing: -1.6px; }
+.home-world-content p { max-width: 440px; margin: 0 0 26px; color: rgba(255,255,255,.82); line-height: 1.7; }
+.home-world-content a { display: inline-flex; align-items: center; gap: 12px; padding-bottom: 7px; border-bottom: 1px solid rgba(255,255,255,.7); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.home-manifesto { width: min(1160px,calc(100% - 48px)); display: grid; grid-template-columns: 120px 1fr auto; align-items: center; gap: 50px; margin: clamp(100px,12vw,180px) auto; }
+.home-manifesto-mark { color: var(--home-blush); font-family: Georgia,"Times New Roman",serif; font-size: 150px; line-height: .7; }
+.home-manifesto h2 { max-width: 760px; margin: 12px 0 0; font-family: Georgia,"Times New Roman",serif; font-size: clamp(38px,4.2vw,65px); font-weight: 400; line-height: 1.08; letter-spacing: -1.5px; }
+.home-manifesto > a { align-self: end; padding-bottom: 7px; border-bottom: 1px solid var(--home-ink); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+.home-benefits { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid #ddd5dd; border-bottom: 1px solid #ddd5dd; background: #f7f3f5; }
+.home-benefit { min-height: 145px; display: flex; align-items: center; gap: 18px; padding: 30px; border-right: 1px solid #ddd5dd; }
+.home-benefit:last-child { border-right: 0; }
+.home-benefit > i { width: 42px; height: 42px; display: grid; flex: 0 0 auto; place-items: center; border: 1px solid #cbbdcb; border-radius: 50%; color: var(--home-plum); }
+.home-benefit h3,.home-benefit p { margin: 0; }
+.home-benefit h3 { margin-bottom: 5px; font-size: 11px; letter-spacing: .8px; text-transform: uppercase; }
+.home-benefit p { color: #766e76; font-size: 12px; line-height: 1.5; }
+@media (max-width: 980px) {
+    .home-hero { min-height: auto; grid-template-columns: 1fr 1fr; }
+    .home-hero-copy { padding: 54px 34px; }
+    .home-hero-copy h1 { font-size: clamp(48px,7.5vw,70px); letter-spacing: -2.5px; }
+    .home-hero-visual { min-height: 580px; }
+    .home-intro { grid-template-columns: 48px 1fr; }
+    .home-intro > p { grid-column: 2; }
+    .home-world { min-height: 600px; }
+    .home-manifesto { grid-template-columns: 80px 1fr; gap: 30px; }
+    .home-manifesto-mark { font-size: 110px; }
+    .home-manifesto > a { grid-column: 2; justify-self: start; }
+    .home-benefits { grid-template-columns: repeat(2,1fr); }
+    .home-benefit:nth-child(2) { border-right: 0; }
+    .home-benefit:nth-child(-n+2) { border-bottom: 1px solid #ddd5dd; }
 }
-
-@media (max-width: 520px) {
-    .contenido { gap: 6px; padding: 6px; }
-    .maquillaje-inicio, .ropa { min-height: 440px; justify-content: flex-end; padding: 34px 22px; background-position: 58% center; }
-    .maquillaje-inicio h1, .ropa h1 { font-size: clamp(46px,16vw,72px); }
-    .maquillaje-inicio button, .ropa button { margin-top: 22px; }
-    .rosa { grid-template-columns: 1fr; }
-    .rosa .rose { min-height: 90px; justify-content: flex-start; padding-left: max(28px,12vw); }
+@media (max-width: 640px) {
+    .home-hero { display: flex; flex-direction: column; margin: 6px; }
+    .home-hero-copy { order: 2; padding: 42px 24px 44px; }
+    .home-hero-copy h1 { margin: 15px 0 20px; font-size: clamp(46px,14.5vw,66px); line-height: .96; letter-spacing: -2.5px; }
+    .home-hero-copy p { font-size: 14px; line-height: 1.65; }
+    .home-hero-actions { width: 100%; display: grid; margin-top: 28px; }
+    .home-button { width: 100%; }
+    .home-hero-visual { order: 1; min-height: 430px; background-position: 57% center; }
+    .home-hero-stamp { right: 18px; bottom: 18px; width: 94px; height: 94px; font-size: 15px; }
+    .home-hero-note { order: 3; padding: 13px 18px; }
+    .home-intro { width: calc(100% - 36px); display: block; padding: 82px 0 42px; }
+    .home-section-number { width: 40px; display: block; margin-bottom: 28px; }
+    .home-intro h2 { font-size: 40px; letter-spacing: -1px; }
+    .home-intro > p { margin-top: 22px; }
+    .home-worlds { grid-template-columns: 1fr; gap: 6px; padding: 6px; }
+    .home-world { min-height: 520px; }
+    .home-world-content { padding: 30px 24px; }
+    .home-world-content h2 { font-size: 43px; }
+    .home-manifesto { width: calc(100% - 36px); display: block; margin: 90px auto; }
+    .home-manifesto-mark { display: block; margin-bottom: 34px; font-size: 100px; }
+    .home-manifesto h2 { margin-bottom: 30px; font-size: 42px; }
+    .home-benefits { grid-template-columns: 1fr; }
+    .home-benefit { min-height: 104px; border-right: 0; border-bottom: 1px solid #ddd5dd; padding: 23px 28px; }
+    .home-benefit:last-child { border-bottom: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .home-button,.home-world::before { transition: none; }
 }
