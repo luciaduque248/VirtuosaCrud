@@ -1,6 +1,34 @@
-export const api="https://bd-virtuosa.herokuapp.com/vestidos/"
-export const apidiscount="https://bd-virtuosa.herokuapp.com/descuentos/"
-export const apilabios="https://bd-virtuosa.herokuapp.com/labios/"
-export const apipiel="https://bd-virtuosa.herokuapp.com/piel/"
-export const apirostro="https://bd-virtuosa.herokuapp.com/rostro/"
-export const apiojos="https://bd-virtuosa.herokuapp.com/ojos/"
+const API_BASE_URL =
+    process.env.REACT_APP_API_URL ||
+    "http://localhost:4000/api";
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+export const api =
+    `${API_BASE_URL}/products?subcategory=vestidos`;
+
+export const apidiscount =
+    `${API_BASE_URL}/products?subcategory=descuentos`;
+
+export const apilabios =
+    `${API_BASE_URL}/products?subcategory=labios`;
+
+export const apipiel =
+    `${API_BASE_URL}/products?subcategory=piel`;
+
+export const apirostro =
+    `${API_BASE_URL}/products?subcategory=rostro`;
+
+export const apiojos =
+    `${API_BASE_URL}/products?subcategory=ojos`;
+
+/* =========================================================
+   BASE PRODUCTS ENDPOINT
+========================================================= */
+
+export const productsApi =
+    `${API_BASE_URL}/products`;
+
+export default API_BASE_URL;
