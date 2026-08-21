@@ -5,6 +5,15 @@ body {
   overflow-x: hidden;
 }
 
+/*
+ * Los modales de Virtuosa usan z-index entre 9999 y 10000.
+ * SweetAlert debe quedar siempre por encima para que los toast,
+ * errores y confirmaciones no aparezcan ocultos detrás del modal.
+ */
+.swal2-container {
+  z-index: 30000 !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
