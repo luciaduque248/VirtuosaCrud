@@ -1,6 +1,7 @@
 import React, {
     useCallback,
     useEffect,
+    useMemo,
     useState,
 } from "react";
 
@@ -19,6 +20,7 @@ import {
     errorAlert,
     productDeletedAlert,
 } from "../../../utils/alerts";
+import { exportCsv } from "../../../utils/exportCsv";
 
 import "./AdminProducts.css";
 
@@ -56,6 +58,23 @@ function AdminProductsPage({
         window.localStorage.getItem("adminProductsView") === "list"
             ? "list"
             : "grid"
+    );
+
+    const [search, setSearch] = useState("");
+    const [stockFilter, setStockFilter] = useState("all");
+
+    const visibleProducts = useMemo(() => products.filter((product) => {
+        const normalizedSearch = search.trim().toLocaleLowerCase("es");
+        const matchesSearch = !normalizedSearch || `${product.name} ${product.description || ""}`.toLocaleLowerCase("es").includes(normalizedSearch);
+        const stock = Number(product.stock);
+        const matchesStock = stockFilter === "all" || (stockFilter === "low" ? stock <= 5 : stockFilter === "empty" ? stock === 0 : stock > 0);
+        return matchesSearch && matchesStock;
+    }), [products, search, stockFilter]);
+
+    const handleExport = () => exportCsv(
+        `virtuosa-productos-${new Date().toISOString().slice(0, 10)}.csv`,
+        ["ID", "Producto", "Categoría", "Subcategoría", "Precio", "Stock", "Destacado"],
+        visibleProducts.map((product) => [product.id, product.name, product.category_name, product.subcategory, product.price, product.stock, product.featured ? "Sí" : "No"])
     );
 
     const changeViewMode = (mode) => {
@@ -265,10 +284,13 @@ function AdminProductsPage({
 
             {!loading && !error && products.length > 0 && (
                 <section className="admin-products-toolbar">
-                    <p>
-                        Mostrando {products.length}{" "}
-                        {products.length === 1 ? "producto" : "productos"}
-                    </p>
+                    <div className="admin-products-filters">
+                        <label><i className="fa-solid fa-magnifying-glass" /><input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Buscar producto" /></label>
+                        <select value={stockFilter} onChange={(event) => setStockFilter(event.target.value)} aria-label="Filtrar inventario"><option value="all">Todo el inventario</option><option value="available">Con stock</option><option value="low">Stock bajo</option><option value="empty">Agotados</option></select>
+                        <button type="button" className="admin-products-export" onClick={handleExport} disabled={visibleProducts.length === 0}><i className="fa-solid fa-file-arrow-down" /> Exportar CSV</button>
+                    </div>
+
+                    <p>Mostrando {visibleProducts.length} de {products.length}</p>
 
                     <div
                         className="admin-products-view-switcher"
@@ -376,12 +398,16 @@ function AdminProductsPage({
 
             {/* GRID */}
 
+            {!loading && !error && products.length > 0 && visibleProducts.length === 0 && (
+                <section className="admin-products-status"><i className="fa-solid fa-filter-circle-xmark" /><h2>Sin coincidencias</h2><p>Cambia la búsqueda o el filtro de inventario.</p><button type="button" onClick={() => { setSearch(""); setStockFilter("all"); }}>Limpiar filtros</button></section>
+            )}
+
             {!loading &&
                 !error &&
-                products.length >
+                visibleProducts.length >
                 0 && (
                     <main className={`admin-products-grid admin-products-${viewMode}`}>
-                        {products.map(
+                        {visibleProducts.map(
                             (
                                 product
                             ) => (

@@ -147,3 +147,4 @@
         flex-direction: column;
     }
 }
+.admin-orders-export{min-height:42px;padding:0 14px;border:1px solid #ddd5e1;border-radius:10px;background:#fff;color:#625769;font:inherit;font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap}.admin-orders-export:disabled{opacity:.45;cursor:not-allowed}@media(max-width:700px){.admin-orders-export{width:100%}}

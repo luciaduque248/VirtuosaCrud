@@ -7,6 +7,7 @@ import React, {
 
 import NavbarAdmin from "../navbar/NavbarAdmin";
 import apiClient from "../../../services/apiClient";
+import { exportCsv } from "../../../utils/exportCsv";
 
 import {
     errorAlert,
@@ -179,6 +180,12 @@ function AdminOrdersPage() {
         ? NEXT_STATUSES[selectedOrder.status] || []
         : [];
 
+    const handleExport = () => exportCsv(
+        `virtuosa-pedidos-${new Date().toISOString().slice(0, 10)}.csv`,
+        ["Referencia", "Fecha", "Cliente", "Correo", "Teléfono", "Estado", "Pago", "Total"],
+        orders.map((order) => [order.reference, order.created_at, order.customer_name, order.customer_email, order.customer_phone, STATUS_LABELS[order.status], PAYMENT_LABELS[order.payment_status], order.total])
+    );
+
     const getWorkflowState = (workflowStatus) => {
         if (!selectedOrder || selectedOrder.status === "cancelled") {
             return "";
@@ -243,6 +250,8 @@ function AdminOrdersPage() {
                             </option>
                         ))}
                     </select>
+
+                    <button type="button" className="admin-orders-export" onClick={handleExport} disabled={orders.length === 0}><i className="fa-solid fa-file-arrow-down" /> Exportar CSV</button>
                 </section>
 
                 {loading && (

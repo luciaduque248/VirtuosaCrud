@@ -98,6 +98,8 @@
 
 .admin-products-toolbar p { margin: 0; color: #817985; font-size: 12px; }
 
+.admin-products-filters{display:flex;align-items:center;gap:9px;flex:1}.admin-products-filters label{display:flex;align-items:center;gap:8px;min-width:220px;padding:0 12px;border:1px solid #e2dce5;border-radius:10px;background:#fff;color:#8b8190}.admin-products-filters input{width:100%;height:39px;border:0;outline:0;background:transparent;font:inherit}.admin-products-filters select,.admin-products-export{height:41px;padding:0 12px;border:1px solid #e2dce5;border-radius:10px;background:#fff;color:#655b69;font:inherit;font-size:10px;font-weight:700}.admin-products-export{cursor:pointer}.admin-products-export:disabled{opacity:.45;cursor:not-allowed}
+
 .admin-products-view-switcher {
     display: inline-flex;
     padding: 4px;
@@ -611,6 +613,7 @@
 }
 
 @media (max-width: 650px) {
+    .admin-products-filters{width:100%;display:grid}.admin-products-filters label{min-width:0}.admin-products-filters select,.admin-products-export{width:100%}
     .admin-products-header {
         align-items: stretch;
         flex-direction: column;
