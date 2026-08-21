@@ -1,0 +1,6 @@
+.catalog-card { position: relative; }
+.catalog-favorite { position: absolute; z-index: 2; top: 14px; right: 14px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255,255,255,.9); color: #564d57; font-size: 15px; cursor: pointer; }
+.catalog-favorite.is-favorite { color: #a14059; }
+.product-favorite { display: inline-flex; align-items: center; gap: 9px; margin-top: 22px; padding: 0; border: 0; border-bottom: 1px solid; background: transparent; color: #504851; font: 600 10px Montserrat,sans-serif; line-height: 28px; text-transform: uppercase; cursor: pointer; }
+.product-favorite.is-favorite { color: #a14059; }
+.catalog-favorite:focus-visible,.product-favorite:focus-visible { outline: 3px solid #8c70a5; outline-offset: 3px; }
