@@ -177,13 +177,23 @@ function AdminProductEditModal({
                     payload
                 );
 
-                await productUpdatedAlert(
-                    form.name
+                /*
+                  Primero retiramos el modal de edición.
+                  El toast se dispara en la siguiente tarea para que
+                  visualmente aparezca después del cierre del modal.
+                */
+                onClose();
+
+                window.setTimeout(
+                    () => {
+                        productUpdatedAlert(
+                            form.name
+                        );
+                    },
+                    0
                 );
 
                 await onUpdated();
-
-                onClose();
             } catch (err) {
                 console.error(
                     err
