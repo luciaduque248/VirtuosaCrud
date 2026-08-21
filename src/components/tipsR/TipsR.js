@@ -1,44 +1,65 @@
 import React from "react";
-import ImgRopa from '../assets/img/tips/imgTipsRopa.png';
-import '../../components/tipsR/TipsR.css'
+import ImgRopa from "../assets/img/tips/imgTipsRopa.png";
+import "./TipsR.css";
+
+const clothingTips = [
+    ["01", "Lava menos, cuida más", "Airea cada prenda después de usarla y lávala solo cuando realmente lo necesite. Ahorras agua y proteges sus fibras."],
+    ["02", "Dobla el punto", "Los tejidos de punto conservan mejor su forma doblados. Las perchas pueden estirar hombros y cuellos."],
+    ["03", "Tiende con intención", "Coloca las pinzas sobre costuras o pliegues naturales para evitar marcas y deja secar a la sombra los colores intensos."],
+    ["04", "Vapor para refrescar", "El vapor ayuda a recuperar prendas delicadas entre usos. Revisa siempre la etiqueta antes de aplicar calor."],
+    ["05", "Cuero, siempre protegido", "Guárdalo sin doblar, lejos de la humedad y usa productos específicos. Para una limpieza profunda, elige un especialista."],
+    ["06", "Del claro al oscuro", "Si lavas a mano, comienza por los tonos claros y termina con los oscuros. Usa detergente suave ya disuelto en el agua."],
+    ["07", "Repara antes de reemplazar", "Un botón, un dobladillo o una pequeña costura pueden extender años la vida de una prenda favorita."],
+];
 
 function TipsR() {
     return (
-        <div>
-
-            <div className="recuadro-blanco" >
-                <div className="ropaTips">
-                <div className="texRopa">
-                    <img src={ImgRopa} alt='ImgRopa' className='ImgRopa'/>
-
-                    <p>Nuestras prendas favoritas constituyen parte de nuestra historia personal. Recordar qué llevábamos puesto el día que nos pasaron cosas relevantes en nuestra vida es normal cuando la moda ocupa una porción de tu mundo. Por ello, nuestras prendas merecen de nuestra atención y cuidado, para que tengan una vida útil larga y nos acompañen en muchos capítulos más. Aquí dejamos unos cuantos consejos para mimarlas cómo se mercen.</p>
-
-                    <span><h3>1. Utiliza la lavadora con sabiduría</h3></span>                    
-                    <p> vez nos quitamos una prenda, no guardarla directamente en el armario ni tampoco lanzarla a la cesta de la ropa sucia, sino <span>colgarla en un lugar aireado</span>. Después, si la prenda no está manchada y sólo le has dado un único uso desde la última vez que la lavaste, deberías considerar darle algún uso más antes de volverla a lavar.</p>
-
-                    <span><h3>2. A las perchas lo que es de las perchas (las prendas de punto nunca)</h3></span>
-                    <p>La ropa de punto <span>no debería colgarse bajo ningún concepto en perchas.</span>  No hay ninguna necesidad de torturar la ropa de esta forma. Si tienes alguna prenda de punto muy fina puedes doblarla con un folio de papel.</p>
-                        
-                    <span><h3>3. Aprender a tender</h3></span>                    
-                    <p>Al tender es conveniente <span>buscar los pliegues</span> de la ropa para colocar las pinzas: axilas en camisetas, e ingle en pantalones.</p>
-                        
-                    <span><h3>4. El truco de la seda</h3></span>
-                    <p>Para lavar una pieza de seda que ha sido usada pero no está sucia, hay un truco muy eficaz que la deja como nueva: <span>limpiarla con vapor de agua.</span> Consiste en colocar la prenda en su percha y al ir a ducharte, colgarla dentro del cuarto de baño.</p>
-                        
-                    <span><h3>5. Cuero</h3></span>                    
-                    <p>Guardar la prenda en una bolsa de ropa, pero evitando doblarla, pues podrías provocar que se deforme. Obvia decir que el cuero no debería meterse en la lavadora, sino <span>limpiarlo siempre en seco</span>, con un producto destinado a este fin y una esponja seca. </p>
-                        
-                    <span><h3>6. Lavar a mano</h3></span>                    
-                    <p>Recomendamos lavar las prendas en un orden concreto: <span>de la más clara a la más oscura</span>, con idea de aprovechar mejor el agua y que las prendas oscuras no contaminen con su tinte otras más claras. Para hacerlo bien habría que usar un detergente especial para prendas delicadas verterlo en el agua y mezclarlo con ésta antes de introducir la prenda.</p>
-                        
-                    <span><h3>7. Productos</h3></span>                    
-                    <p>Los productos convencionales contienen químicos artificiales que dañan la prenda o <span>dejan toxinas en el tejido</span> o en el agua. Algo que no ocurre con los ingredientes naturales. así que te recomendamos que explores productos de marcas ecológicas que emplean ingredientes naturales. Muy recomendables para las personas que tienen la piel muy sensible.</p>
+        <main className="guide-page guide-page-fashion">
+            <section className="guide-hero">
+                <div className="guide-hero-copy">
+                    <span>Virtuosa Wardrobe · Guía 01</span>
+                    <h1>Tu ropa merece una vida más larga.</h1>
+                    <p>Siete hábitos simples para cuidar mejor lo que ya amas y construir un armario más consciente.</p>
+                    <a href="#fashion-guide">Descubrir la guía <i className="fa-solid fa-arrow-down" aria-hidden="true" /></a>
                 </div>
-            </div>
-            </div>
-            
-        </div>
-);
+                <div className="guide-hero-image" role="img" aria-label="Selección editorial de prendas de moda">
+                    <span>07</span>
+                </div>
+            </section>
+
+            <section className="guide-intro" id="fashion-guide">
+                <div>
+                    <span>Care journal</span>
+                    <h2>Menos reglas.<br />Mejores rituales.</h2>
+                </div>
+                <p>La moda también está en cómo cuidamos cada pieza. Empieza con estos gestos cotidianos y adáptalos a tus prendas.</p>
+            </section>
+
+            <section className="guide-feature">
+                <img src={ImgRopa} alt="Prendas seleccionadas en una tienda de moda" />
+                <div>
+                    <span>Una pausa antes de lavar</span>
+                    <h2>El cuidado comienza al quitarte la prenda.</h2>
+                    <p>Déjala respirar, revisa su estado y sigue las indicaciones de la etiqueta. Ese pequeño momento evita lavados innecesarios y conserva textura, forma y color.</p>
+                </div>
+            </section>
+
+            <section className="guide-grid" aria-label="Siete consejos para cuidar la ropa">
+                {clothingTips.map(([number, title, description]) => (
+                    <article className="guide-card" key={number}>
+                        <span>{number}</span>
+                        <h3>{title}</h3>
+                        <p>{description}</p>
+                    </article>
+                ))}
+            </section>
+
+            <section className="guide-quote">
+                <span aria-hidden="true">“</span>
+                <p>El estilo más actual es aprender a valorar lo que ya forma parte de tu historia.</p>
+            </section>
+        </main>
+    );
 }
 
 export default TipsR;

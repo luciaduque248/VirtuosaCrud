@@ -1,42 +1,60 @@
 import React from "react";
-import ImgMakeup from '../assets/img/tips/imgMakeup.png';
-import ImgMakeupp from '../assets/img/tips/imgMakeupp.png';
-import '../../components/tipsM/TipsM.css'
+import ImgMakeup from "../assets/img/tips/imgTipsMakeup.png";
+import ImgProducts from "../assets/img/tips/imgMakeupp.png";
+import "./TipsM.css";
+
+const beautyTips = [
+    ["01", "Lejos de la humedad", "El baño no es el mejor lugar para tus cosméticos. Elige un espacio fresco, seco y protegido de la luz directa."],
+    ["02", "Cierra cada fórmula", "Tapas y envases bien cerrados evitan que el producto se seque, se oxide o acumule polvo."],
+    ["03", "Observa las señales", "Revisa el símbolo PAO del envase. Si cambia el olor, el color o la textura, es momento de reemplazarlo."],
+    ["04", "Brochas siempre limpias", "Lava las herramientas con suavidad y déjalas secar en posición horizontal para proteger el pegamento y las cerdas."],
+    ["05", "Tu maquillaje es personal", "No compartas productos que estén en contacto con ojos o labios. Es una regla sencilla que protege tu piel."],
+];
 
 function TipsMk() {
     return (
-
-        <div>
-
-            <div className='recuadro-blanco'>
-                <div className="Makeup-all">
-                    <div className="Makeup">
-
-                        <img src={ImgMakeup} alt='ImgMakeup' className='ImgMakeup' />
-
-                        <p> El maquillaje es una gran herramienta que nos ayuda a resaltar nuestra belleza. Si quieres conservar tus cosméticos el mayor tiempo posible, evitando maltratarlo y sin hacer que pierda su calidad, tienes que seguir estos tips ¡y ponerlos en práctica desde hoy!</p>
-
-                        <span><h3>1. Evita la humedad</h3></span>
-                        <p>No guardes tus cosméticos en lugares húmedos como el baño. Los espacios secos y con buena circulación de aire son la mejor opción para cuidar tu maquillaje.</p>
-
-                        <span><h3>2. ¡Ciérralo bien!</h3></span>
-                        <p>Asegúrate siempre de cerrar perfectamente cada uno de tus artículos de maquillaje, desde tu mascara hasta tu lipstick. De esta manera, prevendrás que se sequen, se oxiden o evaporen, también evitarás que les entre polvo o bacterias.</p>
-
-                        <span><h3>3. Caducidad</h3></span>
-                        <p>Cada uno de tus cosméticos tiene fecha de caducidad, reemplázalos por otros nuevos en cuanto haya expirado su período de efectividad. Por ejemplo, la mascara suele durar tres meses, los esmaltes y lipsticks alrededor de un año, las sombras y el polvo compacto hasta dos años.</p>
-
-                        <img src={ImgMakeupp} alt='ImgMakeupp' className='ImgMakeupp' />
-
-                        <span><h3>4. Higiene</h3></span>
-                        <p>Es importante que laves tu cosmetiquera , por lo menos, una vez al mes. También que siempre te laves las manos antes de usar tu maquillaje y, de preferencia, que evites aplicarlo directamente con tus dedos. Las brochas debes limpiarlas con un líquido especial, una vez al mes.</p>
-
-                        <span><h3>5. ¡No compartas!</h3></span>
-                        <p>Sin importar si es tu bff o tu mamá, lo ideal es que tu maquillaje sea 100% personal. Evita prestar tus cosméticos para que se mantenga en buenas condiciones y no adquieras alguna infección que pueda tener otra persona en su cutis, como acné.</p>
-                    </div>
+        <main className="beauty-guide">
+            <section className="beauty-guide-hero">
+                <div className="beauty-guide-visual">
+                    <img src={ImgMakeup} alt="Maquillaje profesional en una sesión editorial" />
+                    <span>Beauty file · 05</span>
                 </div>
-            </div>
+                <div className="beauty-guide-copy">
+                    <span>Virtuosa Beauty · Guía 02</span>
+                    <h1>Tu maquillaje, mejor cuidado.</h1>
+                    <p>Cinco rituales para conservar tus favoritos, proteger tu piel y disfrutar cada fórmula por más tiempo.</p>
+                    <a href="#beauty-notes">Leer beauty notes <i className="fa-solid fa-arrow-down" aria-hidden="true" /></a>
+                </div>
+            </section>
 
-        </div>
+            <section className="beauty-guide-heading" id="beauty-notes">
+                <span>Más orden, más intención</span>
+                <h2>Una rutina limpia también se siente más bonita.</h2>
+            </section>
+
+            <section className="beauty-guide-layout">
+                <div className="beauty-guide-sticky">
+                    <img src={ImgProducts} alt="Selección de cosméticos en tonos cálidos" />
+                    <p>Todo empieza con un espacio fresco, herramientas limpias y productos que todavía se sienten bien.</p>
+                </div>
+                <div className="beauty-guide-list">
+                    {beautyTips.map(([number, title, description]) => (
+                        <article key={number}>
+                            <span>{number}</span>
+                            <div>
+                                <h3>{title}</h3>
+                                <p>{description}</p>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </section>
+
+            <section className="beauty-guide-note">
+                <span>Nota de belleza</span>
+                <p>No necesitas más productos. Necesitas conocer mejor los que ya tienes.</p>
+            </section>
+        </main>
     );
 }
 

@@ -1,157 +1,26 @@
-.banner-tips-makeup{
-    width: 100%;
-    background-image: url(https://res.cloudinary.com/colombia/image/upload/v1655504206/kuepa/raphael-lovaski-DEuob2v77wI-unsplash_fllscb.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 70vh;
-
-    display: flex;
-    justify-content: center;
-}
-
-.text-makeup-banner{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.text-makeup-banner h1{
-    text-shadow: 0px 2px 10px white;
-    font-family: 'Bebas Neue', cursive;
-    color: #403f3f;
-    display: grid;
-    justify-content: flex-start;
-    align-content: center;
-
-    padding: 0 10px;
-}
-
-.text-5{
-    font-size: 200px;
-}
-
-.texto-2-banner-makeup{
-    text-align: center;
-    font-size: 40px;
-    font-weight: 100;
-}
-
-/* :::::::::::::::::: */
-
-.Makeup-all{
-    background-color: #e9e1fa;
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-    padding-top: 30px;
-}
-.recuadro-blanco{
-    padding: 3rem 0;
-}
-
-.ImgMakeup{
-    width: 120px;
-    float: left;
-    margin-right: 20px;
-    margin-bottom: 20px;
-}
-
-.Makeup p{
-    text-align: justify;
-    
-    font-size: 10px;
-    line-height: 1rem;
-}
-
-.Makeup span h3{
-    font-weight: bold;
-    padding-top: 30px;
-    color: #AA95C7;
-    font-size: 3vw;
-}
-
-.ImgMakeupp{
-    width: 150px;
-    float: right;
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: tableta ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-@media screen and (min-width:768px) {
-    .Makeup-all{
-        margin: auto;
-        padding-top: 3rem;
-    }
-
-    .ImgMakeup{
-        min-width: 250px;
-    }
-    .Makeup p{
-        line-height: 1.5rem;
-        font-size: 1.5vw;
-    }
-
-    .Makeup span h3{
-        font-size: 1.5vw;
-    }
-
-    .ImgMakeupp{
-        min-width: 250px;
-    }
-}
-
-/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: medio ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-@media screen and (min-width:1024px) {
-    .Makeup-all{
-        margin: auto;
-        padding-top: 5rem;
-    }
-
-    .ImgMakeup{
-        width: 370px;
-    }
-    .Makeup p{
-        line-height: 2rem;
-    }
-
-    .ImgMakeupp{
-        min-width: 370px;
-    }
-}
-
-/* :::::::::::::::::::::::::::::::::::::::::::: RESPONSIVE: grande ::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
-@media screen and (min-width:1366px) {
-    .Makeup-all{
-        padding: 70px;
-    }
-
-    .ImgMakeup{
-        min-width: 280px;
-        padding-right: 20px;
-    }
-    .Makeup p{
-        line-height: 2rem;
-    }
-
-    .ImgMakeupp{
-        min-width: 250px;
-    }
-}
-
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    .banner-tips-makeup{
-        height: 30vh;
-    }
-    
-    .text-5{
-        font-size: 80px;
-    }
-    
-    .texto-2-banner-makeup{
-        font-size: 15px;
-        font-weight: 100;
-    }
-}
+.beauty-guide { --beauty-ink:#2b252b; --beauty-plum:#755e79; color:var(--beauty-ink); overflow:hidden; background:#fbf9f7; }
+.beauty-guide-hero { min-height:720px; display:grid; grid-template-columns:1.1fr .9fr; margin:10px; background:#eadedb; }
+.beauty-guide-visual { position:relative; min-height:700px; overflow:hidden; }
+.beauty-guide-visual img { width:100%; height:100%; display:block; object-fit:cover; object-position:center; }
+.beauty-guide-visual span { position:absolute; left:30px; bottom:28px; padding:12px 16px; background:rgba(255,255,255,.85); font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; backdrop-filter:blur(8px); }
+.beauty-guide-copy { display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:clamp(48px,7vw,105px); }
+.beauty-guide-copy>span,.beauty-guide-heading>span,.beauty-guide-note>span { color:var(--beauty-plum); font-size:10px; font-weight:700; letter-spacing:2.1px; text-transform:uppercase; }
+.beauty-guide-copy h1 { max-width:660px; margin:18px 0 24px; font:400 clamp(58px,6vw,94px)/.95 Georgia,serif; letter-spacing:-3px; }
+.beauty-guide-copy p { max-width:480px; margin:0; color:#6c6269; font-size:16px; line-height:1.75; }
+.beauty-guide-copy a { display:inline-flex; align-items:center; gap:12px; margin-top:34px; padding-bottom:7px; border-bottom:1px solid; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+.beauty-guide-heading { width:min(1040px,calc(100% - 48px)); padding:clamp(105px,13vw,180px) 0 75px; margin:auto; text-align:center; }
+.beauty-guide-heading h2 { max-width:950px; margin:16px auto 0; font:400 clamp(52px,6vw,86px)/.98 Georgia,serif; letter-spacing:-3px; }
+.beauty-guide-layout { width:min(1180px,calc(100% - 48px)); display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(55px,8vw,120px); margin:0 auto clamp(110px,13vw,180px); }
+.beauty-guide-sticky { align-self:start; position:sticky; top:25px; }
+.beauty-guide-sticky img { width:100%; aspect-ratio:4/5; display:block; object-fit:cover; }
+.beauty-guide-sticky p { max-width:390px; margin:24px 0 0; color:#6d666c; font:italic 20px/1.5 Georgia,serif; }
+.beauty-guide-list { border-top:1px solid #d5cbd0; }
+.beauty-guide-list article { display:grid; grid-template-columns:75px 1fr; gap:24px; padding:42px 0; border-bottom:1px solid #d5cbd0; }
+.beauty-guide-list article>span { color:#b09aae; font:italic 32px Georgia,serif; }
+.beauty-guide-list h3 { margin:0 0 13px; font:400 clamp(31px,3vw,44px)/1 Georgia,serif; }
+.beauty-guide-list p { max-width:590px; margin:0; color:#706870; font-size:14px; line-height:1.8; }
+.beauty-guide-note { display:grid; grid-template-columns:190px 1fr; gap:50px; align-items:start; padding:clamp(85px,10vw,145px) max(24px,calc((100% - 1160px)/2)); background:#352d36; color:#fff; }
+.beauty-guide-note>span { color:#d8c7d6; padding-top:12px; }
+.beauty-guide-note p { max-width:900px; margin:0; font:400 clamp(44px,5.2vw,76px)/1.03 Georgia,serif; letter-spacing:-2px; }
+@media(max-width:900px){.beauty-guide-hero{grid-template-columns:1fr 1fr}.beauty-guide-copy{padding:44px 34px}.beauty-guide-copy h1{font-size:62px}.beauty-guide-layout{gap:45px}}
+@media(max-width:640px){.beauty-guide-hero{display:flex;flex-direction:column;min-height:auto;margin:6px}.beauty-guide-visual{min-height:460px}.beauty-guide-copy{padding:42px 24px 50px}.beauty-guide-copy h1{font-size:50px;letter-spacing:-1.8px}.beauty-guide-copy p{font-size:14px}.beauty-guide-heading{width:calc(100% - 36px);padding:85px 0 48px;text-align:left}.beauty-guide-heading h2{font-size:45px;letter-spacing:-1.4px}.beauty-guide-layout{width:calc(100% - 36px);display:block;margin-bottom:85px}.beauty-guide-sticky{position:static}.beauty-guide-sticky img{aspect-ratio:4/4.8}.beauty-guide-sticky p{font-size:18px}.beauty-guide-list{margin-top:55px}.beauty-guide-list article{grid-template-columns:48px 1fr;gap:12px;padding:32px 0}.beauty-guide-list article>span{font-size:24px}.beauty-guide-list h3{font-size:30px}.beauty-guide-note{display:block;padding:80px 24px}.beauty-guide-note p{margin-top:22px;font-size:40px;letter-spacing:-1px}}
