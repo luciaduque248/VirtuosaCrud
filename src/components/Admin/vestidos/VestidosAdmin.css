@@ -1,0 +1,1063 @@
+/* =========================================================
+   VIRTUOSA ADMIN - VESTIDOS
+========================================================= */
+
+.vestidos-admin-page {
+    min-height: 100vh;
+
+    background: #f7f5f9;
+
+    color: #29242d;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.vestidos-admin-header {
+    width:
+        min(1250px,
+            calc(100% - 40px));
+
+    margin:
+        0 auto;
+
+    padding:
+        55px 0 35px;
+
+    display: flex;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        space-between;
+
+    gap: 30px;
+}
+
+
+.vestidos-admin-header>div {
+    max-width: 650px;
+}
+
+
+.vestidos-admin-header span,
+.vestidos-admin-form-header span,
+.vestidos-admin-modal-header>span {
+    color: #765f8e;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+.vestidos-admin-header h1 {
+    margin:
+        6px 0 8px;
+
+    font-size:
+        clamp(40px,
+            6vw,
+            64px);
+
+    font-weight: 500;
+}
+
+
+.vestidos-admin-header p {
+    margin: 0;
+
+    color: #77707d;
+
+    line-height: 1.7;
+}
+
+
+.vestidos-admin-create {
+    display: inline-flex;
+
+    min-height: 48px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        0 24px;
+
+    border-radius: 999px;
+
+    background: #765f8e;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.vestidos-admin-create:hover {
+    background: #29242d;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.vestidos-admin-stats {
+    width:
+        min(1250px,
+            calc(100% - 40px));
+
+    margin:
+        0 auto 35px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,
+            1fr);
+
+    gap: 16px;
+}
+
+
+.vestidos-admin-stats article {
+    padding: 22px;
+
+    border:
+        1px solid #e5dfE9;
+
+    border-radius: 18px;
+
+    background: white;
+}
+
+
+.vestidos-admin-stats span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #817887;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.vestidos-admin-stats strong {
+    font-size: 30px;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.vestidos-admin-grid {
+    width:
+        min(1250px,
+            calc(100% - 40px));
+
+    margin:
+        0 auto;
+
+    padding-bottom: 80px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,
+            minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.vestidos-admin-card {
+    overflow: hidden;
+
+    border:
+        1px solid #e5dfe9;
+
+    border-radius: 20px;
+
+    background: white;
+
+    box-shadow:
+        0 12px 35px rgba(52,
+            39,
+            61,
+            0.06);
+}
+
+
+.vestidos-admin-image {
+    position: relative;
+
+    height: 330px;
+
+    overflow: hidden;
+
+    background: #eee9f2;
+}
+
+
+.vestidos-admin-image img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: top;
+}
+
+
+.vestidos-admin-image span {
+    position: absolute;
+
+    top: 15px;
+    left: 15px;
+
+    padding:
+        7px 12px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,
+            255,
+            255,
+            0.94);
+
+    color: #765f8e;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+.vestidos-admin-card-content {
+    padding: 20px;
+}
+
+
+.vestidos-admin-category {
+    color: #765f8e;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.3px;
+
+    text-transform: uppercase;
+}
+
+
+.vestidos-admin-card h2 {
+    margin:
+        6px 0 10px;
+
+    font-size: 20px;
+
+    line-height: 1.3;
+}
+
+
+.vestidos-admin-card-content>p {
+    min-height: 62px;
+
+    margin:
+        0 0 18px;
+
+    color: #79717e;
+
+    overflow: hidden;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 3;
+
+    -webkit-box-orient: vertical;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   META
+========================================================= */
+
+.vestidos-admin-meta {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.vestidos-admin-meta>div {
+    padding: 12px;
+
+    border-radius: 12px;
+
+    background: #f8f5fa;
+}
+
+
+.vestidos-admin-meta span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #8b828f;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+}
+
+
+.vestidos-admin-meta strong {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.vestidos-admin-actions {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+}
+
+
+.vestidos-admin-actions button {
+    min-height: 42px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.vestidos-admin-edit {
+    background: #765f8e;
+
+    color: white;
+}
+
+
+.vestidos-admin-edit:hover {
+    background: #59446f;
+}
+
+
+.vestidos-admin-delete {
+    background: #f9e9ed;
+
+    color: #aa4058;
+}
+
+
+.vestidos-admin-delete:hover {
+    background: #aa4058;
+
+    color: white;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.vestidos-admin-status {
+    width:
+        min(900px,
+            calc(100% - 40px));
+
+    min-height: 350px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+.vestidos-admin-status h2 {
+    margin:
+        18px 0 8px;
+}
+
+
+.vestidos-admin-status p {
+    color: #79717e;
+}
+
+
+.vestidos-admin-status button,
+.vestidos-admin-empty-button {
+    margin-top: 18px;
+
+    padding:
+        12px 22px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: #765f8e;
+
+    color: white;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+
+.vestidos-admin-loader {
+    width: 42px;
+
+    height: 42px;
+
+    border:
+        4px solid #e4dbea;
+
+    border-top-color:
+        #765f8e;
+
+    border-radius: 50%;
+
+    animation:
+        vestidosAdminSpin 0.8s linear infinite;
+}
+
+
+@keyframes vestidosAdminSpin {
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+.vestidos-admin-error-icon {
+    width: 52px;
+
+    height: 52px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #f9e9ed;
+
+    color: #aa4058;
+
+    font-size: 24px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   CREATE FORM
+========================================================= */
+
+.vestidos-admin-form-page {
+    width:
+        min(850px,
+            calc(100% - 40px));
+
+    margin:
+        0 auto;
+
+    padding:
+        55px 0 90px;
+}
+
+
+.vestidos-admin-form-header {
+    margin-bottom: 30px;
+}
+
+
+.vestidos-admin-form-header h1 {
+    margin:
+        7px 0 10px;
+
+    font-size:
+        clamp(36px,
+            5vw,
+            54px);
+
+    font-weight: 500;
+}
+
+
+.vestidos-admin-form-header p {
+    max-width: 600px;
+
+    margin: 0;
+
+    color: #79717e;
+
+    line-height: 1.7;
+}
+
+
+.vestidos-admin-form {
+    padding: 30px;
+
+    border:
+        1px solid #e5dfe9;
+
+    border-radius: 22px;
+
+    background: white;
+
+    box-shadow:
+        0 15px 45px rgba(52,
+            39,
+            61,
+            0.07);
+}
+
+
+.vestidos-admin-field {
+    margin-bottom: 20px;
+}
+
+
+.vestidos-admin-field label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.vestidos-admin-field input,
+.vestidos-admin-field textarea {
+    width: 100%;
+
+    padding:
+        12px 14px;
+
+    border:
+        1px solid #ddd5e2;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: white;
+
+    color: #29242d;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    box-sizing: border-box;
+}
+
+
+.vestidos-admin-field input {
+    min-height: 46px;
+}
+
+
+.vestidos-admin-field textarea {
+    resize: vertical;
+}
+
+
+.vestidos-admin-field input:focus,
+.vestidos-admin-field textarea:focus {
+    border-color: #765f8e;
+
+    box-shadow:
+        0 0 0 3px rgba(118,
+            95,
+            142,
+            0.10);
+}
+
+
+.vestidos-admin-form-row {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   PREVIEW
+========================================================= */
+
+.vestidos-admin-preview {
+    margin-bottom: 20px;
+
+    padding: 15px;
+
+    border-radius: 14px;
+
+    background: #f8f5fa;
+}
+
+
+.vestidos-admin-preview span {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #79717e;
+
+    font-size: 11px;
+}
+
+
+.vestidos-admin-preview img {
+    width: 150px;
+
+    height: 190px;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.vestidos-admin-checkbox {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin:
+        8px 0 18px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 500;
+}
+
+
+.vestidos-admin-checkbox input {
+    width: 17px;
+
+    height: 17px;
+
+    accent-color: #765f8e;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.vestidos-admin-form-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+
+.vestidos-admin-cancel,
+.vestidos-admin-save {
+    min-height: 46px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        0 22px;
+
+    border-radius: 999px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.vestidos-admin-cancel {
+    border:
+        1px solid #ddd5e2;
+
+    background: white;
+
+    color: #514a55;
+}
+
+
+.vestidos-admin-save {
+    border: none;
+
+    background: #765f8e;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+.vestidos-admin-save:disabled {
+    opacity: 0.55;
+
+    cursor: wait;
+}
+
+
+/* =========================================================
+   EDIT MODAL
+========================================================= */
+
+.vestidos-admin-modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    background:
+        rgba(28,
+            23,
+            32,
+            0.72);
+
+    backdrop-filter: blur(7px);
+}
+
+
+.vestidos-admin-modal {
+    position: relative;
+
+    width:
+        min(680px,
+            100%);
+
+    max-height: 92vh;
+
+    overflow-y: auto;
+
+    padding: 32px;
+
+    border-radius: 22px;
+
+    background: white;
+
+    box-shadow:
+        0 35px 80px rgba(0,
+            0,
+            0,
+            0.28);
+}
+
+
+.vestidos-admin-modal-close {
+    position: absolute;
+
+    top: 16px;
+
+    right: 16px;
+
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f1edf3;
+
+    color: #29242d;
+
+    font-size: 24px;
+
+    cursor: pointer;
+}
+
+
+.vestidos-admin-modal-header {
+    padding-right: 45px;
+
+    margin-bottom: 25px;
+}
+
+
+.vestidos-admin-modal-header h2 {
+    margin:
+        6px 0 0;
+
+    font-size: 30px;
+}
+
+
+.vestidos-admin-edit-preview {
+    margin-bottom: 20px;
+}
+
+
+.vestidos-admin-edit-preview img {
+    width: 110px;
+
+    height: 140px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+}
+
+
+.vestidos-admin-modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 28px;
+}
+
+
+.vestidos-admin-modal-actions button {
+    min-height: 44px;
+
+    padding:
+        0 20px;
+
+    border-radius: 999px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.vestidos-admin-cancel-button {
+    border:
+        1px solid #ddd5e2;
+
+    background: white;
+
+    color: #514a55;
+}
+
+
+.vestidos-admin-save-button {
+    border: none;
+
+    background: #765f8e;
+
+    color: white;
+}
+
+
+.vestidos-admin-modal-actions button:disabled {
+    opacity: 0.55;
+
+    cursor: wait;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .vestidos-admin-grid {
+        grid-template-columns:
+            repeat(2,
+                minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .vestidos-admin-header {
+        align-items: stretch;
+
+        flex-direction: column;
+
+        padding-top: 35px;
+    }
+
+
+    .vestidos-admin-create {
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+
+    .vestidos-admin-stats {
+        grid-template-columns: 1fr;
+    }
+
+
+    .vestidos-admin-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .vestidos-admin-image {
+        height: 400px;
+    }
+
+
+    .vestidos-admin-form-row {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+
+    .vestidos-admin-form {
+        padding: 20px;
+    }
+
+
+    .vestidos-admin-form-actions,
+    .vestidos-admin-modal-actions {
+        flex-direction: column-reverse;
+    }
+
+
+    .vestidos-admin-cancel,
+    .vestidos-admin-save,
+    .vestidos-admin-modal-actions button {
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+
+    .vestidos-admin-modal-overlay {
+        align-items: flex-end;
+
+        padding: 0;
+    }
+
+
+    .vestidos-admin-modal {
+        width: 100%;
+
+        max-height: 94vh;
+
+        border-radius:
+            22px 22px 0 0;
+
+        padding:
+            28px 20px;
+    }
+
+}

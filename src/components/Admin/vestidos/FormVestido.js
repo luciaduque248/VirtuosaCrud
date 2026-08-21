@@ -1,147 +1,399 @@
-import axios from 'axios';
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2'
-import NavbarAdmin from '../navbar/NavbarAdmin';
-import './EditVST.css'
-import '../Responsive.css'
+import React, {
+    useState,
+} from "react";
+
+import axios from "axios";
+
+import {
+    Link,
+    useNavigate,
+} from "react-router-dom";
+
+import NavbarAdmin from "../navbar/NavbarAdmin";
+
+import {
+    productsApi,
+} from "../../../utils/peticiones";
+
+import {
+    errorAlert,
+    productCreatedAlert,
+    warningAlert,
+} from "../../../utils/alerts";
+
+import "./VestidosAdmin.css";
 
 function FormVestido() {
-    const history = useNavigate();
+    const navigate =
+        useNavigate();
 
-    /*1.Inicializamos los inputs en el estado, para poder recibir los valores que se digiten 
-    en él y controlarlos */
-    const [data, setData] = useState({
-        id: "",
-        producto: "",
-        precio: "",
-        foto: "",
-        slider: "",
-        descripcion: "",
-        caracteristicas: ""
-    })
-    /*2. Se usa la función handleChange para que cada vez que haya un cambio en el input
-    guarde el name y el value del mismo */
-    const handleChange = ({ target }) => {
-        //Cada vez que haya un cambio se va a guardar el valor en el estado data
-        setData({
-            ...data,
-            [target.name]: target.value
-        })
-    }
+    const [
+        loading,
+        setLoading,
+    ] = useState(false);
 
-    /*4. Crear petición asíncrona*/
-    const url = "https://bd-virtuosa.herokuapp.com/vestidos/";
+    const [
+        data,
+        setData,
+    ] = useState({
+        name: "",
+        description: "",
+        price: "",
+        imageUrl: "",
+        stock: "",
+        featured: false,
+    });
 
-    /*3. funci{on para procesar el envío del formulario*/
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const response = await axios.post(url, data);//await espera hasta que se ejcute la petición
-        //console.log(response);
-        if (response.status === 201) {
+    const handleChange = (
+        event
+    ) => {
+        const {
+            name,
+            value,
+            type,
+            checked,
+        } = event.target;
 
-            Swal.fire(
-                'Guardado!',
-                `El producto <strong> ${response.data.producto}</strong> ha sido guardado exitosamente!`,
-                'success'
-            )
-            history.push("/");
+        setData(
+            (
+                previous
+            ) => ({
+                ...previous,
 
-        } else {
-            Swal.fire(
-                'Error!',
-                'Hubo un problema al registrar el producto!',
-                'error'
-            )
-        }
-    }
+                [name]:
+                    type ===
+                        "checkbox"
+                        ? checked
+                        : value,
+            })
+        );
+    };
+
+    /* =========================================================
+       SUBMIT
+    ========================================================= */
+
+    const handleSubmit =
+        async (
+            event
+        ) => {
+            event.preventDefault();
+
+            if (
+                !data.name.trim()
+            ) {
+                warningAlert(
+                    "Nombre requerido",
+                    "Debes ingresar el nombre del producto."
+                );
+
+                return;
+            }
+
+            if (
+                !data.imageUrl.trim()
+            ) {
+                warningAlert(
+                    "Imagen requerida",
+                    "Debes ingresar la URL de una imagen."
+                );
+
+                return;
+            }
+
+            const precio =
+                Number(
+                    data.price
+                );
+
+            const stock =
+                Number(
+                    data.stock
+                );
+
+            if (
+                Number.isNaN(
+                    precio
+                ) ||
+                precio < 0
+            ) {
+                warningAlert(
+                    "Precio inválido",
+                    "Ingresa un precio válido."
+                );
+
+                return;
+            }
+
+            if (
+                Number.isNaN(
+                    stock
+                ) ||
+                stock < 0
+            ) {
+                warningAlert(
+                    "Stock inválido",
+                    "Ingresa un stock válido."
+                );
+
+                return;
+            }
+
+            const payload = {
+                name:
+                    data.name.trim(),
+
+                description:
+                    data.description.trim(),
+
+                price:
+                    precio,
+
+                categoryId:
+                    1,
+
+                subcategory:
+                    "vestidos",
+
+                imageUrl:
+                    data.imageUrl.trim(),
+
+                stock,
+
+                featured:
+                    data.featured,
+            };
+
+            try {
+                setLoading(true);
+
+                const response =
+                    await axios.post(
+                        productsApi,
+                        payload
+                    );
+
+                const productName =
+                    response?.data
+                        ?.data
+                        ?.name ||
+                    data.name;
+
+                await productCreatedAlert(
+                    productName
+                );
+
+                navigate(
+                    "/VirtuosaCrud/edit-vestidos"
+                );
+            } catch (err) {
+                console.error(
+                    "Error creando producto:",
+                    err
+                );
+
+                errorAlert(
+                    "No se pudo guardar",
+                    err?.response
+                        ?.data
+                        ?.message ||
+                    "Ocurrió un error al crear el producto."
+                );
+            } finally {
+                setLoading(false);
+            }
+        };
 
     return (
-        <>
+        <div className="vestidos-admin-page">
             <NavbarAdmin />
-            <div className='form-nuevo-vestido'>
-                <h1 className='text-center'>Datos de un nuevo producto</h1>
-                <div>
-                    <form onSubmit={handleSubmit} >
-                        <div className="form-group">
-                            <label>Producto</label>
-                            <input
-                                type="text"
-                                placeholder="Ingrese el nombre del producto"
-                                name="producto"
-                                value={data.producto}
-                                onChange={handleChange}
-                                className="inputs" ></input>
 
-                        </div>
+            <main className="vestidos-admin-form-page">
+                <div className="vestidos-admin-form-header">
+                    <span>
+                        Administración
+                    </span>
 
-                        <div className="form-group">
-                            <label>Precio</label>
-                            <input
-                                type="text"
-                                placeholder="Ingrese el precio del producto"
-                                name="precio"
-                                value={data.precio}
-                                onChange={handleChange}
-                                className="inputs"></input>
-                        </div>
+                    <h1>
+                        Nuevo vestido
+                    </h1>
 
-                        <div className="form-group">
-                            <label>Imagen</label>
-                            <input
-                                type="text"
-                                placeholder="Ingrese el link de la imagen"
-                                name="foto"
-                                value={data.foto}
-                                onChange={handleChange}
-                                className="inputs" />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Slides</label>
-                            <input
-                                type="text"
-                                placeholder="Ingrese el link de la imagenes para el slide"
-                                name="slider"
-                                value={data.slider}
-                                onChange={handleChange}
-                                className="inputs" />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Descripcion</label>
-                            <input
-                                as="textarea"
-                                rows={3}
-                                placeholder="Ingrese la descripcion del producto"
-                                name="descripcion"
-                                value={data.descripcion}
-                                onChange={handleChange}
-                                className="inputs"></input>
-                        </div>
-
-                        <div className="form-group">
-                            <label>Características</label>
-                            <input
-                                type="text"
-                                placeholder="Digite las caracteristicas"
-                                name="caracteristicas"
-                                value={data.caracteristicas}
-                                onChange={handleChange}
-                                className="inputs" />
-                        </div>
-                        <div className='btn-form-vestido'>
-                            <button className='guardar-form'>Guardar</button>
-                            <button className='volver-form'><Link to="/VirtuosaCrud/edit-vestidos" className="volver">Volver</Link></button>
-                        </div>
-                        
-                    </form>
+                    <p>
+                        El producto se
+                        almacenará directamente
+                        en PostgreSQL mediante
+                        la API REST.
+                    </p>
                 </div>
-            </div>
 
-        </>
-    )
+                <form
+                    className="vestidos-admin-form"
+                    onSubmit={
+                        handleSubmit
+                    }
+                >
+                    <div className="vestidos-admin-field">
+                        <label htmlFor="name">
+                            Nombre del producto
+                        </label>
+
+                        <input
+                            id="name"
+                            type="text"
+                            name="name"
+                            value={
+                                data.name
+                            }
+                            onChange={
+                                handleChange
+                            }
+                            placeholder="Ej. Vestido Midnight Elegance"
+                            required
+                        />
+                    </div>
+
+                    <div className="vestidos-admin-field">
+                        <label htmlFor="description">
+                            Descripción
+                        </label>
+
+                        <textarea
+                            id="description"
+                            name="description"
+                            value={
+                                data.description
+                            }
+                            onChange={
+                                handleChange
+                            }
+                            rows="5"
+                            placeholder="Describe el producto..."
+                        />
+                    </div>
+
+                    <div className="vestidos-admin-form-row">
+                        <div className="vestidos-admin-field">
+                            <label htmlFor="price">
+                                Precio COP
+                            </label>
+
+                            <input
+                                id="price"
+                                type="number"
+                                name="price"
+                                min="0"
+                                step="100"
+                                value={
+                                    data.price
+                                }
+                                onChange={
+                                    handleChange
+                                }
+                                placeholder="119900"
+                                required
+                            />
+                        </div>
+
+                        <div className="vestidos-admin-field">
+                            <label htmlFor="stock">
+                                Stock
+                            </label>
+
+                            <input
+                                id="stock"
+                                type="number"
+                                name="stock"
+                                min="0"
+                                step="1"
+                                value={
+                                    data.stock
+                                }
+                                onChange={
+                                    handleChange
+                                }
+                                placeholder="10"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div className="vestidos-admin-field">
+                        <label htmlFor="imageUrl">
+                            URL de imagen
+                        </label>
+
+                        <input
+                            id="imageUrl"
+                            type="url"
+                            name="imageUrl"
+                            value={
+                                data.imageUrl
+                            }
+                            onChange={
+                                handleChange
+                            }
+                            placeholder="https://..."
+                            required
+                        />
+                    </div>
+
+                    {data.imageUrl && (
+                        <div className="vestidos-admin-preview">
+                            <span>
+                                Vista previa
+                            </span>
+
+                            <img
+                                src={
+                                    data.imageUrl
+                                }
+                                alt="Vista previa del producto"
+                            />
+                        </div>
+                    )}
+
+                    <label className="vestidos-admin-checkbox">
+                        <input
+                            type="checkbox"
+                            name="featured"
+                            checked={
+                                data.featured
+                            }
+                            onChange={
+                                handleChange
+                            }
+                        />
+
+                        <span>
+                            Marcar como
+                            producto destacado
+                        </span>
+                    </label>
+
+                    <div className="vestidos-admin-form-actions">
+                        <Link
+                            to="/VirtuosaCrud/edit-vestidos"
+                            className="vestidos-admin-cancel"
+                        >
+                            Cancelar
+                        </Link>
+
+                        <button
+                            type="submit"
+                            className="vestidos-admin-save"
+                            disabled={
+                                loading
+                            }
+                        >
+                            {loading
+                                ? "Guardando..."
+                                : "Guardar producto"}
+                        </button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    );
 }
 
-export default FormVestido
+export default FormVestido;

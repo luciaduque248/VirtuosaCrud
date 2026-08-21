@@ -1,0 +1,626 @@
+/* =========================================================
+   VIRTUOSA ADMIN NAVBAR
+========================================================= */
+
+.admin-navbar {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 9000;
+
+    width: 100%;
+
+    background:
+        rgba(255,
+            255,
+            255,
+            0.96);
+
+    border-bottom:
+        1px solid #ebe5ef;
+
+    box-shadow:
+        0 8px 30px rgba(41,
+            32,
+            48,
+            0.06);
+
+    backdrop-filter:
+        blur(14px);
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.admin-navbar-container {
+    width:
+        min(1440px,
+            calc(100% - 36px));
+
+    min-height: 76px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content:
+        space-between;
+
+    gap: 25px;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.admin-navbar-brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    flex-shrink: 0;
+
+    color: #29242d;
+
+    text-decoration: none;
+}
+
+
+.admin-navbar-logo {
+    width: 44px;
+    height: 44px;
+
+    display: grid;
+
+    place-items: center;
+
+    overflow: hidden;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(135deg,
+            #eee8f3,
+            #ded2e8);
+}
+
+
+.admin-navbar-logo img {
+    width: 32px;
+    height: 32px;
+
+    object-fit: contain;
+}
+
+
+.admin-navbar-brand-text {
+    display: flex;
+
+    flex-direction: column;
+
+    line-height: 1.15;
+}
+
+
+.admin-navbar-brand-text strong {
+    color: #29242d;
+
+    font-size: 16px;
+
+    font-weight: 700;
+}
+
+
+.admin-navbar-brand-text span {
+    margin-top: 3px;
+
+    color: #8c8291;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing:
+        1.4px;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.admin-navbar-navigation {
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+}
+
+
+.admin-navbar-link {
+    min-height: 42px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        0 14px;
+
+    border-radius:
+        10px;
+
+    color: #706875;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.admin-navbar-link i {
+    font-size: 13px;
+}
+
+
+.admin-navbar-link:hover {
+    color: #765f8e;
+
+    background: #f5f0f8;
+}
+
+
+.admin-navbar-link.active {
+    color: #684f80;
+
+    background: #eee7f3;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.admin-navbar-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   API STATUS
+========================================================= */
+
+.admin-api-status {
+    min-height: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding:
+        0 11px;
+
+    border:
+        1px solid #e8e2eb;
+
+    border-radius:
+        999px;
+
+    background: #faf9fb;
+}
+
+
+.admin-api-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #c1bbc4;
+}
+
+
+.admin-api-label {
+    color: #827a86;
+
+    font-size: 9px;
+
+    font-weight: 600;
+}
+
+
+.admin-api-status.connected .admin-api-dot {
+    background: #5b986c;
+
+    box-shadow:
+        0 0 0 4px rgba(91,
+            152,
+            108,
+            0.12);
+}
+
+
+.admin-api-status.connected .admin-api-label {
+    color: #527d60;
+}
+
+
+.admin-api-status.disconnected .admin-api-dot {
+    background: #bf5568;
+
+    box-shadow:
+        0 0 0 4px rgba(191,
+            85,
+            104,
+            0.12);
+}
+
+
+.admin-api-status.disconnected .admin-api-label {
+    color: #ad4b5d;
+}
+
+
+/* =========================================================
+   STORE BUTTON
+========================================================= */
+
+.admin-store-button {
+    min-height: 38px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding:
+        0 13px;
+
+    border:
+        1px solid #e3dce7;
+
+    border-radius:
+        10px;
+
+    background: white;
+
+    color: #665d6b;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.admin-store-button:hover {
+    background: #f5f0f8;
+
+    color: #765f8e;
+}
+
+
+/* =========================================================
+   USER
+========================================================= */
+
+.admin-user {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding-left: 11px;
+
+    border-left:
+        1px solid #e8e2eb;
+}
+
+
+.admin-user-avatar {
+    width: 37px;
+    height: 37px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(135deg,
+            #765f8e,
+            #9b82b2);
+
+    color: white;
+
+    font-size: 13px;
+}
+
+
+.admin-user-info {
+    display: flex;
+
+    flex-direction: column;
+
+    line-height: 1.2;
+}
+
+
+.admin-user-info strong {
+    color: #322c35;
+
+    font-size: 11px;
+}
+
+
+.admin-user-info span {
+    margin-top: 2px;
+
+    color: #98909c;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.admin-logout-button {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid #eadfe3;
+
+    border-radius:
+        10px;
+
+    background: #fff;
+
+    color: #a74f61;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.admin-logout-button:hover {
+    background: #faedf0;
+
+    color: #92394b;
+}
+
+
+/* =========================================================
+   MOBILE BUTTON
+========================================================= */
+
+.admin-menu-button {
+    display: none;
+
+    width: 40px;
+    height: 40px;
+
+    place-items: center;
+
+    border:
+        1px solid #e3dce7;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #514859;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.admin-mobile-menu {
+    display: none;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    max-height: 0;
+
+    border-top:
+        1px solid transparent;
+
+    background: white;
+
+    transition:
+        max-height 0.3s ease;
+}
+
+
+.admin-mobile-menu.open {
+    max-height: 500px;
+
+    border-top-color:
+        #eee8f1;
+}
+
+
+.admin-mobile-menu nav {
+    width:
+        min(100% - 32px,
+            600px);
+
+    margin: 0 auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding:
+        15px 0 20px;
+}
+
+
+.admin-mobile-menu .admin-navbar-link {
+    width: 100%;
+
+    box-sizing: border-box;
+}
+
+
+.admin-mobile-logout {
+    min-height: 44px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 8px;
+
+    padding:
+        0 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #faedf0;
+
+    color: #a34457;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1180px) {
+
+    .admin-api-status {
+        display: none;
+    }
+
+
+    .admin-navbar-navigation .admin-navbar-link {
+        padding:
+            0 10px;
+    }
+
+
+    .admin-navbar-navigation .admin-navbar-link span {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .admin-navbar-container {
+        min-height: 68px;
+    }
+
+
+    .admin-navbar-navigation,
+    .admin-store-button,
+    .admin-user,
+    .admin-logout-button {
+        display: none;
+    }
+
+
+    .admin-menu-button {
+        display: grid;
+    }
+
+
+    .admin-mobile-menu {
+        display: block;
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .admin-navbar-container {
+        width:
+            calc(100% - 24px);
+    }
+
+
+    .admin-navbar-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .admin-navbar-brand-text strong {
+        font-size: 14px;
+    }
+
+
+    .admin-navbar-brand-text span {
+        font-size: 7px;
+    }
+
+}
