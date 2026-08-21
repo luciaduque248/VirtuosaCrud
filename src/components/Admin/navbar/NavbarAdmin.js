@@ -3,8 +3,6 @@ import React, {
   useState,
 } from "react";
 
-import axios from "axios";
-
 import {
   Link,
   NavLink,
@@ -14,7 +12,11 @@ import {
 
 import Logo from "../../assets/img/logo.svg";
 
-import API_BASE_URL from "../../../utils/peticiones";
+import apiClient from "../../../services/apiClient";
+
+import {
+  useAuth,
+} from "../../../context/AuthContext";
 
 import {
   confirmLogout,
@@ -22,12 +24,18 @@ import {
 
 import "./NavbarAdmin.css";
 
+
 function NavbarAdmin() {
   const navigate =
     useNavigate();
 
   const location =
     useLocation();
+
+  const {
+    user,
+    logout,
+  } = useAuth();
 
   const [
     menuOpen,
@@ -41,28 +49,26 @@ function NavbarAdmin() {
     "checking"
   );
 
-  /* =========================================================
-     CERRAR MENÚ AL CAMBIAR DE RUTA
-  ========================================================= */
 
   useEffect(() => {
     setMenuOpen(false);
-  }, [location.pathname]);
+  }, [
+    location.pathname,
+  ]);
 
-  /* =========================================================
-     COMPROBAR API
-  ========================================================= */
 
   useEffect(() => {
-    let active = true;
+    let active =
+      true;
 
     const checkApi =
       async () => {
         try {
-          await axios.get(
-            `${API_BASE_URL}/health`,
+          await apiClient.get(
+            "/health",
             {
-              timeout: 4000,
+              timeout:
+                4000,
             }
           );
 
@@ -87,9 +93,6 @@ function NavbarAdmin() {
     };
   }, []);
 
-  /* =========================================================
-     LOGOUT
-  ========================================================= */
 
   const handleLogout =
     async () => {
@@ -100,14 +103,17 @@ function NavbarAdmin() {
         return;
       }
 
+      logout();
+
       navigate(
-        "/VirtuosaCrud/login"
+        "/VirtuosaCrud/login",
+        {
+          replace:
+            true,
+        }
       );
     };
 
-  /* =========================================================
-     NAV CLASS
-  ========================================================= */
 
   const navClass = ({
     isActive,
@@ -116,38 +122,20 @@ function NavbarAdmin() {
       ? "admin-navbar-link active"
       : "admin-navbar-link";
 
-  /* =========================================================
-     STATUS
-  ========================================================= */
 
-  const getStatusText =
-    () => {
-      if (
-        apiStatus ===
-        "connected"
-      ) {
-        return "API conectada";
-      }
-
-      if (
-        apiStatus ===
+  const statusText =
+    apiStatus ===
+      "connected"
+      ? "API conectada"
+      : apiStatus ===
         "disconnected"
-      ) {
-        return "API desconectada";
-      }
+        ? "API desconectada"
+        : "Verificando API";
 
-      return "Verificando API";
-    };
 
   return (
     <header className="admin-navbar">
-      {/* =====================================================
-          TOP
-      ===================================================== */}
-
       <div className="admin-navbar-container">
-        {/* BRAND */}
-
         <Link
           to="/VirtuosaCrud/admin"
           className="admin-navbar-brand"
@@ -169,10 +157,6 @@ function NavbarAdmin() {
             </span>
           </div>
         </Link>
-
-        {/* =================================================
-            DESKTOP NAV
-        ================================================= */}
 
         <nav className="admin-navbar-navigation">
           <NavLink
@@ -228,32 +212,20 @@ function NavbarAdmin() {
           </NavLink>
         </nav>
 
-        {/* =================================================
-            RIGHT AREA
-        ================================================= */}
-
         <div className="admin-navbar-actions">
-          {/* API STATUS */}
-
           <div
             className={`admin-api-status ${apiStatus}`}
-            title={
-              getStatusText()
-            }
           >
             <span className="admin-api-dot" />
 
             <span className="admin-api-label">
-              {getStatusText()}
+              {statusText}
             </span>
           </div>
-
-          {/* VIEW STORE */}
 
           <Link
             to="/VirtuosaCrud/"
             className="admin-store-button"
-            title="Ver tienda"
           >
             <i className="fa-solid fa-arrow-up-right-from-square" />
 
@@ -262,8 +234,6 @@ function NavbarAdmin() {
             </span>
           </Link>
 
-          {/* USER */}
-
           <div className="admin-user">
             <div className="admin-user-avatar">
               <i className="fa-solid fa-user" />
@@ -271,16 +241,16 @@ function NavbarAdmin() {
 
             <div className="admin-user-info">
               <strong>
-                Admin
+                {user?.name ||
+                  "Admin"}
               </strong>
 
               <span>
-                Administrador
+                {user?.email ||
+                  "Administrador"}
               </span>
             </div>
           </div>
-
-          {/* LOGOUT */}
 
           <button
             type="button"
@@ -288,12 +258,9 @@ function NavbarAdmin() {
             onClick={
               handleLogout
             }
-            title="Cerrar sesión"
           >
             <i className="fa-solid fa-arrow-right-from-bracket" />
           </button>
-
-          {/* MOBILE BUTTON */}
 
           <button
             type="button"
@@ -306,11 +273,6 @@ function NavbarAdmin() {
                   !current
               )
             }
-            aria-expanded={
-              menuOpen
-            }
-            aria-controls="admin-mobile-menu"
-            aria-label="Abrir menú"
           >
             <i
               className={
@@ -323,12 +285,7 @@ function NavbarAdmin() {
         </div>
       </div>
 
-      {/* =====================================================
-          MOBILE MENU
-      ===================================================== */}
-
       <div
-        id="admin-mobile-menu"
         className={
           menuOpen
             ? "admin-mobile-menu open"
@@ -342,8 +299,6 @@ function NavbarAdmin() {
               navClass
             }
           >
-            <i className="fa-solid fa-chart-line" />
-
             Inicio
           </NavLink>
 
@@ -353,8 +308,6 @@ function NavbarAdmin() {
               navClass
             }
           >
-            <i className="fa-solid fa-shirt" />
-
             Vestidos
           </NavLink>
 
@@ -364,8 +317,6 @@ function NavbarAdmin() {
               navClass
             }
           >
-            <i className="fa-solid fa-tags" />
-
             Descuentos
           </NavLink>
 
@@ -375,8 +326,6 @@ function NavbarAdmin() {
               navClass
             }
           >
-            <i className="fa-solid fa-wand-magic-sparkles" />
-
             Maquillaje
           </NavLink>
 
@@ -384,8 +333,6 @@ function NavbarAdmin() {
             to="/VirtuosaCrud/"
             className="admin-navbar-link"
           >
-            <i className="fa-solid fa-store" />
-
             Ver tienda
           </Link>
 
@@ -405,5 +352,6 @@ function NavbarAdmin() {
     </header>
   );
 }
+
 
 export default NavbarAdmin;

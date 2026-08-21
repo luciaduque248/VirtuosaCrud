@@ -1,101 +1,208 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../components/assets/css/Login.css'
-import Logo from '../components/assets/img/logo 1.svg'
-import { Formik } from 'formik';
-import Swal from 'sweetalert2';
+import React, {
+    useState,
+} from "react";
 
-const Login = () => {
-    //admin@gmail.com
-    //virtuosa12@
+import {
+    Link,
+    useLocation,
+    useNavigate,
+} from "react-router-dom";
+
+import Logo from "../components/assets/img/logo 1.svg";
+
+import {
+    useAuth,
+} from "../context/AuthContext";
+
+import {
+    errorAlert,
+} from "../utils/alerts";
+
+import "../components/assets/css/Login.css";
+
+
+function Login() {
+    const navigate =
+        useNavigate();
+
+    const location =
+        useLocation();
+
+    const {
+        login,
+    } = useAuth();
+
+    const [
+        email,
+        setEmail,
+    ] = useState("");
+
+    const [
+        password,
+        setPassword,
+    ] = useState("");
+
+    const [
+        loading,
+        setLoading,
+    ] = useState(false);
+
+
+    const handleSubmit =
+        async (
+            event
+        ) => {
+            event.preventDefault();
+
+            if (
+                !email.trim() ||
+                !password
+            ) {
+                await errorAlert(
+                    "Datos incompletos",
+                    "Ingresa correo y contraseña."
+                );
+
+                return;
+            }
+
+            try {
+                setLoading(true);
+
+                await login(
+                    email.trim(),
+                    password
+                );
+
+                const destination =
+                    location.state
+                        ?.from
+                        ?.pathname ||
+                    "/VirtuosaCrud/admin";
+
+                navigate(
+                    destination,
+                    {
+                        replace:
+                            true,
+                    }
+                );
+            } catch (error) {
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+                await errorAlert(
+                    "No pudimos iniciar sesión",
+                    error?.response
+                        ?.data
+                        ?.message ||
+                    "Verifica tus credenciales."
+                );
+            } finally {
+                setLoading(false);
+            }
+        };
+
+
     return (
-        <div className='bg-login'>
-            <Formik
-                initialValues={{
-                    email: '',
-                    contraseña: ''
-                }}
-                validate={(valores) => {
-                    let errores = {}
-                    //VALIDACIÓN CORREO Y CONTRASEÑA DEL ADMIN
-                    if(valores.email === 'admin@gmail.com' && valores.contraseña === 'virtuosa12'){
-                        window.location = "/VirtuosaCrud/admin"
-                    }
-                    //VALIDACIÓN CORREO
-                    if (!valores.email) {
-                        errores.email = 'Por favor ingrese su correo electrónico';
-                    }else if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.email)){
-                        errores.email = "El correo solo puede contener letras, números, puntos, guiones y guion bajo."
+        <div className="bg-login">
+            <form
+                className="formulario-login"
+                onSubmit={
+                    handleSubmit
+                }
+            >
+                <img
+                    src={Logo}
+                    alt="Virtuosa"
+                />
 
-                    //VALIDACIÓN CONTRASEÑA
-                    }if (!valores.contraseña ) {
-                        errores.contraseña = 'Por favor ingrese su contraseña'
-                    }else if(!/^.{12,12}$/.test(valores.contraseña)){
-                        errores.contraseña = 'La contraseña tiene que ser de 8 a 12 dígitos.'
+                <h1>
+                    Inicia sesión
+                </h1>
 
-                    }else{
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Los datos son incorrectos, revisa bien.'
-                          })
-                    }
-                    return errores;
-                }}
+                <p>
+                    Acceso al panel
+                    administrativo de
+                    Virtuosa
+                </p>
 
-                onSubmit={(valores, {resetForm}) => {
-                    resetForm();
-                    console.log('Formulario enviado')
-                }}>
+                <div className="form-login-group">
+                    <label htmlFor="email">
+                        Email
+                    </label>
 
-                {({ values, errors, touched, handleSubmit, handleChange, handleBlur }) => (
-                    <form action='/VirtuosaCrud/admin' className='formulario-login' onSubmit={handleSubmit}>
-                        <img src={Logo} alt="logo" />
-                        <h1>Inicia sesión</h1>
-                        <p>Introduzca los datos correspondientes</p>
-                        <div className='form-login-group'>
-                            <label htmlFor='email'>Email</label>
-                            <input
-                                type='text'
-                                id='email'
-                                name='email'
-                                placeholder='virtuosa@gmail.com'
-                                value={values.email}
-                                onChange={handleChange}
-                                onBlur={handleBlur} />
-                                
-                                { touched.email && errors.email && <div className='error'>{errors.email}</div>}
-                        </div>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={
+                            email
+                        }
+                        onChange={(
+                            event
+                        ) =>
+                            setEmail(
+                                event.target
+                                    .value
+                            )
+                        }
+                        placeholder="admin@virtuosa.com"
+                        autoComplete="email"
+                        required
+                    />
+                </div>
 
-                        <div className='form-login-group'>
-                            <label htmlFor='contraseña'>Contraseña</label>
-                            <input
-                                type='password'
-                                id='contraseña'
-                                name='contraseña'
-                                placeholder='Ingrese su contraseña'
-                                value={values.contraseña}
-                                onChange={handleChange}
-                                onBlur={handleBlur} />
-                                {touched.contraseña && errors.contraseña && <div className='error'>{errors.contraseña}</div>}
-                        </div>
+                <div className="form-login-group">
+                    <label htmlFor="password">
+                        Contraseña
+                    </label>
 
-                        <div className='botones-login'>
-                            <button type='submit'>Iniciar sesión</button>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        value={
+                            password
+                        }
+                        onChange={(
+                            event
+                        ) =>
+                            setPassword(
+                                event.target
+                                    .value
+                            )
+                        }
+                        placeholder="Ingresa tu contraseña"
+                        autoComplete="current-password"
+                        required
+                    />
+                </div>
 
-                            <div className='volver-login'>
-                                <button><Link to="/VirtuosaCrud/">Volver al inicio</Link></button>
-                            </div>
-                        </div>
-                        
-                    </form>
-                )}
+                <div className="botones-login">
+                    <button
+                        type="submit"
+                        disabled={
+                            loading
+                        }
+                    >
+                        {loading
+                            ? "Ingresando..."
+                            : "Iniciar sesión"}
+                    </button>
 
-            </Formik>
-
-
+                    <div className="volver-login">
+                        <Link to="/VirtuosaCrud/">
+                            Volver al inicio
+                        </Link>
+                    </div>
+                </div>
+            </form>
         </div>
     );
 }
+
 
 export default Login;

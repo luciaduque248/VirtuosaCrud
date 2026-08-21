@@ -7,15 +7,21 @@ const {
     createProduct,
     updateProduct,
     deleteProduct,
-} = require(
-    "../controllers/productController"
-);
+} =
+    require("../controllers/productController");
+
+const {
+    requireAuth,
+    requireAdmin,
+} =
+    require("../middleware/authMiddleware");
 
 const router =
     express.Router();
 
+
 /* =========================================================
-   GET
+   PUBLIC
 ========================================================= */
 
 router.get(
@@ -28,31 +34,32 @@ router.get(
     getProductById
 );
 
+
 /* =========================================================
-   POST
+   ADMIN ONLY
 ========================================================= */
 
 router.post(
     "/",
+    requireAuth,
+    requireAdmin,
     createProduct
 );
 
-/* =========================================================
-   PUT
-========================================================= */
-
 router.put(
     "/:id",
+    requireAuth,
+    requireAdmin,
     updateProduct
 );
 
-/* =========================================================
-   DELETE
-========================================================= */
-
 router.delete(
     "/:id",
+    requireAuth,
+    requireAdmin,
     deleteProduct
 );
 
-module.exports = router;
+
+module.exports =
+    router;

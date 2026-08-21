@@ -13,6 +13,20 @@ CREATE TABLE IF NOT EXISTS categories (
 );
 
 -- =========================================================
+-- USERS
+-- =========================================================
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(120) NOT NULL,
+    email VARCHAR(180) NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    role VARCHAR(30) NOT NULL DEFAULT 'admin',
+    active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- =========================================================
 -- PRODUCTS
 -- =========================================================
 CREATE TABLE IF NOT EXISTS products (
@@ -54,20 +68,37 @@ CREATE INDEX IF NOT EXISTS idx_products_active ON products(active);
 
 CREATE INDEX IF NOT EXISTS idx_products_featured ON products(featured);
 
--- =========================================================
--- UPDATED_AT TRIGGER
--- =========================================================
-CREATE
-OR REPLACE FUNCTION set_updated_at() RETURNS TRIGGER AS $ $ BEGIN NEW.updated_at = CURRENT_TIMESTAMP;
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 
-RETURN NEW;
+CREATE INDEX IF NOT EXISTS idx_users_active ON users(active);
 
+-- =========================================================
+-- UPDATED_AT FUNCTION
+-- =========================================================
+CREATE OR REPLACE FUNCTION set_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = CURRENT_TIMESTAMP;
+    RETURN NEW;
 END;
+$$ LANGUAGE plpgsql;
 
-$ $ LANGUAGE plpgsql;
-
+-- =========================================================
+-- PRODUCTS TRIGGER
+-- =========================================================
 DROP TRIGGER IF EXISTS products_set_updated_at ON products;
 
-CREATE TRIGGER products_set_updated_at BEFORE
-UPDATE
-    ON products FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+CREATE TRIGGER products_set_updated_at
+BEFORE UPDATE ON products
+FOR EACH ROW
+EXECUTE FUNCTION set_updated_at();
+
+-- =========================================================
+-- USERS TRIGGER
+-- =========================================================
+DROP TRIGGER IF EXISTS users_set_updated_at ON users;
+
+CREATE TRIGGER users_set_updated_at
+BEFORE UPDATE ON users
+FOR EACH ROW
+EXECUTE FUNCTION set_updated_at();

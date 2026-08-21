@@ -6,39 +6,142 @@ const express =
 const cors =
   require("cors");
 
+const helmet =
+  require("helmet");
+
 const pool =
   require("./config/db");
 
 const productRoutes =
   require("./routes/productRoutes");
 
+const authRoutes =
+  require("./routes/authRoutes");
+
 const errorHandler =
   require("./middleware/errorHandler");
 
-const app = express();
+const app =
+  express();
 
 const PORT =
-  process.env.PORT || 4000;
+  process.env.PORT ||
+  4000;
+
 
 /* =========================================================
-   MIDDLEWARES
+   REQUIRED ENV
 ========================================================= */
+
+if (
+  !process.env.JWT_SECRET
+) {
+  console.error(
+    "❌ JWT_SECRET no está configurado."
+  );
+
+  process.exit(1);
+}
+
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+app.use(
+  helmet()
+);
+
+
+/* =========================================================
+   CORS
+========================================================= */
+
+const allowedOrigins =
+  (
+    process.env
+      .CLIENT_URLS ||
+    process.env
+      .CLIENT_URL ||
+    "http://localhost:3000"
+  )
+    .split(",")
+    .map(
+      (
+        origin
+      ) =>
+        origin.trim()
+    )
+    .filter(Boolean);
+
 
 app.use(
   cors({
     origin:
-      process.env.CLIENT_URL ||
-      "http://localhost:3000",
+      (
+        origin,
+        callback
+      ) => {
+        /*
+          Permite herramientas
+          sin Origin como curl,
+          Postman, etc.
+        */
+
+        if (!origin) {
+          return callback(
+            null,
+            true
+          );
+        }
+
+        if (
+          allowedOrigins.includes(
+            origin
+          )
+        ) {
+          return callback(
+            null,
+            true
+          );
+        }
+
+        return callback(
+          new Error(
+            "Origen no permitido por CORS."
+          )
+        );
+      },
+
+    methods: [
+      "GET",
+      "POST",
+      "PUT",
+      "DELETE",
+      "OPTIONS",
+    ],
+
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+    ],
   })
 );
 
-app.use(express.json());
+
+app.use(
+  express.json({
+    limit: "1mb",
+  })
+);
 
 app.use(
   express.urlencoded({
     extended: true,
+    limit: "1mb",
   })
 );
+
 
 /* =========================================================
    HEALTH
@@ -46,7 +149,10 @@ app.use(
 
 app.get(
   "/api/health",
-  async (req, res) => {
+  async (
+    req,
+    res
+  ) => {
     try {
       const result =
         await pool.query(
@@ -79,39 +185,59 @@ app.get(
   }
 );
 
+
 /* =========================================================
    ROUTES
 ========================================================= */
+
+app.use(
+  "/api/auth",
+  authRoutes
+);
 
 app.use(
   "/api/products",
   productRoutes
 );
 
+
 /* =========================================================
    404
 ========================================================= */
 
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    message:
-      "Endpoint not found",
-  });
-});
+app.use(
+  (
+    req,
+    res
+  ) => {
+    res.status(404).json({
+      success: false,
+
+      message:
+        "Endpoint not found",
+    });
+  }
+);
+
 
 /* =========================================================
-   ERROR HANDLER
+   ERRORS
 ========================================================= */
 
-app.use(errorHandler);
+app.use(
+  errorHandler
+);
+
 
 /* =========================================================
    SERVER
 ========================================================= */
 
-app.listen(PORT, () => {
-  console.log(
-    `🚀 Virtuosa API running on http://localhost:${PORT}`
-  );
-});
+app.listen(
+  PORT,
+  () => {
+    console.log(
+      `🚀 Virtuosa API running on http://localhost:${PORT}`
+    );
+  }
+);

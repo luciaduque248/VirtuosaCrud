@@ -13,6 +13,11 @@ import {
     CartProvider,
 } from "./context/CartContext";
 
+import {
+    AuthProvider,
+} from "./context/AuthContext";
+
+
 const root =
     ReactDOM.createRoot(
         document.getElementById(
@@ -20,8 +25,11 @@ const root =
         )
     );
 
+
 root.render(
-    <CartProvider>
-        <AppRoutes />
-    </CartProvider>
+    <AuthProvider>
+        <CartProvider>
+            <AppRoutes />
+        </CartProvider>
+    </AuthProvider>
 );

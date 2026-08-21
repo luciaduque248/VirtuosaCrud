@@ -30,6 +30,8 @@ import TipsR from "../pages/TipsR";
 
 import Login from "../pages/Login";
 
+import ProtectedRoute from "../components/auth/ProtectedRoute";
+
 import InicioAdmin from "../components/Admin/InicioAdmin";
 import AdmVS from "../components/Admin/AdmVS";
 
@@ -52,11 +54,14 @@ import FormLabios from "../components/Admin/maquillaje/labios/FormLabios";
 import CardsPiel from "../components/Admin/maquillaje/cuidadodelapiel/CardsPiel";
 import FormPiel from "../components/Admin/maquillaje/cuidadodelapiel/FormPiel";
 
+
 function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
-                {/* TIENDA */}
+                {/* =================================================
+            PUBLIC
+        ================================================= */}
 
                 <Route
                     path="/VirtuosaCrud/"
@@ -108,8 +113,6 @@ function AppRoutes() {
                     element={<Contacto />}
                 />
 
-                {/* MODA */}
-
                 <Route
                     path="/VirtuosaCrud/moda-vestidos"
                     element={<Vestidos />}
@@ -124,8 +127,6 @@ function AppRoutes() {
                     path="/VirtuosaCrud/moda-tendencias"
                     element={<Tendencias />}
                 />
-
-                {/* MAQUILLAJE */}
 
                 <Route
                     path="/VirtuosaCrud/ojos"
@@ -147,93 +148,97 @@ function AppRoutes() {
                     element={<Rostro />}
                 />
 
-                {/* CARRITO */}
-
                 <Route
                     path="/VirtuosaCrud/carrito"
                     element={<Cart />}
                 />
-
-                {/* LOGIN */}
 
                 <Route
                     path="/VirtuosaCrud/login"
                     element={<Login />}
                 />
 
-                {/* ADMIN */}
+                {/* =================================================
+            PROTECTED ADMIN
+        ================================================= */}
 
                 <Route
-                    path="/VirtuosaCrud/admin"
-                    element={<InicioAdmin />}
-                />
+                    element={<ProtectedRoute />}
+                >
+                    <Route
+                        path="/VirtuosaCrud/admin"
+                        element={<InicioAdmin />}
+                    />
 
-                <Route
-                    path="/VirtuosaCrud/edit-vestidos"
-                    element={<AdmVS />}
-                />
+                    <Route
+                        path="/VirtuosaCrud/edit-vestidos"
+                        element={<AdmVS />}
+                    />
 
-                <Route
-                    path="/VirtuosaCrud/form-vestidos"
-                    element={<FormVestido />}
-                />
+                    <Route
+                        path="/VirtuosaCrud/form-vestidos"
+                        element={<FormVestido />}
+                    />
 
-                <Route
-                    path="/VirtuosaCrud/edit-descuentos"
-                    element={<CardsDisc />}
-                />
+                    <Route
+                        path="/VirtuosaCrud/edit-descuentos"
+                        element={<CardsDisc />}
+                    />
 
-                <Route
-                    path="/VirtuosaCrud/form-descuentos"
-                    element={<FormDisc />}
-                />
+                    <Route
+                        path="/VirtuosaCrud/form-descuentos"
+                        element={<FormDisc />}
+                    />
 
-                <Route
-                    path="/VirtuosaCrud/edit-maquillaje"
-                    element={<EditMaquillaje />}
-                />
+                    <Route
+                        path="/VirtuosaCrud/edit-maquillaje"
+                        element={<EditMaquillaje />}
+                    />
 
-                <Route
-                    path="/VirtuosaCrud/edit-ojos"
-                    element={<CardsOjos />}
-                />
+                    <Route
+                        path="/VirtuosaCrud/edit-ojos"
+                        element={<CardsOjos />}
+                    />
 
-                <Route
-                    path="/VirtuosaCrud/form-ojos"
-                    element={<FormOjos />}
-                />
+                    <Route
+                        path="/VirtuosaCrud/form-ojos"
+                        element={<FormOjos />}
+                    />
 
-                <Route
-                    path="/VirtuosaCrud/edit-rostro"
-                    element={<CardsRostro />}
-                />
+                    <Route
+                        path="/VirtuosaCrud/edit-rostro"
+                        element={<CardsRostro />}
+                    />
 
-                <Route
-                    path="/VirtuosaCrud/form-rostro"
-                    element={<FormRostro />}
-                />
+                    <Route
+                        path="/VirtuosaCrud/form-rostro"
+                        element={<FormRostro />}
+                    />
 
-                <Route
-                    path="/VirtuosaCrud/edit-labios"
-                    element={<CardsLabios />}
-                />
+                    <Route
+                        path="/VirtuosaCrud/edit-labios"
+                        element={<CardsLabios />}
+                    />
 
-                <Route
-                    path="/VirtuosaCrud/form-labios"
-                    element={<FormLabios />}
-                />
+                    <Route
+                        path="/VirtuosaCrud/form-labios"
+                        element={<FormLabios />}
+                    />
 
-                <Route
-                    path="/VirtuosaCrud/edit-cuidadodelapiel"
-                    element={<CardsPiel />}
-                />
+                    <Route
+                        path="/VirtuosaCrud/edit-cuidadodelapiel"
+                        element={<CardsPiel />}
+                    />
 
-                <Route
-                    path="/VirtuosaCrud/form-cuidadodelapiel"
-                    element={<FormPiel />}
-                />
+                    <Route
+                        path="/VirtuosaCrud/form-cuidadodelapiel"
+                        element={<FormPiel />}
+                    />
+                </Route>
 
-                {/* 404 */}
+                {/* =================================================
+            404
+        ================================================= */}
 
                 <Route
                     path="/VirtuosaCrud/*"
@@ -248,5 +253,6 @@ function AppRoutes() {
         </BrowserRouter>
     );
 }
+
 
 export default AppRoutes;
