@@ -1,16 +1,17 @@
 import React from "react";
 
-import AdminProductForm from "../../products/AdminProductForm";
+import AdminProductsPage from "../../products/AdminProductsPage";
 
-function FormOjos() {
-  return (
-    <AdminProductForm
-      title="Nuevo producto para ojos"
-      categorySlug="maquillaje"
-      subcategory="ojos"
-      backPath="/VirtuosaCrud/edit-ojos"
-    />
-  );
+function CardsLabios() {
+    return (
+        <AdminProductsPage
+            title="Labios"
+            description="Administra labiales, brillos y productos para labios."
+            categorySlug="maquillaje"
+            subcategory="labios"
+            createPath="/VirtuosaCrud/form-labios"
+        />
+    );
 }
 
-export default FormOjos;
+export default CardsLabios;

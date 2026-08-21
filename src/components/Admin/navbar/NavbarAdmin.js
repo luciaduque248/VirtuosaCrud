@@ -161,6 +161,7 @@ function NavbarAdmin() {
         <nav className="admin-navbar-navigation">
           <NavLink
             to="/VirtuosaCrud/admin"
+            end
             className={
               navClass
             }
@@ -169,6 +170,19 @@ function NavbarAdmin() {
 
             <span>
               Inicio
+            </span>
+          </NavLink>
+
+          <NavLink
+            to="/VirtuosaCrud/admin/pedidos"
+            className={
+              navClass
+            }
+          >
+            <i className="fa-solid fa-box" />
+
+            <span>
+              Pedidos
             </span>
           </NavLink>
 
@@ -295,11 +309,21 @@ function NavbarAdmin() {
         <nav>
           <NavLink
             to="/VirtuosaCrud/admin"
+            end
             className={
               navClass
             }
           >
             Inicio
+          </NavLink>
+
+          <NavLink
+            to="/VirtuosaCrud/admin/pedidos"
+            className={
+              navClass
+            }
+          >
+            Pedidos
           </NavLink>
 
           <NavLink

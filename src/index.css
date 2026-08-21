@@ -5,6 +5,42 @@ body {
   overflow-x: hidden;
 }
 
+/*
+ * Jerarquía visual global:
+ * - overlays/modales de Virtuosa: 9999–10000
+ * - SweetAlert/toast: 30000
+ *
+ * Así cualquier feedback de éxito, error o confirmación queda siempre
+ * por encima del contexto modal que originó la acción.
+ */
+.swal2-container {
+  z-index: 30000 !important;
+}
+
+/* El CTA del carrito ahora es un Link y conserva aspecto de botón. */
+.cart-checkout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+/*
+ * Compatibilidad del modal histórico de Vestidos.
+ * AddToCartControls ya incluye sus propios labels de talla/cantidad y CTA.
+ * Ocultamos el wrapper duplicado y el CTA antiguo hasta retirar ese markup
+ * heredado de VestidosRS en la siguiente limpieza estructural.
+ */
+.vestidos-modal-content > .vestidos-modal-option > label {
+  display: none;
+}
+
+.vestidos-modal-content > .vestidos-modal-option:nth-of-type(3),
+.vestidos-modal-content > .vestidos-add-button {
+  display: none !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

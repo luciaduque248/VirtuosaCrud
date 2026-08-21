@@ -40,6 +40,19 @@ const Toast =
         },
     });
 
+/*
+  Los toast son feedback visual no bloqueante.
+  No devolvemos la Promise de SweetAlert para evitar que
+  un `await` mantenga modales abiertos durante los 2.6 s
+  que permanece visible la notificación.
+*/
+const fireToast =
+    (options) => {
+        void Toast.fire(
+            options
+        );
+    };
+
 /* =========================================================
    GENERALES
 ========================================================= */
@@ -49,7 +62,7 @@ export const successToast =
         title,
         text = ""
     ) =>
-        Toast.fire({
+        fireToast({
             icon: "success",
             title,
             text,
@@ -141,7 +154,7 @@ export const productUpdatedAlert =
     (
         productName
     ) =>
-        Toast.fire({
+        fireToast({
             icon: "success",
 
             title:
@@ -194,7 +207,7 @@ export const productDeletedAlert =
     (
         productName
     ) =>
-        Toast.fire({
+        fireToast({
             icon: "success",
 
             title:
@@ -212,7 +225,7 @@ export const cartAlert =
     (
         productName
     ) =>
-        Toast.fire({
+        fireToast({
             icon: "success",
 
             title:
@@ -323,7 +336,7 @@ export const favoriteAlert =
     (
         productName
     ) =>
-        Toast.fire({
+        fireToast({
             icon: "success",
 
             title:

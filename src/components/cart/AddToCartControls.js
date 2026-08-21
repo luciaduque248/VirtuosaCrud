@@ -67,7 +67,7 @@ function AddToCartControls({
         );
 
     const handleAdd =
-        async () => {
+        () => {
             const result =
                 addToCart(
                     product,
@@ -81,7 +81,7 @@ function AddToCartControls({
                 );
 
             if (!result.ok) {
-                await warningAlert(
+                void warningAlert(
                     "Producto no disponible",
                     "Este producto no tiene unidades disponibles."
                 );
@@ -89,7 +89,12 @@ function AddToCartControls({
                 return;
             }
 
-            await cartAlert(
+            /*
+              El modal de producto puede permanecer abierto.
+              La notificación se muestra de inmediato y, por CSS,
+              siempre queda visualmente por encima del modal.
+            */
+            cartAlert(
                 product.name
             );
         };

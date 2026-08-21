@@ -15,7 +15,6 @@ import {
 import {
     confirmCartRemove,
     confirmClearCart,
-    checkoutInfo,
 } from "../utils/alerts";
 
 import "../components/assets/css/Cart.css";
@@ -309,7 +308,7 @@ function Cart() {
                                 </span>
 
                                 <strong>
-                                    Por calcular
+                                    Por coordinar
                                 </strong>
                             </div>
 
@@ -327,15 +326,12 @@ function Cart() {
                                 </strong>
                             </div>
 
-                            <button
-                                type="button"
+                            <Link
+                                to="/VirtuosaCrud/checkout"
                                 className="cart-checkout"
-                                onClick={
-                                    checkoutInfo
-                                }
                             >
                                 Continuar compra
-                            </button>
+                            </Link>
 
                             <Link
                                 to="/VirtuosaCrud/"
@@ -345,11 +341,7 @@ function Cart() {
                             </Link>
 
                             <p>
-                                El pago y la
-                                creación de pedidos
-                                se conectarán al
-                                backend en la fase
-                                de checkout.
+                                Los precios y el stock se validan nuevamente en el servidor al confirmar el pedido.
                             </p>
                         </aside>
                     </div>
