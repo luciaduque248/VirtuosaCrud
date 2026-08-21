@@ -1,38 +1,30 @@
 -- =========================================================
 -- VIRTUOSA DATABASE SEED
 -- =========================================================
-
-
 -- =========================================================
 -- CATEGORIES
 -- =========================================================
-
-INSERT INTO categories (
-    name,
-    slug
-)
+INSERT INTO
+    categories (name, slug)
 VALUES
     ('Moda', 'moda'),
-    ('Maquillaje', 'maquillaje')
-ON CONFLICT (slug)
-DO NOTHING;
-
+    ('Maquillaje', 'maquillaje') ON CONFLICT (slug) DO NOTHING;
 
 -- =========================================================
 -- PRODUCTS
 -- =========================================================
-
-INSERT INTO products (
-    name,
-    description,
-    price,
-    category_id,
-    subcategory,
-    image_url,
-    stock,
-    featured,
-    active
-)
+INSERT INTO
+    products (
+        name,
+        description,
+        price,
+        category_id,
+        subcategory,
+        image_url,
+        stock,
+        featured,
+        active
+    )
 SELECT
     'Vestido Boho Lavanda',
     'Vestido midi con diseño femenino y silueta ligera, ideal para ocasiones casuales.',
@@ -43,26 +35,31 @@ SELECT
     14,
     TRUE,
     TRUE
-FROM categories c
-WHERE c.slug = 'moda'
-AND NOT EXISTS (
-    SELECT 1
-    FROM products
-    WHERE name = 'Vestido Boho Lavanda'
-);
+FROM
+    categories c
+WHERE
+    c.slug = 'moda'
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            products
+        WHERE
+            name = 'Vestido Boho Lavanda'
+    );
 
-
-INSERT INTO products (
-    name,
-    description,
-    price,
-    category_id,
-    subcategory,
-    image_url,
-    stock,
-    featured,
-    active
-)
+INSERT INTO
+    products (
+        name,
+        description,
+        price,
+        category_id,
+        subcategory,
+        image_url,
+        stock,
+        featured,
+        active
+    )
 SELECT
     'Vestido Floral Summer',
     'Vestido largo de inspiración bohemia con caída ligera y acabado floral.',
@@ -73,26 +70,31 @@ SELECT
     9,
     TRUE,
     TRUE
-FROM categories c
-WHERE c.slug = 'moda'
-AND NOT EXISTS (
-    SELECT 1
-    FROM products
-    WHERE name = 'Vestido Floral Summer'
-);
+FROM
+    categories c
+WHERE
+    c.slug = 'moda'
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            products
+        WHERE
+            name = 'Vestido Floral Summer'
+    );
 
-
-INSERT INTO products (
-    name,
-    description,
-    price,
-    category_id,
-    subcategory,
-    image_url,
-    stock,
-    featured,
-    active
-)
+INSERT INTO
+    products (
+        name,
+        description,
+        price,
+        category_id,
+        subcategory,
+        image_url,
+        stock,
+        featured,
+        active
+    )
 SELECT
     'Vestido Midi Elegance',
     'Vestido midi versátil diseñado para eventos, cenas y ocasiones especiales.',
@@ -103,26 +105,31 @@ SELECT
     11,
     FALSE,
     TRUE
-FROM categories c
-WHERE c.slug = 'moda'
-AND NOT EXISTS (
-    SELECT 1
-    FROM products
-    WHERE name = 'Vestido Midi Elegance'
-);
+FROM
+    categories c
+WHERE
+    c.slug = 'moda'
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            products
+        WHERE
+            name = 'Vestido Midi Elegance'
+    );
 
-
-INSERT INTO products (
-    name,
-    description,
-    price,
-    category_id,
-    subcategory,
-    image_url,
-    stock,
-    featured,
-    active
-)
+INSERT INTO
+    products (
+        name,
+        description,
+        price,
+        category_id,
+        subcategory,
+        image_url,
+        stock,
+        featured,
+        active
+    )
 SELECT
     'Vestido Rose Sale',
     'Vestido femenino de temporada perteneciente a la colección de descuentos.',
@@ -133,26 +140,31 @@ SELECT
     8,
     TRUE,
     TRUE
-FROM categories c
-WHERE c.slug = 'moda'
-AND NOT EXISTS (
-    SELECT 1
-    FROM products
-    WHERE name = 'Vestido Rose Sale'
-);
+FROM
+    categories c
+WHERE
+    c.slug = 'moda'
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            products
+        WHERE
+            name = 'Vestido Rose Sale'
+    );
 
-
-INSERT INTO products (
-    name,
-    description,
-    price,
-    category_id,
-    subcategory,
-    image_url,
-    stock,
-    featured,
-    active
-)
+INSERT INTO
+    products (
+        name,
+        description,
+        price,
+        category_id,
+        subcategory,
+        image_url,
+        stock,
+        featured,
+        active
+    )
 SELECT
     'Vestido Violet Sale',
     'Vestido de colección seleccionado con precio promocional.',
@@ -163,26 +175,31 @@ SELECT
     6,
     FALSE,
     TRUE
-FROM categories c
-WHERE c.slug = 'moda'
-AND NOT EXISTS (
-    SELECT 1
-    FROM products
-    WHERE name = 'Vestido Violet Sale'
-);
+FROM
+    categories c
+WHERE
+    c.slug = 'moda'
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            products
+        WHERE
+            name = 'Vestido Violet Sale'
+    );
 
-
-INSERT INTO products (
-    name,
-    description,
-    price,
-    category_id,
-    subcategory,
-    image_url,
-    stock,
-    featured,
-    active
-)
+INSERT INTO
+    products (
+        name,
+        description,
+        price,
+        category_id,
+        subcategory,
+        image_url,
+        stock,
+        featured,
+        active
+    )
 SELECT
     'Vestido Classic Sale',
     'Diseño clásico de temporada con descuento especial.',
@@ -193,26 +210,31 @@ SELECT
     12,
     FALSE,
     TRUE
-FROM categories c
-WHERE c.slug = 'moda'
-AND NOT EXISTS (
-    SELECT 1
-    FROM products
-    WHERE name = 'Vestido Classic Sale'
-);
+FROM
+    categories c
+WHERE
+    c.slug = 'moda'
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            products
+        WHERE
+            name = 'Vestido Classic Sale'
+    );
 
-
-INSERT INTO products (
-    name,
-    description,
-    price,
-    category_id,
-    subcategory,
-    image_url,
-    stock,
-    featured,
-    active
-)
+INSERT INTO
+    products (
+        name,
+        description,
+        price,
+        category_id,
+        subcategory,
+        image_url,
+        stock,
+        featured,
+        active
+    )
 SELECT
     'Paleta Nude Essentials',
     'Paleta de sombras en tonos neutros para maquillaje diario y looks nocturnos.',
@@ -223,26 +245,31 @@ SELECT
     20,
     TRUE,
     TRUE
-FROM categories c
-WHERE c.slug = 'maquillaje'
-AND NOT EXISTS (
-    SELECT 1
-    FROM products
-    WHERE name = 'Paleta Nude Essentials'
-);
+FROM
+    categories c
+WHERE
+    c.slug = 'maquillaje'
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            products
+        WHERE
+            name = 'Paleta Nude Essentials'
+    );
 
-
-INSERT INTO products (
-    name,
-    description,
-    price,
-    category_id,
-    subcategory,
-    image_url,
-    stock,
-    featured,
-    active
-)
+INSERT INTO
+    products (
+        name,
+        description,
+        price,
+        category_id,
+        subcategory,
+        image_url,
+        stock,
+        featured,
+        active
+    )
 SELECT
     'Máscara Intense Black',
     'Máscara de pestañas de acabado intenso y definición prolongada.',
@@ -253,26 +280,31 @@ SELECT
     18,
     FALSE,
     TRUE
-FROM categories c
-WHERE c.slug = 'maquillaje'
-AND NOT EXISTS (
-    SELECT 1
-    FROM products
-    WHERE name = 'Máscara Intense Black'
-);
+FROM
+    categories c
+WHERE
+    c.slug = 'maquillaje'
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            products
+        WHERE
+            name = 'Máscara Intense Black'
+    );
 
-
-INSERT INTO products (
-    name,
-    description,
-    price,
-    category_id,
-    subcategory,
-    image_url,
-    stock,
-    featured,
-    active
-)
+INSERT INTO
+    products (
+        name,
+        description,
+        price,
+        category_id,
+        subcategory,
+        image_url,
+        stock,
+        featured,
+        active
+    )
 SELECT
     'Lipstick Velvet Rose',
     'Labial de acabado aterciopelado y color intenso.',
@@ -283,26 +315,31 @@ SELECT
     25,
     TRUE,
     TRUE
-FROM categories c
-WHERE c.slug = 'maquillaje'
-AND NOT EXISTS (
-    SELECT 1
-    FROM products
-    WHERE name = 'Lipstick Velvet Rose'
-);
+FROM
+    categories c
+WHERE
+    c.slug = 'maquillaje'
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            products
+        WHERE
+            name = 'Lipstick Velvet Rose'
+    );
 
-
-INSERT INTO products (
-    name,
-    description,
-    price,
-    category_id,
-    subcategory,
-    image_url,
-    stock,
-    featured,
-    active
-)
+INSERT INTO
+    products (
+        name,
+        description,
+        price,
+        category_id,
+        subcategory,
+        image_url,
+        stock,
+        featured,
+        active
+    )
 SELECT
     'Skin Glow Serum',
     'Sérum facial hidratante para aportar luminosidad y suavidad a la piel.',
@@ -313,10 +350,123 @@ SELECT
     16,
     TRUE,
     TRUE
-FROM categories c
-WHERE c.slug = 'maquillaje'
-AND NOT EXISTS (
-    SELECT 1
-    FROM products
-    WHERE name = 'Skin Glow Serum'
-);
+FROM
+    categories c
+WHERE
+    c.slug = 'maquillaje'
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            products
+        WHERE
+            name = 'Skin Glow Serum'
+    );
+
+-- =========================================================
+-- ROSTRO
+-- =========================================================
+INSERT INTO
+    products (
+        name,
+        description,
+        price,
+        category_id,
+        subcategory,
+        image_url,
+        stock,
+        featured,
+        active
+    )
+SELECT
+    'Base Velvet Skin',
+    'Base líquida de cobertura media con acabado natural y textura ligera para unificar el tono del rostro.',
+    69900,
+    c.id,
+    'rostro',
+    'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=80',
+    18,
+    TRUE,
+    TRUE
+FROM
+    categories c
+WHERE
+    c.slug = 'maquillaje'
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            products
+        WHERE
+            name = 'Base Velvet Skin'
+    );
+
+INSERT INTO
+    products (
+        name,
+        description,
+        price,
+        category_id,
+        subcategory,
+        image_url,
+        stock,
+        featured,
+        active
+    )
+SELECT
+    'Soft Rose Blush',
+    'Rubor compacto de pigmentación modulable diseñado para aportar un acabado suave y natural.',
+    45900,
+    c.id,
+    'rostro',
+    'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80',
+    22,
+    TRUE,
+    TRUE
+FROM
+    categories c
+WHERE
+    c.slug = 'maquillaje'
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            products
+        WHERE
+            name = 'Soft Rose Blush'
+    );
+
+INSERT INTO
+    products (
+        name,
+        description,
+        price,
+        category_id,
+        subcategory,
+        image_url,
+        stock,
+        featured,
+        active
+    )
+SELECT
+    'Glow Contour Palette',
+    'Paleta para contorno e iluminación con tonos seleccionados para definir y realzar las facciones.',
+    82900,
+    c.id,
+    'rostro',
+    'https://images.unsplash.com/photo-1515688594390-b649af70d282?auto=format&fit=crop&w=900&q=80',
+    12,
+    FALSE,
+    TRUE
+FROM
+    categories c
+WHERE
+    c.slug = 'maquillaje'
+    AND NOT EXISTS (
+        SELECT
+            1
+        FROM
+            products
+        WHERE
+            name = 'Glow Contour Palette'
+    );

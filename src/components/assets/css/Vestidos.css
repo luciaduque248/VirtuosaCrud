@@ -1,612 +1,1363 @@
-:root {
-    --body-color: #19191B;
-    --card1-color: #cfb9fa;
-    --cardLight-color: #e2d7fb;
-    --titulo-color: #A695C2;
-    --bluelight-color: #8bc8f3;
-    --h4-color: #8bc8f3;
-    --p-color: #b8def9;
-    --selectIcon-color: #dbe9f3;
-    --icon-color: #6fbdf6;
-    --selectLetra-color: #8765be;
+/* =========================================================
+   VIRTUOSA - VESTIDOS
+========================================================= */
+
+.vestidos-page {
+    --virtuosa-dark: #19171c;
+    --virtuosa-text: #342f38;
+    --virtuosa-muted: #766f7a;
+
+    --virtuosa-purple: #a695c2;
+    --virtuosa-purple-dark: #745d8b;
+    --virtuosa-purple-soft: #e9e0f1;
+    --virtuosa-purple-light: #f7f2fa;
+
+    --virtuosa-white: #ffffff;
+    --virtuosa-border: #e8e1eb;
+
+    background: #ffffff;
+    color: var(--virtuosa-text);
+    min-height: 100vh;
 }
 
-body{
-    overflow-x: hidden;
-}
 
-/* ::::::::::::::::::::::::::::::::::::::::: BODY ::::::::::::::::::::::::::::::::::::::::: */
+/* =========================================================
+   HERO
+========================================================= */
 
-.viste-a-la-moda {
-    background-image: url(https://res.cloudinary.com/colombia/image/upload/v1654473531/kuepa/zyro-image_jkvooy.jpg);
+.vestidos-hero {
+    position: relative;
+
+    width: 100%;
+    min-height: 520px;
+
+    background-image:
+        url("https://res.cloudinary.com/colombia/image/upload/v1654473531/kuepa/zyro-image_jkvooy.jpg");
+
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    width: 100%;
-    max-width: 1500px;
-    height: 400px;
 }
 
-.viste-a-la-moda {
-    font-family: 'Bebas Neue', cursive;
-    color: #403f3f;
-    display: grid;
-    justify-content: flex-start;
-    align-content: center;
 
-    padding: 0 2rem;
-}
+.vestidos-hero-overlay {
+    min-height: 520px;
 
-.viste-a-la-moda h1 {
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 5px #808080bd;
-    padding: 1rem;
-    width: 400px;
-    font-size: 100px;
-    border-left: 5px solid white;
-    font-weight: 300;
-}
-
-.contenedor {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+
+    padding: 60px 7%;
+
+    background:
+        linear-gradient(90deg,
+            rgba(255, 255, 255, 0.94) 0%,
+            rgba(255, 255, 255, 0.72) 42%,
+            rgba(255, 255, 255, 0.10) 75%);
+}
+
+
+.vestidos-hero-content {
+    width: min(560px, 100%);
+}
+
+
+.vestidos-eyebrow {
+    display: inline-block;
+
+    margin-bottom: 14px;
+
+    color: var(--virtuosa-purple-dark);
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+
+.vestidos-hero h1 {
+    margin: 0;
+
+    color: var(--virtuosa-dark);
+
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 300;
+    line-height: 0.95;
+
+    text-transform: uppercase;
+}
+
+
+.vestidos-hero p {
+    max-width: 470px;
+
+    margin: 24px 0 30px;
+
+    color: #615a65;
+
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+
+.vestidos-hero-button {
+    display: inline-flex;
+
+    align-items: center;
     justify-content: center;
-    background-color: white;
-    padding: 1rem 2rem;
-    text-align: center;
-    color: #19191B;
-    height: fit-content;
+
+    min-height: 48px;
+
+    padding: 0 26px;
+
+    border-radius: 999px;
+
+    background: var(--virtuosa-dark);
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
 }
 
-.contenedor h1 {
-    font-size: 50px;
+
+.vestidos-hero-button:hover {
+    background: var(--virtuosa-purple-dark);
+
+    transform: translateY(-2px);
 }
 
-.container {
-    margin-top: 20px;
-    place-items: center;
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.vestidos-main {
+    width: min(1280px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    padding: 80px 0 100px;
 }
 
-.container {
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.vestidos-heading {
+    max-width: 660px;
+
+    margin-bottom: 42px;
+}
+
+
+.vestidos-heading>span {
+    color: var(--virtuosa-purple-dark);
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+.vestidos-heading h2 {
+    margin: 7px 0 12px;
+
+    color: var(--virtuosa-dark);
+
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 500;
+}
+
+
+.vestidos-heading p {
+    margin: 0;
+
+    color: var(--virtuosa-muted);
+
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.vestidos-toolbar {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 16px;
+}
+
+
+.vestidos-search {
+    width: min(420px, 100%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 18px;
+
+    border: 1px solid var(--virtuosa-border);
+
+    border-radius: 999px;
+
+    background: white;
+}
+
+
+.vestidos-search svg {
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
+
+    color: #8c8491;
+}
+
+
+.vestidos-search input {
+    width: 100%;
+    height: 48px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: var(--virtuosa-text);
+
+    font-family: inherit;
+
+    font-size: 14px;
+}
+
+
+.vestidos-search input::placeholder {
+    color: #aaa3ae;
+}
+
+
+.vestidos-filters {
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.vestidos-filters select {
+    min-width: 160px;
+    height: 48px;
+
+    padding: 0 38px 0 16px;
+
+    border: 1px solid var(--virtuosa-border);
+
+    border-radius: 999px;
+
+    outline: none;
+
+    background: white;
+
+    color: var(--virtuosa-text);
+
+    font-family: inherit;
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   RESULT INFO
+========================================================= */
+
+.vestidos-results-info {
+    margin: 0 0 26px;
+
+    color: var(--virtuosa-muted);
+
+    font-size: 13px;
+}
+
+
+.vestidos-results-info p {
+    margin: 0;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.vestidos-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 0px 10px;
-    grid-auto-flow: row;
-    grid-template-areas:
-        "boton1 boton1 boton2"
-        ". . ."
-        ". . .";
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 32px 24px;
 }
 
-.boton1 {display: flex;
-    grid-area: boton1;
-    margin-right: 20rem;
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.vestidos-card {
+    min-width: 0;
+
+    overflow: hidden;
+
+    border: 1px solid var(--virtuosa-border);
+
+    border-radius: 22px;
+
+    background: white;
+
+    box-shadow:
+        0 10px 35px rgba(55, 39, 61, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
 }
 
-.boton2 {
-    grid-area: boton2;
+
+.vestidos-card:hover {
+    transform: translateY(-6px);
+
+    border-color: #d9c9e5;
+
+    box-shadow:
+        0 20px 50px rgba(55, 39, 61, 0.12);
 }
 
-.container2 {
-    place-items: center;
+
+/* =========================================================
+   CARD IMAGE
+========================================================= */
+
+.vestidos-card-image {
+    position: relative;
+
+    height: 430px;
+
+    overflow: hidden;
+
+    background: var(--virtuosa-purple-light);
 }
 
-.container2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 30px 12px;
-    grid-auto-flow: row;
-    grid-template-areas:
-        "venta1 venta2 venta3"
-        "venta4 venta5 venta6"
-        "venta7 venta8 venta9";
-}
 
-.venta1 {
-    grid-area: venta1;
-}
-
-.venta2 {
-    grid-area: venta2;
-}
-
-.venta3 {
-    grid-area: venta3;
-}
-
-.venta4 {
-    grid-area: venta4;
-}
-
-.venta5 {
-    grid-area: venta5;
-}
-
-.venta6 {
-    grid-area: venta6;
-}
-
-.venta7 {
-    grid-area: venta7;
-}
-
-.venta8 {
-    grid-area: venta8;
-}
-
-.venta9 {
-    grid-area: venta9;
-}
-
-.container2 img {
-    width: 380px;
-}
-
-select {
-    border: 3px solid #A695C2;
-    font-family: Montserrat;
-    border-radius: 50px;
-    padding: 0 1rem;
+.vestidos-card-image>button {
     width: 100%;
-    max-width: 150px;
-}
-
-
-.popularidad {
-    max-width: 400px;
-    width: 100%;
-    margin-right: 3rem;
-}
-
-.card {
-    background-color: #A695C2;
-    border: #A695C2;
-    border-style: solid;
-    max-width: 28.5vw;
-    width: 100%;
-    border-radius: 32px;
-}
-
-.card img {
-    border-top-left-radius: 28.5px;
-    border-top-right-radius: 28.5px;
-    width: 100%;
-    max-width: 380px;
-    max-height: 500px;
     height: 100%;
+
+    display: block;
+
+    padding: 0;
+
+    border: none;
+
+    background: none;
+
+    cursor: pointer;
+}
+
+
+.vestidos-card-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: top;
+
+    transition:
+        transform 0.45s ease;
+}
+
+
+.vestidos-card:hover .vestidos-card-image img {
+    transform: scale(1.045);
+}
+
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.vestidos-badge {
+    position: absolute;
+
+    top: 16px;
+
+    padding: 7px 12px;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.4px;
+
+    pointer-events: none;
+}
+
+
+.vestidos-badge-featured {
+    left: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.92);
+
+    color: var(--virtuosa-purple-dark);
+}
+
+
+.vestidos-badge-stock {
+    right: 16px;
+
+    background:
+        rgba(25, 23, 28, 0.88);
+
+    color: white;
+}
+
+
+/* =========================================================
+   CARD BODY
+========================================================= */
+
+.vestidos-card-body {
+    padding: 22px;
+}
+
+
+.vestidos-card-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 14px;
+}
+
+
+.vestidos-card-category {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: var(--virtuosa-purple-dark);
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+
+    text-transform: uppercase;
+}
+
+
+.vestidos-card h3 {
+    margin: 0;
+
+    color: var(--virtuosa-dark);
+
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+
+.vestidos-favorite {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border: 1px solid var(--virtuosa-border);
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: var(--virtuosa-purple-dark);
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.vestidos-favorite:hover {
+    background:
+        var(--virtuosa-purple-light);
+}
+
+
+.vestidos-card-description {
+    min-height: 68px;
+
+    margin: 16px 0 22px;
+
+    color: var(--virtuosa-muted);
+
+    display: -webkit-box;
+
+    overflow: hidden;
+
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.vestidos-card-footer {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 16px;
+}
+
+
+.vestidos-card-footer>div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.vestidos-card-footer strong {
+    color: var(--virtuosa-dark);
+
+    font-size: 20px;
+}
+
+
+.vestidos-stock {
+    color: #47875e;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+.vestidos-stock.agotado {
+    color: #b15568;
+}
+
+
+.vestidos-details-button {
+    min-height: 42px;
+
+    padding: 0 17px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: var(--virtuosa-purple-dark);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.vestidos-details-button:hover {
+    background: var(--virtuosa-dark);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   STATES
+========================================================= */
+
+.vestidos-status {
+    min-height: 340px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    text-align: center;
+}
+
+
+.vestidos-status h3 {
+    margin: 18px 0 8px;
+
+    color: var(--virtuosa-dark);
+
+    font-size: 22px;
+}
+
+
+.vestidos-status p {
+    max-width: 500px;
+
+    margin: 0;
+
+    color: var(--virtuosa-muted);
+
+    line-height: 1.6;
+}
+
+
+.vestidos-status button {
+    margin-top: 20px;
+
+    min-height: 44px;
+
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background:
+        var(--virtuosa-purple-dark);
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+.vestidos-status-icon {
+    width: 54px;
+    height: 54px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        var(--virtuosa-purple-soft);
+
+    color:
+        var(--virtuosa-purple-dark);
+
+    font-size: 26px;
+    font-weight: 600;
+}
+
+
+.vestidos-loader {
+    width: 42px;
+    height: 42px;
+
+    border: 4px solid var(--virtuosa-purple-soft);
+
+    border-top-color:
+        var(--virtuosa-purple-dark);
+
+    border-radius: 50%;
+
+    animation:
+        vestidosSpin 0.8s linear infinite;
+}
+
+
+@keyframes vestidosSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   MODAL OVERLAY
+========================================================= */
+
+.vestidos-modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background:
+        rgba(20, 17, 22, 0.72);
+
+    backdrop-filter:
+        blur(8px);
+
+    animation:
+        vestidosFadeIn 0.2s ease;
+}
+
+
+@keyframes vestidosFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.vestidos-modal {
+    position: relative;
+
+    width: min(940px, 100%);
+
+    max-height: 90vh;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(280px, 0.9fr) minmax(340px, 1.1fr);
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background: white;
+
+    box-shadow:
+        0 35px 90px rgba(0, 0, 0, 0.30);
+
+    animation:
+        vestidosModalIn 0.28s ease;
+}
+
+
+@keyframes vestidosModalIn {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   MODAL IMAGE
+========================================================= */
+
+.vestidos-modal-image {
+    min-height: 600px;
+
+    background:
+        var(--virtuosa-purple-light);
+}
+
+
+.vestidos-modal-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
     object-fit: cover;
     object-position: top;
 }
 
-.text-card {
-    padding: 1px 0;
-}
 
-.text-card h4 {
-    padding: 0.5rem 0;
-    font-size: 20px;
-    background-color: #A695C2;
-    border-radius: 5px;
-}
+/* =========================================================
+   MODAL CONTENT
+========================================================= */
 
-.text-card p{
-    padding: 0.5rem 0;
-    background-color: #cfb9fa;
-}
+.vestidos-modal-content {
+    overflow-y: auto;
 
-.select-icon {
-    border-bottom-right-radius: 32px;
-    border-bottom-left-radius: 32px;
-    padding: 1rem 0;
-    background-color: #e2d7fb;
-}
-
-.select-icon select {
-    height: 30px;
-    font-weight: bolder;
-    color: #8765be;
+    padding:
+        58px 48px 42px;
 }
 
 
-.select-icon i {
-    margin: 0 0.5rem;
-    width: 40px;
-    font-size: 20px;
-    background-color: #A695C2;
-    padding: 0.5rem;
-    border-radius: 10px;
+.vestidos-modal-category {
+    color:
+        var(--virtuosa-purple-dark);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
 }
 
-/* :::::::::::::::::::::::::::::: SLIDES ::::::::::::::::::::::::::::::: */
 
-.container3 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 0.5fr 0.5fr 0.5fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-        "solo botones solo2"
-        ". . ."
-        ". . .";
+.vestidos-modal-content h2 {
+    margin:
+        10px 0 10px;
+
+    color:
+        var(--virtuosa-dark);
+
+    font-size:
+        clamp(30px, 4vw, 42px);
+
+    font-weight: 500;
+
+    line-height: 1.1;
 }
 
-.solo {
-    grid-area: solo;
-}
 
-.botones {
-    grid-area: botones;
-}
-
-.solo2 {
-    grid-area: solo2;
-}
-
-.botones {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-}
-
-.botones a {
-    text-decoration: none;
-    color: black;
-}
-
-.bt-1 {
-    background-color: #A695C2;
-    padding: 8px 1rem;
-    border-radius: 100px;
-}
-
-.bt-2,
-.bt-3,
-.bt-4 {
-    background-color: #cfb9fa;
-    padding: 8px 1rem;
-    border-radius: 100px;
-}
-
-.botones h2 {
-    font-size: 20px;
-}
-
-.botones h3 {
-    font-size: 20px;
-}
-
-/* ::::::::::::::::::::::::: MODAL :::::::::::::::::::::: */
-a{
-    text-decoration: none;
-    color: inherit;
-}
-
-.close{
+.vestidos-modal-price {
     display: block;
-    position: absolute;
-    top: 40px;
-    right: 100px;
-    background: rgb(255, 0, 76);
+
+    margin-bottom: 24px;
+
+    color:
+        var(--virtuosa-purple-dark);
+
+    font-size: 25px;
+}
+
+
+.vestidos-modal-description {
+    margin: 0;
+
+    color:
+        var(--virtuosa-muted);
+
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   MODAL INFO
+========================================================= */
+
+.vestidos-modal-info {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 12px;
+
+    margin:
+        26px 0;
+}
+
+
+.vestidos-modal-info>div {
+    padding: 15px;
+
+    border-radius: 14px;
+
+    background:
+        var(--virtuosa-purple-light);
+}
+
+
+.vestidos-modal-info span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color:
+        var(--virtuosa-muted);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.vestidos-modal-info strong {
+    color:
+        var(--virtuosa-dark);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   MODAL OPTIONS
+========================================================= */
+
+.vestidos-modal-option {
+    margin-top: 18px;
+}
+
+
+.vestidos-modal-option label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color:
+        var(--virtuosa-dark);
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+.vestidos-modal-option select {
+    width: 100%;
+    height: 46px;
+
+    padding:
+        0 14px;
+
+    border:
+        1px solid var(--virtuosa-border);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: white;
+
+    color:
+        var(--virtuosa-text);
+}
+
+
+/* =========================================================
+   MODAL CTA
+========================================================= */
+
+.vestidos-add-button {
+    width: 100%;
+    min-height: 50px;
+
+    margin-top: 25px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background:
+        var(--virtuosa-dark);
+
     color: white;
-    text-decoration: none;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.vestidos-add-button:hover:not( :disabled) {
+    background:
+        var(--virtuosa-purple-dark);
+
+    transform:
+        translateY(-2px);
+}
+
+
+.vestidos-add-button:disabled {
+    opacity: 0.45;
+
+    cursor:
+        not-allowed;
+}
+
+
+.vestidos-modal-note {
+    margin:
+        13px 0 0;
+
+    color: #aaa2ae;
+
+    text-align: center;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   MODAL CLOSE
+========================================================= */
+
+.vestidos-modal-close {
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    z-index: 4;
+
     width: 40px;
     height: 40px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: center;
-    line-height: 40px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: none;
+
     border-radius: 50%;
-}
 
-.modal{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #cfb9fa8f;
-    display: flex;
-    --opacity: 0;
-    --pointer: none;
+    background:
+        rgba(255,
+            255,
+            255,
+            0.94);
 
-    opacity: var(--opacity);
-    pointer-events: var(--pointer);
-    transition: opacity 0.5s;
-}
+    color:
+        var(--virtuosa-dark);
 
-.modal:target{
-    --opacity: var(--opacity);
-    --pointer: unset;
-}
+    box-shadow:
+        0 5px 18px rgba(0,
+            0,
+            0,
+            0.12);
 
-.modalContainer{
-    display: flex;
-    margin: auto;
-    background-color: white;
-    width: 1080px;
-    height: 605px;
-    overflow: hidden;
-    text-align: center;
-    padding: 3rem 2rem;
-    border-radius: 1em;
-}
+    font-size: 25px;
+    line-height: 1;
 
-.modal:target .modalContainer{
-    animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
+    cursor: pointer;
 
-@keyframes scale-in-center {
-    0% {
-      transform: scale(0);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-}
-
-.modal:target .modalPicture{
-    animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    transition:
+        transform 0.2s ease;
 }
 
 
-
-.modalPicture img{
-    width: 100%;
-    height: 580px;
-    border-radius: 30px;
-    object-fit: fill;
-}
-
-.video {
-    width: 100%;
-    height: 78vh;
-    
-}
-
-.modalPicture{
-    border-radius: 30px;
-    box-shadow: 1px 3px 9px 9px rgb(170, 170, 170);
-    width:100%;
-    max-width: 25vw;
-    height: 75vh;
-    margin: 0 2rem;
+.vestidos-modal-close:hover {
+    transform:
+        rotate(90deg);
 }
 
 
-.modalTitle{
-    background-color: #8765be;
-    border-top-left-radius: 28.5px;
-    border-top-right-radius: 28.5px;
-    padding: 1.5rem 0;
-    font-size: 2.5rem;
-    font-weight: 500;
-}
+/* =========================================================
+   TABLET
+========================================================= */
 
-.modal:target .modalTitle{
-    animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
+@media (max-width: 1000px) {
 
-.modalTEXT{
-    display: flex;
-    flex-direction: column;
-    width: 50vw;
-    justify-content: center;
-}
-
-.modalTEXT p{
-    background-color: #b8a5d5;
-    padding: 2rem 3rem;
-}
-  
-
-.modalTitle--bold{
-    font-weight: 800;
-}
-
-.modalP{
-    line-height: 1.5;
-    text-align: justify;
-}
-
-.charact{
-    padding-top: 30px;
-    padding-bottom: 30px;
-    background-color: #cfb9fa;
-    text-align: left;
-    display: flex;
-    justify-content: center;
-}
-
-
-.charact li{
-    list-style: disc;
-}
-
-/* ::::::::::::: MEDIA QUERY: celular ::::::::::::: */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    .container {
-        height: 150px;
-        display: grid;
-        grid-template-columns: 150px 50px;
-        grid-template-rows: 1fr 1fr 1fr;
-        gap: 0px 10px;
-        grid-auto-flow: row;
-        grid-template-areas:
-            "boton1"
-            "boton1"
-            "boton2";
-    }
-    .container {
-        display: grid;
-        grid-template-columns: 150px 50px;
-        grid-template-rows: 1fr 1fr;
-        gap: 0px 10px;
-        grid-auto-flow: row;
-        grid-template-areas:
-            "boton1 boton2"
-            "boton1";
-    }
-
-    .boton1 select{ width:500px; margin-left: 1rem;}
-    .modalPicture{max-width: 60vw;}
-    .video{
-        background-color: #A695C2;
-        border-radius: 30px;
-        width: 100vw;height: auto;
-    }
-
-    .boton2 select{margin-top: 5rem; margin-left: 3rem; margin-bottom: 3rem;}
-
-    body{overflow-x: hidden;}
-    header{overflow: hidden;}
-    body{overflow-x: hidden; width: 100vw;}
-    section{
-        overflow: hidden;
-    }
-    main{
-        overflow: hidden;
-    }
-    
-    .viste-a-la-moda {
-        height: 200px;
-        width: 100%;
-    }
-
-    .viste-a-la-moda h1 {
-        width: 200px;
-        font-size: 45px;
-    }
-
-    .contenedor h1 {
-        font-size: 50px;
+    .vestidos-grid {
+        grid-template-columns:
+            repeat(2,
+                minmax(0, 1fr));
     }
 
 
-    
-    
-    select {
-        border: 3px solid #A695C2;
-        font-family: Montserrat;
-        border-radius: 50px;
-        padding: 0 1rem;
-        width: 100%;
-        max-width: 160px;
-    }
+    .vestidos-toolbar {
+        align-items: stretch;
 
-    .boton1 {
         flex-direction: column;
-        grid-area: boton1;
-        margin-right: 0rem;
-        margin-left: 3rem;
-        margin-bottom: -2rem;
     }
 
-    .popularidad {
-        max-width: 153px;
-    }
 
-    .container2 {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        gap: 30px 12px;
-        grid-auto-flow: row;
-        grid-template-areas:
-            "venta1"
-            "venta2"
-            "venta3"
-            "venta4"
-            "venta5"
-            "venta6"
-            "venta7"
-            "venta8"
-            "venta9";
-    }
-
-    .card {
-        background-color: #A695C2;
-        border: #A695C2;
-        border-style: solid;
-        max-width: 63vw;
+    .vestidos-search {
         width: 100%;
-        border-radius: 32px;
     }
-    .modalContainer{
-        justify-content: space-between;
-        flex-direction: column; 
-        overflow-y: scroll; 
-        padding-top: 0rem;
-        margin-left: 2rem;}
 
-    .modalPicture{width: 300px;}
-    
+
+    .vestidos-filters {
+        width: 100%;
+    }
+
+
+    .vestidos-filters select {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+    .vestidos-modal {
+        width: min(820px,
+                100%);
+
+        grid-template-columns:
+            0.9fr 1.1fr;
+    }
+
+
+    .vestidos-modal-content {
+        padding:
+            55px 30px 35px;
+    }
 
 }
 
 
-/* :::::::::::::: MEDIA QUERY : media de celular a tablet ::::::::::::::::: */
-@media (min-width: 481px) and (max-width: 767px) {
-    .boton1 select{width: 110px;}
-    .boton1 {display: flex;
-        grid-area: boton1;
-        margin-right: 1rem;
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 720px) {
+
+    .vestidos-hero {
+        min-height: 430px;
+
+        background-position:
+            65% center;
     }
 
-    .modalTEXT{width: 10px; height: 50vw;}
-    .modalTitle{font-size: 3vw;}
-    .modalP{font-size: 1.5vw;}
-    .modalTEXT p{padding: 1rem;}
-    .charact li{font-size: 1.5vw;}
-    .modalContainer{padding:3rem 0 ;width: 85vmin; height: 755px;}
-    .close{right: 40px;}
-    .modalPicture img{object-fit: cover;}
-    .modalPicture{margin-top: 3rem; height: 35vh;}
-    
-    body{overflow-x: hidden;}
-    .viste-a-la-moda{width: 100%; overflow-x: hidden;}
-    .card{max-height: 100%;}
-    .card img{max-height: 300px; height: 100%;}
-    .text-card h4{font-size: 16px;}
-    .video{
-        height: 35vh;
+
+    .vestidos-hero-overlay {
+        min-height: 430px;
+
+        align-items: flex-end;
+
+        padding:
+            45px 24px;
+
+        background:
+            linear-gradient(0deg,
+                rgba(255,
+                    255,
+                    255,
+                    0.97) 0%,
+                rgba(255,
+                    255,
+                    255,
+                    0.86) 52%,
+                rgba(255,
+                    255,
+                    255,
+                    0.20) 100%);
     }
 
+
+    .vestidos-hero h1 {
+        font-size: 48px;
+    }
+
+
+    .vestidos-hero p {
+        margin:
+            18px 0 24px;
+
+        font-size: 14px;
+    }
+
+
+    .vestidos-main {
+        width:
+            min(100% - 28px,
+                1280px);
+
+        padding:
+            58px 0 70px;
+    }
+
+
+    .vestidos-heading {
+        margin-bottom:
+            30px;
+    }
+
+
+    .vestidos-heading h2 {
+        font-size: 39px;
+    }
+
+
+    .vestidos-heading p {
+        font-size: 14px;
+    }
+
+
+    .vestidos-filters {
+        display: grid;
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .vestidos-grid {
+        grid-template-columns:
+            1fr;
+
+        gap: 24px;
+    }
+
+
+    .vestidos-card {
+        max-width: 520px;
+
+        margin: 0 auto;
+
+        width: 100%;
+    }
+
+
+    .vestidos-card-image {
+        height: min(125vw,
+                510px);
+    }
+
+
+    .vestidos-card-description {
+        min-height: 0;
+    }
+
+
+    .vestidos-modal-overlay {
+        align-items: flex-end;
+
+        padding: 0;
+    }
+
+
+    .vestidos-modal {
+        width: 100%;
+
+        max-height: 94vh;
+
+        grid-template-columns:
+            1fr;
+
+        overflow-y: auto;
+
+        border-radius:
+            24px 24px 0 0;
+    }
+
+
+    .vestidos-modal-image {
+        min-height: 0;
+        height: 390px;
+    }
+
+
+    .vestidos-modal-content {
+        overflow: visible;
+
+        padding:
+            34px 22px 35px;
+    }
+
+
+    .vestidos-modal-info {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .vestidos-modal-close {
+        top: 14px;
+        right: 14px;
+    }
 
 }
 
 
+/* =========================================================
+   MOBILE SMALL
+========================================================= */
 
+@media (max-width: 430px) {
 
-/* :::::::::::::: MEDIA QUERY : Tablet ::::::::::::::::: */
-
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-    .boton1 select{width: 110px;}
-    .boton1 {display: flex;
-        grid-area: boton1;
-        margin-right: 1rem;
+    .vestidos-hero h1 {
+        font-size: 42px;
     }
 
-    .modalTEXT{width: 10px; height: 50vw;}
-    .modalTitle{font-size: 3vw;}
-    .modalP{font-size: 1.5vw;}
-    .modalTEXT p{padding: 1rem;}
-    .charact li{font-size: 1.5vw;}
-    .modalContainer{padding:3rem 0 ;width: 85vmin; height: 755px;}
-    .close{right: 40px;}
-    .modalPicture img{object-fit: cover;}
-    .modalPicture{margin-top: 3rem; height: 38vh;}
-    
-    body{overflow-x: hidden;}
-    .viste-a-la-moda{width: 100%; overflow-x: hidden;}
-    .card{max-height: 100%;}
-    .card img{max-height: 300px; height: 100%;}
-    .text-card h4{font-size: 16px;}
-    .video{
-        height: 38vh;
+
+    .vestidos-card-body {
+        padding: 18px;
+    }
+
+
+    .vestidos-card-footer {
+        align-items:
+            stretch;
+
+        flex-direction:
+            column;
+    }
+
+
+    .vestidos-details-button {
+        width: 100%;
+    }
+
+
+    .vestidos-modal-image {
+        height: 340px;
+    }
+
+
+    .vestidos-modal-info {
+        grid-template-columns:
+            1fr;
     }
 
 }

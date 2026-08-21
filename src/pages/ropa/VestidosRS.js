@@ -1,5 +1,6 @@
 import React, {
     useEffect,
+    useMemo,
     useState,
 } from "react";
 
@@ -9,11 +10,19 @@ import Footer from "../../components/footer/footer";
 import Home from "../../components/home/home";
 import Header from "../../components/header/header";
 
-import "../../../src/components/assets/css/Vestidos.css";
+import "../../components/assets/css/Vestidos.css";
 
 import { api } from "../../utils/peticiones";
 
+/* =========================================================
+   VESTIDOS
+========================================================= */
+
 function Vestidos() {
+    /* =======================================================
+       STATES
+    ======================================================= */
+
     const [vestidos, setVestidos] =
         useState([]);
 
@@ -28,44 +37,112 @@ function Vestidos() {
         setProductoSeleccionado,
     ] = useState(null);
 
-    /* =========================================================
-       CARGAR PRODUCTOS DESDE POSTGRESQL
-    ========================================================= */
+    const [busqueda, setBusqueda] =
+        useState("");
+
+    const [orden, setOrden] =
+        useState("featured");
+
+    const [
+        disponibilidad,
+        setDisponibilidad,
+    ] = useState("todos");
+
+    /* =======================================================
+       CARGAR PRODUCTOS
+    ======================================================= */
+
+    const cargarVestidos =
+        async () => {
+            try {
+                setLoading(true);
+                setError("");
+
+                const response =
+                    await axios.get(api);
+
+                const productos =
+                    response?.data?.data;
+
+                if (
+                    !Array.isArray(productos)
+                ) {
+                    throw new Error(
+                        "La API no devolvió una lista válida de productos."
+                    );
+                }
+
+                setVestidos(productos);
+            } catch (err) {
+                console.error(
+                    "Error al cargar vestidos:",
+                    err
+                );
+
+                setError(
+                    "No pudimos cargar los vestidos. Verifica que el servidor de Virtuosa esté ejecutándose."
+                );
+            } finally {
+                setLoading(false);
+            }
+        };
 
     useEffect(() => {
-        const cargarVestidos =
-            async () => {
-                try {
-                    setLoading(true);
-                    setError("");
-
-                    const response =
-                        await axios.get(api);
-
-                    setVestidos(
-                        response.data.data ||
-                        []
-                    );
-                } catch (error) {
-                    console.error(
-                        "Error cargando vestidos:",
-                        error
-                    );
-
-                    setError(
-                        "No fue posible cargar los productos."
-                    );
-                } finally {
-                    setLoading(false);
-                }
-            };
-
         cargarVestidos();
     }, []);
 
-    /* =========================================================
-       PRECIO
-    ========================================================= */
+    /* =======================================================
+       BLOQUEAR SCROLL CON MODAL
+    ======================================================= */
+
+    useEffect(() => {
+        if (productoSeleccionado) {
+            document.body.style.overflow =
+                "hidden";
+        } else {
+            document.body.style.overflow =
+                "";
+        }
+
+        return () => {
+            document.body.style.overflow =
+                "";
+        };
+    }, [productoSeleccionado]);
+
+    /* =======================================================
+       CERRAR MODAL CON ESC
+    ======================================================= */
+
+    useEffect(() => {
+        const handleEscape = (
+            event
+        ) => {
+            if (
+                event.key === "Escape"
+            ) {
+                setProductoSeleccionado(
+                    null
+                );
+            }
+        };
+
+        window.addEventListener(
+            "keydown",
+            handleEscape
+        );
+
+        return () => {
+            window.removeEventListener(
+                "keydown",
+                handleEscape
+            );
+        };
+    }, []);
+
+    /* =======================================================
+       FORMATO PRECIO
+    ======================================================= */
 
     const formatoPrecio = (
         precio
@@ -73,442 +150,579 @@ function Vestidos() {
         const numero =
             Number(precio);
 
+        if (
+            Number.isNaN(numero)
+        ) {
+            return "$ 0";
+        }
+
         return numero.toLocaleString(
             "es-CO",
             {
                 style: "currency",
                 currency: "COP",
                 minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
             }
         );
     };
 
-    /* =========================================================
+    /* =======================================================
+       FILTRAR Y ORDENAR
+    ======================================================= */
+
+    const vestidosFiltrados =
+        useMemo(() => {
+            let resultado = [
+                ...vestidos,
+            ];
+
+            /* Buscador */
+
+            const texto =
+                busqueda
+                    .trim()
+                    .toLowerCase();
+
+            if (texto) {
+                resultado =
+                    resultado.filter(
+                        (producto) => {
+                            const nombre =
+                                producto.name
+                                    ?.toLowerCase() ||
+                                "";
+
+                            const descripcion =
+                                producto.description
+                                    ?.toLowerCase() ||
+                                "";
+
+                            return (
+                                nombre.includes(
+                                    texto
+                                ) ||
+                                descripcion.includes(
+                                    texto
+                                )
+                            );
+                        }
+                    );
+            }
+
+            /* Disponibilidad */
+
+            if (
+                disponibilidad ===
+                "disponibles"
+            ) {
+                resultado =
+                    resultado.filter(
+                        (producto) =>
+                            Number(
+                                producto.stock
+                            ) > 0
+                    );
+            }
+
+            /* Orden */
+
+            switch (orden) {
+                case "price-asc":
+                    resultado.sort(
+                        (a, b) =>
+                            Number(a.price) -
+                            Number(b.price)
+                    );
+                    break;
+
+                case "price-desc":
+                    resultado.sort(
+                        (a, b) =>
+                            Number(b.price) -
+                            Number(a.price)
+                    );
+                    break;
+
+                case "name":
+                    resultado.sort(
+                        (a, b) =>
+                            a.name.localeCompare(
+                                b.name,
+                                "es"
+                            )
+                    );
+                    break;
+
+                case "featured":
+                default:
+                    resultado.sort(
+                        (a, b) =>
+                            Number(
+                                b.featured
+                            ) -
+                            Number(
+                                a.featured
+                            )
+                    );
+                    break;
+            }
+
+            return resultado;
+        }, [
+            vestidos,
+            busqueda,
+            disponibilidad,
+            orden,
+        ]);
+
+    /* =======================================================
        RENDER
-    ========================================================= */
+    ======================================================= */
 
     return (
-        <div>
+        <div className="vestidos-page">
             <Header />
 
             <Home />
 
-            {/* =====================================================
+            {/* ===================================================
           HERO
-      ===================================================== */}
+      =================================================== */}
 
-            <section className="viste-a-la-moda">
-                <h1>
-                    VISTE A LA MODA
-                </h1>
+            <section className="vestidos-hero">
+                <div className="vestidos-hero-overlay">
+                    <div className="vestidos-hero-content">
+                        <span className="vestidos-eyebrow">
+                            VIRTUOSA
+                        </span>
+
+                        <h1>
+                            Viste a la moda
+                        </h1>
+
+                        <p>
+                            Descubre piezas
+                            seleccionadas para
+                            expresar tu estilo.
+                        </p>
+
+                        <a
+                            href="#catalogo-vestidos"
+                            className="vestidos-hero-button"
+                        >
+                            Explorar colección
+                        </a>
+                    </div>
+                </div>
             </section>
 
-            {/* =====================================================
-          PRODUCTOS
-      ===================================================== */}
+            {/* ===================================================
+          CATÁLOGO
+      =================================================== */}
 
-            <main className="contenedor">
-                <h1>Vestidos</h1>
+            <main
+                className="vestidos-main"
+                id="catalogo-vestidos"
+            >
+                {/* Header catálogo */}
 
-                <p
-                    style={{
-                        marginBottom:
-                            "2rem",
-                        color: "#666",
-                    }}
-                >
-                    Descubre nuestra
-                    selección de vestidos
-                    Virtuosa.
-                </p>
+                <div className="vestidos-heading">
+                    <span>
+                        Colección
+                    </span>
 
-                {/* ===================================================
-            FILTROS VISUALES
-        =================================================== */}
+                    <h2>
+                        Vestidos
+                    </h2>
 
-                <div className="container">
-                    <div className="boton1">
-                        <select
-                            name="corte"
-                            defaultValue="0"
+                    <p>
+                        Una selección de
+                        prendas femeninas
+                        disponibles directamente
+                        desde el catálogo de
+                        Virtuosa.
+                    </p>
+                </div>
+
+                {/* =================================================
+            TOOLBAR
+        ================================================= */}
+
+                <section className="vestidos-toolbar">
+                    {/* Buscador */}
+
+                    <div className="vestidos-search">
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            aria-hidden="true"
                         >
-                            <option value="0">
-                                Corte
-                            </option>
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="1.8"
+                                d="m21 21-4.35-4.35m2.1-5.4a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"
+                            />
+                        </svg>
 
-                            <option value="1">
-                                Corto
-                            </option>
-
-                            <option value="2">
-                                Semicorto
-                            </option>
-
-                            <option value="3">
-                                Largo
-                            </option>
-                        </select>
-
-                        <select
-                            name="talla"
-                            defaultValue="0"
-                        >
-                            <option value="0">
-                                Talla
-                            </option>
-
-                            <option value="1">
-                                XXS
-                            </option>
-
-                            <option value="2">
-                                XS
-                            </option>
-
-                            <option value="3">
-                                S
-                            </option>
-
-                            <option value="4">
-                                M
-                            </option>
-
-                            <option value="5">
-                                L
-                            </option>
-
-                            <option value="6">
-                                XL
-                            </option>
-
-                            <option value="7">
-                                XXL
-                            </option>
-                        </select>
-
-                        <select
-                            name="ocasion"
-                            defaultValue="0"
-                        >
-                            <option value="0">
-                                Ocasión
-                            </option>
-
-                            <option value="1">
-                                Casual
-                            </option>
-
-                            <option value="2">
-                                Noche
-                            </option>
-
-                            <option value="3">
-                                Gala
-                            </option>
-
-                            <option value="4">
-                                Work
-                            </option>
-                        </select>
-
-                        <select
-                            name="color"
-                            defaultValue="0"
-                        >
-                            <option value="0">
-                                Color
-                            </option>
-
-                            <option value="1">
-                                Rojo
-                            </option>
-
-                            <option value="2">
-                                Blanco
-                            </option>
-
-                            <option value="3">
-                                Negro
-                            </option>
-
-                            <option value="4">
-                                Morado
-                            </option>
-
-                            <option value="5">
-                                Lila
-                            </option>
-                        </select>
+                        <input
+                            type="search"
+                            placeholder="Buscar vestido..."
+                            value={busqueda}
+                            onChange={(event) =>
+                                setBusqueda(
+                                    event.target
+                                        .value
+                                )
+                            }
+                        />
                     </div>
 
-                    <div className="boton2">
+                    {/* Filtros */}
+
+                    <div className="vestidos-filters">
                         <select
-                            name="popularidad"
-                            className="popularidad"
-                            defaultValue="0"
+                            value={
+                                disponibilidad
+                            }
+                            onChange={(event) =>
+                                setDisponibilidad(
+                                    event.target
+                                        .value
+                                )
+                            }
                         >
-                            <option value="0">
-                                Ordenar por
+                            <option value="todos">
+                                Todos
                             </option>
 
-                            <option value="1">
-                                Popularidad
+                            <option value="disponibles">
+                                Con stock
+                            </option>
+                        </select>
+
+                        <select
+                            value={orden}
+                            onChange={(event) =>
+                                setOrden(
+                                    event.target
+                                        .value
+                                )
+                            }
+                        >
+                            <option value="featured">
+                                Destacados
                             </option>
 
-                            <option value="2">
+                            <option value="price-asc">
                                 Precio: menor a
                                 mayor
                             </option>
 
-                            <option value="3">
+                            <option value="price-desc">
                                 Precio: mayor a
                                 menor
                             </option>
 
-                            <option value="4">
-                                Novedades
+                            <option value="name">
+                                Nombre A-Z
                             </option>
                         </select>
                     </div>
-                </div>
+                </section>
 
-                {/* ===================================================
-            LOADING
-        =================================================== */}
-
-                {loading && (
-                    <div
-                        style={{
-                            padding: "4rem",
-                            textAlign:
-                                "center",
-                        }}
-                    >
-                        <h2>
-                            Cargando productos...
-                        </h2>
-                    </div>
-                )}
-
-                {/* ===================================================
-            ERROR
-        =================================================== */}
+                {/* Contador */}
 
                 {!loading &&
-                    error && (
-                        <div
-                            style={{
-                                padding: "3rem",
-                                textAlign:
-                                    "center",
-                                color:
-                                    "#9c2b48",
-                            }}
-                        >
-                            <h2>
-                                {error}
-                            </h2>
-
+                    !error && (
+                        <div className="vestidos-results-info">
                             <p>
-                                Verifica que la API
-                                esté ejecutándose en
-                                el puerto 4000.
+                                {vestidosFiltrados.length}{" "}
+                                {vestidosFiltrados.length ===
+                                    1
+                                    ? "producto"
+                                    : "productos"}
                             </p>
                         </div>
                     )}
 
-                {/* ===================================================
-            SIN PRODUCTOS
-        =================================================== */}
+                {/* =================================================
+            LOADING
+        ================================================= */}
+
+                {loading && (
+                    <section className="vestidos-status">
+                        <div className="vestidos-loader" />
+
+                        <h3>
+                            Cargando colección
+                        </h3>
+
+                        <p>
+                            Estamos obteniendo los
+                            productos desde
+                            Virtuosa.
+                        </p>
+                    </section>
+                )}
+
+                {/* =================================================
+            ERROR
+        ================================================= */}
 
                 {!loading &&
-                    !error &&
-                    vestidos.length ===
-                    0 && (
-                        <div
-                            style={{
-                                padding: "4rem",
-                                textAlign:
-                                    "center",
-                            }}
-                        >
-                            <h2>
-                                No hay vestidos
-                                disponibles.
-                            </h2>
-                        </div>
+                    error && (
+                        <section className="vestidos-status vestidos-error">
+                            <div className="vestidos-status-icon">
+                                !
+                            </div>
+
+                            <h3>
+                                No pudimos cargar
+                                los productos
+                            </h3>
+
+                            <p>{error}</p>
+
+                            <button
+                                type="button"
+                                onClick={
+                                    cargarVestidos
+                                }
+                            >
+                                Intentar nuevamente
+                            </button>
+                        </section>
                     )}
 
-                {/* ===================================================
-            GRID
-        =================================================== */}
+                {/* =================================================
+            SIN RESULTADOS
+        ================================================= */}
 
                 {!loading &&
                     !error &&
-                    vestidos.length >
+                    vestidosFiltrados.length ===
                     0 && (
-                        <div className="container2">
-                            {vestidos.map(
+                        <section className="vestidos-status">
+                            <div className="vestidos-status-icon">
+                                ♡
+                            </div>
+
+                            <h3>
+                                No encontramos
+                                productos
+                            </h3>
+
+                            <p>
+                                Prueba con otro
+                                término de búsqueda
+                                o cambia los filtros.
+                            </p>
+
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setBusqueda("");
+                                    setDisponibilidad(
+                                        "todos"
+                                    );
+                                    setOrden(
+                                        "featured"
+                                    );
+                                }}
+                            >
+                                Limpiar filtros
+                            </button>
+                        </section>
+                    )}
+
+                {/* =================================================
+            PRODUCT GRID
+        ================================================= */}
+
+                {!loading &&
+                    !error &&
+                    vestidosFiltrados.length >
+                    0 && (
+                        <section className="vestidos-grid">
+                            {vestidosFiltrados.map(
                                 (
                                     vestido
-                                ) => (
-                                    <article
-                                        className="card"
-                                        key={
-                                            vestido.id
-                                        }
-                                    >
-                                        {/* Imagen */}
+                                ) => {
+                                    const stock =
+                                        Number(
+                                            vestido.stock
+                                        );
 
-                                        <div className="venta1">
-                                            <button
-                                                type="button"
-                                                onClick={() =>
-                                                    setProductoSeleccionado(
-                                                        vestido
-                                                    )
-                                                }
-                                                style={{
-                                                    border:
-                                                        "none",
-                                                    padding: 0,
-                                                    background:
-                                                        "transparent",
-                                                    width:
-                                                        "100%",
-                                                    cursor:
-                                                        "pointer",
-                                                }}
-                                            >
-                                                <img
-                                                    src={
-                                                        vestido.image_url
+                                    const agotado =
+                                        stock <= 0;
+
+                                    return (
+                                        <article
+                                            className="vestidos-card"
+                                            key={
+                                                vestido.id
+                                            }
+                                        >
+                                            {/* Imagen */}
+
+                                            <div className="vestidos-card-image">
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        setProductoSeleccionado(
+                                                            vestido
+                                                        )
                                                     }
-                                                    alt={
-                                                        vestido.name
-                                                    }
-                                                />
-                                            </button>
-                                        </div>
+                                                    aria-label={`Ver ${vestido.name}`}
+                                                >
+                                                    <img
+                                                        src={
+                                                            vestido.image_url
+                                                        }
+                                                        alt={
+                                                            vestido.name
+                                                        }
+                                                        loading="lazy"
+                                                        onError={(
+                                                            event
+                                                        ) => {
+                                                            event.currentTarget.src =
+                                                                "https://placehold.co/800x1000/f1e8f6/70567c?text=Virtuosa";
+                                                        }}
+                                                    />
+                                                </button>
 
-                                        {/* Información */}
-
-                                        <div className="text-card">
-                                            <button
-                                                type="button"
-                                                onClick={() =>
-                                                    setProductoSeleccionado(
-                                                        vestido
-                                                    )
-                                                }
-                                                style={{
-                                                    border:
-                                                        "none",
-                                                    background:
-                                                        "transparent",
-                                                    width:
-                                                        "100%",
-                                                    cursor:
-                                                        "pointer",
-                                                }}
-                                            >
-                                                <h4>
-                                                    {
-                                                        vestido.name
-                                                    }
-                                                </h4>
-                                            </button>
-
-                                            <p>
-                                                {formatoPrecio(
-                                                    vestido.price
+                                                {vestido.featured && (
+                                                    <span className="vestidos-badge vestidos-badge-featured">
+                                                        Destacado
+                                                    </span>
                                                 )}
-                                            </p>
 
-                                            <div className="select-icon">
-                                                <select
-                                                    name={`cantidad-${vestido.id}`}
-                                                    defaultValue="1"
-                                                >
-                                                    <option value="1">
-                                                        1
-                                                    </option>
-
-                                                    <option value="2">
-                                                        2
-                                                    </option>
-
-                                                    <option value="3">
-                                                        3
-                                                    </option>
-
-                                                    <option value="4">
-                                                        4
-                                                    </option>
-
-                                                    <option value="5">
-                                                        5
-                                                    </option>
-                                                </select>
-
-                                                <span
-                                                    style={{
-                                                        marginLeft:
-                                                            "1rem",
-                                                    }}
-                                                >
-                                                    Stock:{" "}
-                                                    {
-                                                        vestido.stock
-                                                    }
-                                                </span>
+                                                {agotado && (
+                                                    <span className="vestidos-badge vestidos-badge-stock">
+                                                        Agotado
+                                                    </span>
+                                                )}
                                             </div>
-                                        </div>
-                                    </article>
-                                )
+
+                                            {/* Info */}
+
+                                            <div className="vestidos-card-body">
+                                                <div className="vestidos-card-header">
+                                                    <div>
+                                                        <span className="vestidos-card-category">
+                                                            {
+                                                                vestido.subcategory
+                                                            }
+                                                        </span>
+
+                                                        <h3>
+                                                            {
+                                                                vestido.name
+                                                            }
+                                                        </h3>
+                                                    </div>
+
+                                                    <button
+                                                        type="button"
+                                                        className="vestidos-favorite"
+                                                        aria-label="Agregar a favoritos"
+                                                    >
+                                                        ♡
+                                                    </button>
+                                                </div>
+
+                                                <p className="vestidos-card-description">
+                                                    {vestido.description ||
+                                                        "Producto de la colección Virtuosa."}
+                                                </p>
+
+                                                <div className="vestidos-card-footer">
+                                                    <div>
+                                                        <strong>
+                                                            {formatoPrecio(
+                                                                vestido.price
+                                                            )}
+                                                        </strong>
+
+                                                        <span
+                                                            className={
+                                                                agotado
+                                                                    ? "vestidos-stock agotado"
+                                                                    : "vestidos-stock"
+                                                            }
+                                                        >
+                                                            {agotado
+                                                                ? "Sin stock"
+                                                                : `${stock} disponibles`}
+                                                        </span>
+                                                    </div>
+
+                                                    <button
+                                                        type="button"
+                                                        className="vestidos-details-button"
+                                                        onClick={() =>
+                                                            setProductoSeleccionado(
+                                                                vestido
+                                                            )
+                                                        }
+                                                    >
+                                                        Ver producto
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    );
+                                }
                             )}
-                        </div>
+                        </section>
                     )}
             </main>
 
-            {/* =====================================================
-          MODAL
-      ===================================================== */}
+            {/* ===================================================
+          MODAL PRODUCTO
+      =================================================== */}
 
             {productoSeleccionado && (
                 <div
-                    className="modal"
-                    style={{
-                        opacity: 1,
-                        pointerEvents:
-                            "auto",
-                        zIndex: 1000,
-                    }}
+                    className="vestidos-modal-overlay"
                     onClick={() =>
                         setProductoSeleccionado(
                             null
                         )
                     }
+                    role="presentation"
                 >
-                    <button
-                        type="button"
-                        className="close"
-                        onClick={() =>
-                            setProductoSeleccionado(
-                                null
-                            )
-                        }
-                    >
-                        X
-                    </button>
-
-                    <div
-                        className="modalContainer"
+                    <article
+                        className="vestidos-modal"
                         onClick={(event) =>
                             event.stopPropagation()
                         }
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="producto-modal-title"
                     >
-                        <figure className="modalPicture">
+                        {/* Cerrar */}
+
+                        <button
+                            type="button"
+                            className="vestidos-modal-close"
+                            onClick={() =>
+                                setProductoSeleccionado(
+                                    null
+                                )
+                            }
+                            aria-label="Cerrar producto"
+                        >
+                            ×
+                        </button>
+
+                        {/* Imagen */}
+
+                        <div className="vestidos-modal-image">
                             <img
                                 src={
                                     productoSeleccionado.image_url
@@ -516,50 +730,82 @@ function Vestidos() {
                                 alt={
                                     productoSeleccionado.name
                                 }
+                                onError={(
+                                    event
+                                ) => {
+                                    event.currentTarget.src =
+                                        "https://placehold.co/800x1000/f1e8f6/70567c?text=Virtuosa";
+                                }}
                             />
-                        </figure>
+                        </div>
 
-                        <section className="modalTEXT">
-                            <h2 className="modalTitle">
+                        {/* Información */}
+
+                        <div className="vestidos-modal-content">
+                            <span className="vestidos-modal-category">
+                                {
+                                    productoSeleccionado.category_name
+                                }{" "}
+                                ·{" "}
+                                {
+                                    productoSeleccionado.subcategory
+                                }
+                            </span>
+
+                            <h2 id="producto-modal-title">
                                 {
                                     productoSeleccionado.name
                                 }
                             </h2>
 
-                            <p className="modalP">
-                                {
-                                    productoSeleccionado.description
-                                }
+                            <strong className="vestidos-modal-price">
+                                {formatoPrecio(
+                                    productoSeleccionado.price
+                                )}
+                            </strong>
+
+                            <p className="vestidos-modal-description">
+                                {productoSeleccionado.description ||
+                                    "Producto de la colección Virtuosa."}
                             </p>
 
-                            <div className="charact">
-                                <ul>
-                                    <li>
-                                        Stock disponible:{" "}
-                                        {
-                                            productoSeleccionado.stock
-                                        }
-                                    </li>
+                            <div className="vestidos-modal-info">
+                                <div>
+                                    <span>
+                                        Disponibilidad
+                                    </span>
 
-                                    <li>
-                                        Categoría:{" "}
+                                    <strong>
+                                        {Number(
+                                            productoSeleccionado.stock
+                                        ) > 0
+                                            ? `${productoSeleccionado.stock} unidades`
+                                            : "Agotado"}
+                                    </strong>
+                                </div>
+
+                                <div>
+                                    <span>
+                                        Categoría
+                                    </span>
+
+                                    <strong>
                                         {
                                             productoSeleccionado.category_name
                                         }
-                                    </li>
-
-                                    <li>
-                                        Precio:{" "}
-                                        {formatoPrecio(
-                                            productoSeleccionado.price
-                                        )}
-                                    </li>
-                                </ul>
+                                    </strong>
+                                </div>
                             </div>
 
-                            <div className="select-icon">
+                            {/* Talla */}
+
+                            <div className="vestidos-modal-option">
+                                <label htmlFor="modal-talla">
+                                    Talla
+                                </label>
+
                                 <select
-                                    name="talla"
+                                    id="modal-talla"
                                     defaultValue="M"
                                 >
                                     <option value="XS">
@@ -582,34 +828,79 @@ function Vestidos() {
                                         XL
                                     </option>
                                 </select>
+                            </div>
+
+                            {/* Cantidad */}
+
+                            <div className="vestidos-modal-option">
+                                <label htmlFor="modal-cantidad">
+                                    Cantidad
+                                </label>
 
                                 <select
-                                    name="cantidad"
+                                    id="modal-cantidad"
                                     defaultValue="1"
                                 >
-                                    <option value="1">
-                                        1
-                                    </option>
-
-                                    <option value="2">
-                                        2
-                                    </option>
-
-                                    <option value="3">
-                                        3
-                                    </option>
-
-                                    <option value="4">
-                                        4
-                                    </option>
-
-                                    <option value="5">
-                                        5
-                                    </option>
+                                    {Array.from(
+                                        {
+                                            length:
+                                                Math.min(
+                                                    Math.max(
+                                                        Number(
+                                                            productoSeleccionado.stock
+                                                        ),
+                                                        1
+                                                    ),
+                                                    5
+                                                ),
+                                        },
+                                        (_, index) =>
+                                            index + 1
+                                    ).map(
+                                        (
+                                            cantidad
+                                        ) => (
+                                            <option
+                                                key={
+                                                    cantidad
+                                                }
+                                                value={
+                                                    cantidad
+                                                }
+                                            >
+                                                {
+                                                    cantidad
+                                                }
+                                            </option>
+                                        )
+                                    )}
                                 </select>
                             </div>
-                        </section>
-                    </div>
+
+                            {/* CTA */}
+
+                            <button
+                                type="button"
+                                className="vestidos-add-button"
+                                disabled={
+                                    Number(
+                                        productoSeleccionado.stock
+                                    ) <= 0
+                                }
+                                onClick={() => {
+                                    alert(
+                                        "El carrito se implementará en la siguiente fase de Virtuosa."
+                                    );
+                                }}
+                            >
+                                {Number(
+                                    productoSeleccionado.stock
+                                ) > 0
+                                    ? "Agregar al carrito"
+                                    : "Producto agotado"}
+                            </button>
+                        </div>
+                    </article>
                 </div>
             )}
 

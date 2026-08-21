@@ -1,45 +1,1706 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-*{
-    padding: 0;
+/* =========================================================
+   VIRTUOSA SKIN - CUIDADO DE LA PIEL
+========================================================= */
+
+.piel-page {
+    --piel-dark: #1d2520;
+    --piel-text: #39433c;
+    --piel-muted: #747e76;
+
+    --piel-main: #78927f;
+    --piel-main-dark: #536b59;
+
+    --piel-soft: #e8f0ea;
+    --piel-light: #f5f8f6;
+
+    --piel-border: #dce7df;
+
+    min-height: 100vh;
+
+    background: #ffffff;
+
+    color:
+        var(--piel-text);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.piel-hero {
+    width: 100%;
+
+    min-height: 520px;
+
+    background-image:
+        url("../../../components/assets/img/maquillaje/banner/piel.png"
+        );
+
+    background-position:
+        center;
+
+    background-repeat:
+        no-repeat;
+
+    background-size:
+        cover;
+}
+
+
+.piel-hero-overlay {
+    min-height: 520px;
+
+    display: flex;
+
+    align-items:
+        center;
+
+    padding:
+        60px 7%;
+
+    background:
+        linear-gradient(90deg,
+            rgba(248,
+                252,
+                249,
+                0.97) 0%,
+            rgba(248,
+                252,
+                249,
+                0.84) 43%,
+            rgba(248,
+                252,
+                249,
+                0.08) 80%);
+}
+
+
+.piel-hero-content {
+    width:
+        min(580px,
+            100%);
+}
+
+
+.piel-eyebrow {
+    display:
+        inline-block;
+
+    margin-bottom:
+        15px;
+
+    color:
+        var(--piel-main-dark);
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        4px;
+}
+
+
+.piel-hero h1 {
     margin: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
-}
-:root{
-    --c1-color: #d0c6e3;
-    --c2-color: #aa95c7;
-    --c3-color: #621ced;
-    --c4-color: #d6eefd;
-    --c5-color: #19191a;
-    --c6-color: #ef594c;
-    --c7-color: #d6ceff;
-    --c8-color: #f29778;
-    --c9-color: #f5f5f5;
-    --c10-color: #D6CEFF;
-    
-}
 
-body{
-    
-    font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
+    color:
+        var(--piel-dark);
 
+    font-size:
+        clamp(54px,
+            7vw,
+            94px);
+
+    font-weight:
+        300;
+
+    line-height:
+        0.95;
+
+    text-transform:
+        uppercase;
 }
 
-.banner-piel{
-    background: url(../../../components/assets/img/maquillaje/banner/piel.png);
+
+.piel-hero p {
+    max-width:
+        470px;
+
+    margin:
+        25px 0 30px;
+
+    color:
+        #606b63;
+
+    font-size:
+        17px;
+
+    line-height:
+        1.7;
+}
+
+
+.piel-hero-button {
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        49px;
+
+    padding:
+        0 27px;
+
+    border-radius:
+        999px;
+
+    background:
+        var(--piel-dark);
+
+    color: white;
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+
+    text-decoration:
+        none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.piel-hero-button:hover {
+    background:
+        var(--piel-main-dark);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.piel-main {
+    width:
+        min(1280px,
+            calc(100% - 40px));
+
+    margin:
+        0 auto;
+
+    padding:
+        80px 0 100px;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.piel-heading {
+    max-width:
+        680px;
+
+    margin-bottom:
+        42px;
+}
+
+
+.piel-heading>span {
+    color:
+        var(--piel-main-dark);
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        3px;
+
+    text-transform:
+        uppercase;
+}
+
+
+.piel-heading h2 {
+    margin:
+        7px 0 12px;
+
+    color:
+        var(--piel-dark);
+
+    font-size:
+        clamp(38px,
+            5vw,
+            58px);
+
+    font-weight:
+        500;
+}
+
+
+.piel-heading p {
+    margin: 0;
+
+    color:
+        var(--piel-muted);
+
+    font-size:
+        16px;
+
+    line-height:
+        1.7;
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.piel-toolbar {
+    display: flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap: 20px;
+
+    margin-bottom:
+        16px;
+}
+
+
+.piel-search {
+    width:
+        min(420px,
+            100%);
+
+    display: flex;
+
+    align-items:
+        center;
+
+    gap: 12px;
+
+    padding:
+        0 18px;
+
+    border:
+        1px solid var(--piel-border);
+
+    border-radius:
+        999px;
+
+    background:
+        white;
+}
+
+
+.piel-search svg {
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
+
+    color:
+        var(--piel-main-dark);
+}
+
+
+.piel-search input {
     width: 100%;
-    height: 350px;
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 1rem;
+
+    height: 48px;
+
+    border: none;
+
+    outline: none;
+
+    background:
+        transparent;
+
+    color:
+        var(--piel-text);
+
+    font-family:
+        inherit;
+
+    font-size:
+        14px;
 }
-.banner-piel:hover {
+
+
+.piel-search input::placeholder {
+    color:
+        #a5aea7;
+}
+
+
+.piel-filters {
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.piel-filters select {
+    min-width:
+        160px;
+
+    height: 48px;
+
+    padding:
+        0 38px 0 16px;
+
+    border:
+        1px solid var(--piel-border);
+
+    border-radius:
+        999px;
+
+    outline: none;
+
+    background:
+        white;
+
+    color:
+        var(--piel-text);
+
+    font-family:
+        inherit;
+
+    font-size:
+        13px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   RESULTS
+========================================================= */
+
+.piel-results {
+    margin:
+        0 0 26px;
+
+    color:
+        var(--piel-muted);
+
+    font-size:
+        13px;
+}
+
+
+.piel-results p {
+    margin: 0;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.piel-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,
+            minmax(0,
+                1fr));
+
+    gap:
+        32px 24px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.piel-card {
+    min-width: 0;
+
+    overflow: hidden;
+
+    border:
+        1px solid var(--piel-border);
+
+    border-radius:
+        22px;
+
+    background:
+        white;
+
+    box-shadow:
+        0 10px 35px rgba(55,
+            78,
+            61,
+            0.06);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.piel-card:hover {
+    transform:
+        translateY(-6px);
+
+    border-color:
+        #c9d8cd;
+
+    box-shadow:
+        0 20px 50px rgba(55,
+            78,
+            61,
+            0.13);
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.piel-card-image {
+    position:
+        relative;
+
+    height: 390px;
+
+    overflow:
+        hidden;
+
+    background:
+        var(--piel-light);
+}
+
+
+.piel-card-image>button {
+    display: block;
+
     width: 100%;
-    height: 350px;
-    background: url(../../../components/assets/img/maquillaje/banner/cuidadopiel.png);
-    background-position: center;
-    background-size: cover;
+    height: 100%;
+
+    padding: 0;
+
+    border: none;
+
+    background:
+        transparent;
+
+    cursor: pointer;
+}
+
+
+.piel-card-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+
+    transition:
+        transform 0.45s ease;
+}
+
+
+.piel-card:hover .piel-card-image img {
+    transform:
+        scale(1.05);
+}
+
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.piel-featured-badge,
+.piel-out-badge {
+    position:
+        absolute;
+
+    top: 16px;
+
+    z-index: 2;
+
+    padding:
+        7px 12px;
+
+    border-radius:
+        999px;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+}
+
+
+.piel-featured-badge {
+    left: 16px;
+
+    background:
+        rgba(255,
+            255,
+            255,
+            0.94);
+
+    color:
+        var(--piel-main-dark);
+}
+
+
+.piel-out-badge {
+    right: 16px;
+
+    background:
+        rgba(29,
+            37,
+            32,
+            0.88);
+
+    color: white;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.piel-card-body {
+    padding: 22px;
+}
+
+
+.piel-card-category {
+    display: block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--piel-main-dark);
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1.5px;
+
+    text-transform:
+        uppercase;
+}
+
+
+.piel-card-title {
+    display: flex;
+
+    align-items:
+        flex-start;
+
+    justify-content:
+        space-between;
+
+    gap: 14px;
+}
+
+
+.piel-card-title h3 {
+    margin: 0;
+
+    color:
+        var(--piel-dark);
+
+    font-size:
+        20px;
+
+    font-weight:
+        600;
+
+    line-height:
+        1.3;
+}
+
+
+.piel-favorite {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+
+    place-items:
+        center;
+
+    flex-shrink: 0;
+
+    border:
+        1px solid var(--piel-border);
+
+    border-radius:
+        50%;
+
+    background:
+        white;
+
+    color:
+        var(--piel-main-dark);
+
+    font-size:
+        20px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.piel-favorite:hover {
+    background:
+        var(--piel-light);
+
+    transform:
+        scale(1.05);
+}
+
+
+.piel-card-description {
+    min-height:
+        68px;
+
+    margin:
+        16px 0 22px;
+
+    overflow:
+        hidden;
+
+    display:
+        -webkit-box;
+
+    -webkit-line-clamp:
+        3;
+
+    -webkit-box-orient:
+        vertical;
+
+    color:
+        var(--piel-muted);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.7;
+}
+
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.piel-card-footer {
+    display: flex;
+
+    align-items:
+        flex-end;
+
+    justify-content:
+        space-between;
+
+    gap: 16px;
+}
+
+
+.piel-card-price {
+    display: flex;
+
+    flex-direction:
+        column;
+
+    gap: 4px;
+}
+
+
+.piel-card-price strong {
+    color:
+        var(--piel-dark);
+
+    font-size:
+        21px;
+}
+
+
+.piel-card-price span {
+    color:
+        #4d865e;
+
+    font-size:
+        11px;
+
+    font-weight:
+        600;
+}
+
+
+.piel-card-price span.agotado {
+    color:
+        #ae5964;
+}
+
+
+.piel-view-button {
+    min-height:
+        42px;
+
+    padding:
+        0 17px;
+
+    border: none;
+
+    border-radius:
+        999px;
+
+    background:
+        var(--piel-main-dark);
+
+    color: white;
+
+    font-family:
+        inherit;
+
+    font-size:
+        12px;
+
+    font-weight:
+        600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.piel-view-button:hover {
+    background:
+        var(--piel-dark);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   STATES
+========================================================= */
+
+.piel-status {
+    min-height:
+        340px;
+
+    display: flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding: 40px;
+
+    text-align:
+        center;
+}
+
+
+.piel-status h3 {
+    margin:
+        18px 0 8px;
+
+    color:
+        var(--piel-dark);
+
+    font-size:
+        22px;
+}
+
+
+.piel-status p {
+    max-width:
+        500px;
+
+    margin: 0;
+
+    color:
+        var(--piel-muted);
+
+    line-height:
+        1.6;
+}
+
+
+.piel-status button {
+    min-height:
+        44px;
+
+    margin-top:
+        20px;
+
+    padding:
+        0 22px;
+
+    border: none;
+
+    border-radius:
+        999px;
+
+    background:
+        var(--piel-main-dark);
+
+    color: white;
+
+    font-family:
+        inherit;
+
+    cursor: pointer;
+}
+
+
+.piel-status-icon {
+    width: 55px;
+    height: 55px;
+
+    display: grid;
+
+    place-items:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--piel-soft);
+
+    color:
+        var(--piel-main-dark);
+
+    font-size:
+        25px;
+
+    font-weight:
+        700;
+}
+
+
+.piel-loader {
+    width: 42px;
+    height: 42px;
+
+    border:
+        4px solid var(--piel-soft);
+
+    border-top-color:
+        var(--piel-main-dark);
+
+    border-radius:
+        50%;
+
+    animation:
+        pielSpin 0.8s linear infinite;
+}
+
+
+@keyframes pielSpin {
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   MODAL OVERLAY
+========================================================= */
+
+.piel-modal-overlay {
+    position:
+        fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding: 30px;
+
+    background:
+        rgba(22,
+            29,
+            24,
+            0.75);
+
+    backdrop-filter:
+        blur(8px);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.piel-modal {
+    position:
+        relative;
+
+    width:
+        min(940px,
+            100%);
+
+    max-height:
+        90vh;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(280px,
+            0.9fr) minmax(340px,
+            1.1fr);
+
+    overflow: hidden;
+
+    border-radius:
+        24px;
+
+    background:
+        white;
+
+    box-shadow:
+        0 35px 90px rgba(0,
+            0,
+            0,
+            0.30);
+}
+
+
+/* =========================================================
+   MODAL IMAGE
+========================================================= */
+
+.piel-modal-image {
+    position:
+        relative;
+
+    min-height:
+        600px;
+
+    background:
+        var(--piel-light);
+}
+
+
+.piel-modal-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+}
+
+
+.piel-modal-featured {
+    position:
+        absolute;
+
+    top: 22px;
+    left: 22px;
+
+    padding:
+        8px 14px;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(255,
+            255,
+            255,
+            0.94);
+
+    color:
+        var(--piel-main-dark);
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+}
+
+
+/* =========================================================
+   MODAL CONTENT
+========================================================= */
+
+.piel-modal-content {
+    overflow-y:
+        auto;
+
+    padding:
+        58px 48px 42px;
+}
+
+
+.piel-modal-category {
+    color:
+        var(--piel-main-dark);
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        2px;
+
+    text-transform:
+        uppercase;
+}
+
+
+.piel-modal-content h2 {
+    margin:
+        10px 0 12px;
+
+    color:
+        var(--piel-dark);
+
+    font-size:
+        clamp(30px,
+            4vw,
+            42px);
+
+    font-weight:
+        500;
+
+    line-height:
+        1.1;
+}
+
+
+.piel-modal-price {
+    display: block;
+
+    margin-bottom:
+        23px;
+
+    color:
+        var(--piel-main-dark);
+
+    font-size:
+        27px;
+}
+
+
+.piel-modal-description {
+    margin: 0;
+
+    color:
+        var(--piel-muted);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.8;
+}
+
+
+/* =========================================================
+   MODAL INFO
+========================================================= */
+
+.piel-modal-info {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 12px;
+
+    margin:
+        26px 0;
+}
+
+
+.piel-modal-info>div {
+    padding: 15px;
+
+    border-radius:
+        14px;
+
+    background:
+        var(--piel-light);
+}
+
+
+.piel-modal-info span {
+    display: block;
+
+    margin-bottom:
+        4px;
+
+    color:
+        var(--piel-muted);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        1px;
+
+    text-transform:
+        uppercase;
+}
+
+
+.piel-modal-info strong {
+    color:
+        var(--piel-dark);
+
+    font-size:
+        13px;
+}
+
+
+/* =========================================================
+   MODAL FIELD
+========================================================= */
+
+.piel-modal-field {
+    margin-top:
+        18px;
+}
+
+
+.piel-modal-field label {
+    display: block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--piel-dark);
+
+    font-size:
+        12px;
+
+    font-weight:
+        600;
+}
+
+
+.piel-modal-field select {
+    width: 100%;
+
+    height: 46px;
+
+    padding:
+        0 14px;
+
+    border:
+        1px solid var(--piel-border);
+
+    border-radius:
+        10px;
+
+    outline: none;
+
+    background:
+        white;
+
+    color:
+        var(--piel-text);
+
+    font-family:
+        inherit;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.piel-add-button {
+    width: 100%;
+
+    min-height:
+        50px;
+
+    margin-top:
+        25px;
+
+    border: none;
+
+    border-radius:
+        999px;
+
+    background:
+        var(--piel-dark);
+
+    color: white;
+
+    font-family:
+        inherit;
+
+    font-size:
+        14px;
+
+    font-weight:
+        600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.piel-add-button:hover:not( :disabled) {
+    background:
+        var(--piel-main-dark);
+
+    transform:
+        translateY(-2px);
+}
+
+
+.piel-add-button:disabled {
+    opacity: 0.45;
+
+    cursor:
+        not-allowed;
+}
+
+
+.piel-cart-message {
+    margin-top:
+        13px;
+
+    padding:
+        11px 13px;
+
+    border:
+        1px solid #cee2d3;
+
+    border-radius:
+        10px;
+
+    background:
+        #f2f8f3;
+
+    color:
+        #466d50;
+
+    font-size:
+        11px;
+
+    line-height:
+        1.5;
+
+    text-align:
+        center;
+}
+
+
+.piel-modal-note {
+    margin:
+        13px 0 0;
+
+    color:
+        #a2aba4;
+
+    text-align:
+        center;
+
+    font-size:
+        10px;
+}
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+.piel-modal-close {
+    position:
+        absolute;
+
+    top: 18px;
+    right: 18px;
+
+    z-index: 4;
+
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+
+    place-items:
+        center;
+
+    border: none;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255,
+            255,
+            255,
+            0.95);
+
+    color:
+        var(--piel-dark);
+
+    box-shadow:
+        0 5px 18px rgba(0,
+            0,
+            0,
+            0.12);
+
+    font-size:
+        25px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.piel-modal-close:hover {
+    transform:
+        rotate(90deg);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .piel-grid {
+        grid-template-columns:
+            repeat(2,
+                minmax(0,
+                    1fr));
+    }
+
+
+    .piel-toolbar {
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+
+    .piel-search {
+        width: 100%;
+    }
+
+
+    .piel-filters {
+        width: 100%;
+    }
+
+
+    .piel-filters select {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+    .piel-modal-content {
+        padding:
+            55px 30px 35px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 720px) {
+
+    .piel-hero {
+        min-height:
+            430px;
+    }
+
+
+    .piel-hero-overlay {
+        min-height:
+            430px;
+
+        align-items:
+            flex-end;
+
+        padding:
+            45px 24px;
+
+        background:
+            linear-gradient(0deg,
+                rgba(248,
+                    252,
+                    249,
+                    0.98) 0%,
+                rgba(248,
+                    252,
+                    249,
+                    0.90) 58%,
+                rgba(248,
+                    252,
+                    249,
+                    0.10) 100%);
+    }
+
+
+    .piel-hero h1 {
+        font-size:
+            45px;
+    }
+
+
+    .piel-hero p {
+        margin:
+            18px 0 24px;
+
+        font-size:
+            14px;
+    }
+
+
+    .piel-main {
+        width:
+            min(calc(100% - 28px),
+                1280px);
+
+        padding:
+            58px 0 70px;
+    }
+
+
+    .piel-heading {
+        margin-bottom:
+            30px;
+    }
+
+
+    .piel-heading h2 {
+        font-size:
+            39px;
+    }
+
+
+    .piel-heading p {
+        font-size:
+            14px;
+    }
+
+
+    .piel-filters {
+        display: grid;
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .piel-grid {
+        grid-template-columns:
+            1fr;
+
+        gap: 24px;
+    }
+
+
+    .piel-card {
+        width: 100%;
+
+        max-width:
+            520px;
+
+        margin:
+            0 auto;
+    }
+
+
+    .piel-card-image {
+        height:
+            min(110vw,
+                500px);
+    }
+
+
+    .piel-card-description {
+        min-height: 0;
+    }
+
+
+    .piel-modal-overlay {
+        align-items:
+            flex-end;
+
+        padding: 0;
+    }
+
+
+    .piel-modal {
+        width: 100%;
+
+        max-height:
+            94vh;
+
+        grid-template-columns:
+            1fr;
+
+        overflow-y:
+            auto;
+
+        border-radius:
+            24px 24px 0 0;
+    }
+
+
+    .piel-modal-image {
+        min-height: 0;
+
+        height: 370px;
+    }
+
+
+    .piel-modal-content {
+        overflow:
+            visible;
+
+        padding:
+            34px 22px 35px;
+    }
+
+
+    .piel-modal-info {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .piel-modal-close {
+        top: 14px;
+
+        right: 14px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE SMALL
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .piel-hero h1 {
+        font-size:
+            40px;
+    }
+
+
+    .piel-card-body {
+        padding: 18px;
+    }
+
+
+    .piel-card-footer {
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+
+    .piel-view-button {
+        width: 100%;
+    }
+
+
+    .piel-modal-image {
+        height:
+            320px;
+    }
+
+
+    .piel-modal-info {
+        grid-template-columns:
+            1fr;
+    }
+
 }
