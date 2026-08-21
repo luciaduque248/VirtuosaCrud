@@ -16,6 +16,8 @@ import {
     apidiscount,
 } from "../../utils/peticiones";
 
+import AddToCartControls from "../../components/cart/AddToCartControls";
+
 /* =========================================================
    DESCUENTOS
 ========================================================= */
@@ -957,30 +959,12 @@ function Descuentos() {
                                     Talla
                                 </label>
 
-                                <select
-                                    id="descuento-talla"
-                                    defaultValue="M"
-                                >
-                                    <option value="XS">
-                                        XS
-                                    </option>
-
-                                    <option value="S">
-                                        S
-                                    </option>
-
-                                    <option value="M">
-                                        M
-                                    </option>
-
-                                    <option value="L">
-                                        L
-                                    </option>
-
-                                    <option value="XL">
-                                        XL
-                                    </option>
-                                </select>
+                                <AddToCartControls
+                                    product={
+                                        productoSeleccionado
+                                    }
+                                    showSize
+                                />
                             </div>
 
                             {/* Cantidad */}
@@ -990,53 +974,12 @@ function Descuentos() {
                                     Cantidad
                                 </label>
 
-                                <select
-                                    id="descuento-cantidad"
-                                    defaultValue="1"
-                                    disabled={
-                                        Number(
-                                            productoSeleccionado.stock
-                                        ) <= 0
+                                <AddToCartControls
+                                    product={
+                                        productoSeleccionado
                                     }
-                                >
-                                    {Array.from(
-                                        {
-                                            length:
-                                                Math.min(
-                                                    Math.max(
-                                                        Number(
-                                                            productoSeleccionado.stock
-                                                        ),
-                                                        1
-                                                    ),
-                                                    5
-                                                ),
-                                        },
-                                        (
-                                            _,
-                                            index
-                                        ) =>
-                                            index +
-                                            1
-                                    ).map(
-                                        (
-                                            cantidad
-                                        ) => (
-                                            <option
-                                                key={
-                                                    cantidad
-                                                }
-                                                value={
-                                                    cantidad
-                                                }
-                                            >
-                                                {
-                                                    cantidad
-                                                }
-                                            </option>
-                                        )
-                                    )}
-                                </select>
+                                    showSize
+                                />
                             </div>
 
                             {/* CTA */}
@@ -1067,15 +1010,6 @@ function Descuentos() {
                                     }
                                 </div>
                             )}
-
-                            <p className="descuentos-modal-note">
-                                Catálogo
-                                conectado a
-                                PostgreSQL
-                                mediante la API
-                                REST de
-                                Virtuosa.
-                            </p>
                         </div>
                     </article>
                 </div>

@@ -6,6 +6,8 @@ import React, {
 
 import axios from "axios";
 
+import AddToCartControls from "../../components/cart/AddToCartControls";
+
 import Footer from "../../components/footer/footer";
 import Home from "../../components/home/home";
 import Header from "../../components/header/header";
@@ -804,30 +806,12 @@ function Vestidos() {
                                     Talla
                                 </label>
 
-                                <select
-                                    id="modal-talla"
-                                    defaultValue="M"
-                                >
-                                    <option value="XS">
-                                        XS
-                                    </option>
-
-                                    <option value="S">
-                                        S
-                                    </option>
-
-                                    <option value="M">
-                                        M
-                                    </option>
-
-                                    <option value="L">
-                                        L
-                                    </option>
-
-                                    <option value="XL">
-                                        XL
-                                    </option>
-                                </select>
+                                <AddToCartControls
+                                    product={
+                                        productoSeleccionado
+                                    }
+                                    showSize
+                                />
                             </div>
 
                             {/* Cantidad */}
@@ -837,44 +821,12 @@ function Vestidos() {
                                     Cantidad
                                 </label>
 
-                                <select
-                                    id="modal-cantidad"
-                                    defaultValue="1"
-                                >
-                                    {Array.from(
-                                        {
-                                            length:
-                                                Math.min(
-                                                    Math.max(
-                                                        Number(
-                                                            productoSeleccionado.stock
-                                                        ),
-                                                        1
-                                                    ),
-                                                    5
-                                                ),
-                                        },
-                                        (_, index) =>
-                                            index + 1
-                                    ).map(
-                                        (
-                                            cantidad
-                                        ) => (
-                                            <option
-                                                key={
-                                                    cantidad
-                                                }
-                                                value={
-                                                    cantidad
-                                                }
-                                            >
-                                                {
-                                                    cantidad
-                                                }
-                                            </option>
-                                        )
-                                    )}
-                                </select>
+                                <AddToCartControls
+                                    product={
+                                        productoSeleccionado
+                                    }
+                                    showSize
+                                />
                             </div>
 
                             {/* CTA */}

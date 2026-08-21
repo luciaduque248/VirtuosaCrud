@@ -1,29 +1,79 @@
-// componentes de clase o componentes de funcion 
-import { Link } from 'react-router-dom';
-import logoVirtuosa from '../assets/img/logo 1.svg';
-import './header.css';
+import React from "react";
+
+import {
+    Link,
+} from "react-router-dom";
+
+import logoVirtuosa from "../assets/img/logo 1.svg";
+
+import {
+    useCart,
+} from "../../context/CartContext";
+
+import "./header.css";
+import "./HeaderCart.css";
 
 function Header() {
-    return (
-        // caracteristicas del componente
-        <header>
-            <div className='headerBox'></div>
+    const {
+        itemCount,
+    } = useCart();
 
-            <div className='fondonav'>
-                <Link to="/VirtuosaCrud" className='container-logo-responsive'>
-                    <div className=" logo-responsive">
-                        <img src={logoVirtuosa} alt="logo" />
+    return (
+        <header>
+            <div className="headerBox" />
+
+            <div className="fondonav">
+                <Link
+                    to="/VirtuosaCrud/"
+                    className="container-logo-responsive"
+                >
+                    <div className="logo-responsive">
+                        <img
+                            src={
+                                logoVirtuosa
+                            }
+                            alt="Virtuosa"
+                        />
                     </div>
                 </Link>
-                <div className='icons'>
-                    <Link to='/VirtuosaCrud/login'><button className="iniciar-sesion"><i class="fa-regular fa-user"></i></button></Link>
-                    <button className="btns-header"><i class="fa-solid fa-cart-shopping"></i></button>
-                    <button className="btn-search">
-                        <i class="fa-solid fa-magnifying-glass"></i></button>
+
+                <div className="icons">
+                    <Link
+                        to="/VirtuosaCrud/login"
+                        className="iniciar-sesion"
+                        aria-label="Iniciar sesión"
+                    >
+                        <i className="fa-regular fa-user" />
+                    </Link>
+
+                    <Link
+                        to="/VirtuosaCrud/carrito"
+                        className="header-cart-link"
+                        aria-label={`Carrito con ${itemCount} productos`}
+                    >
+                        <i className="fa-solid fa-cart-shopping" />
+
+                        {itemCount > 0 && (
+                            <span className="header-cart-count">
+                                {itemCount >
+                                    99
+                                    ? "99+"
+                                    : itemCount}
+                            </span>
+                        )}
+                    </Link>
+
+                    <button
+                        type="button"
+                        className="btn-search"
+                        aria-label="Buscar"
+                    >
+                        <i className="fa-solid fa-magnifying-glass" />
+                    </button>
                 </div>
             </div>
-
         </header>
     );
 }
+
 export default Header;

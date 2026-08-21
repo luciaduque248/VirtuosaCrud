@@ -1,256 +1,337 @@
 import Swal from "sweetalert2";
 
-/* =========================================================
-   VIRTUOSA ALERT SYSTEM
-========================================================= */
-
 const COLORS = {
     primary: "#765f8e",
-    dark: "#29242d",
     danger: "#b0445d",
-    success: "#527b61",
-    cancel: "#7b7480",
+    cancel: "#77717b",
 };
 
 /* =========================================================
-   TOAST BASE
+   TOAST
 ========================================================= */
 
-const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 2600,
-    timerProgressBar: true,
+const Toast =
+    Swal.mixin({
+        toast: true,
 
-    didOpen: (toast) => {
-        toast.addEventListener(
-            "mouseenter",
-            Swal.stopTimer
-        );
+        position:
+            "top-end",
 
-        toast.addEventListener(
-            "mouseleave",
-            Swal.resumeTimer
-        );
-    },
-});
+        showConfirmButton:
+            false,
 
-/* =========================================================
-   SUCCESS
-========================================================= */
+        timer: 2600,
 
-export const successToast = (
-    title,
-    text = ""
-) => {
-    return Toast.fire({
-        icon: "success",
-        title,
-        text,
+        timerProgressBar:
+            true,
+
+        didOpen: (
+            toast
+        ) => {
+            toast.addEventListener(
+                "mouseenter",
+                Swal.stopTimer
+            );
+
+            toast.addEventListener(
+                "mouseleave",
+                Swal.resumeTimer
+            );
+        },
     });
-};
 
 /* =========================================================
-   ERROR
+   GENERALES
 ========================================================= */
 
-export const errorAlert = (
-    title = "Ha ocurrido un error",
-    text = "Inténtalo nuevamente."
-) => {
-    return Swal.fire({
-        icon: "error",
+export const successToast =
+    (
         title,
-        text,
-
-        confirmButtonText:
-            "Entendido",
-
-        confirmButtonColor:
-            COLORS.primary,
-    });
-};
-
-/* =========================================================
-   WARNING
-========================================================= */
-
-export const warningAlert = (
-    title,
-    text
-) => {
-    return Swal.fire({
-        icon: "warning",
-        title,
-        text,
-
-        confirmButtonText:
-            "Entendido",
-
-        confirmButtonColor:
-            COLORS.primary,
-    });
-};
-
-/* =========================================================
-   INFORMATION
-========================================================= */
-
-export const infoAlert = (
-    title,
-    text
-) => {
-    return Swal.fire({
-        icon: "info",
-        title,
-        text,
-
-        confirmButtonText:
-            "Aceptar",
-
-        confirmButtonColor:
-            COLORS.primary,
-    });
-};
-
-/* =========================================================
-   DELETE CONFIRMATION
-========================================================= */
-
-export const confirmDelete = async (
-    productName
-) => {
-    const result =
-        await Swal.fire({
-            icon: "warning",
-
-            title:
-                "¿Eliminar producto?",
-
-            text:
-                `Vas a eliminar "${productName}". Esta acción no se puede deshacer.`,
-
-            showCancelButton:
-                true,
-
-            confirmButtonText:
-                "Sí, eliminar",
-
-            cancelButtonText:
-                "Cancelar",
-
-            confirmButtonColor:
-                COLORS.danger,
-
-            cancelButtonColor:
-                COLORS.cancel,
-
-            reverseButtons:
-                true,
-
-            focusCancel:
-                true,
+        text = ""
+    ) =>
+        Toast.fire({
+            icon: "success",
+            title,
+            text,
         });
 
-    return result.isConfirmed;
-};
+
+export const errorAlert =
+    (
+        title =
+            "Ha ocurrido un error",
+
+        text =
+            "Inténtalo nuevamente."
+    ) =>
+        Swal.fire({
+            icon: "error",
+
+            title,
+            text,
+
+            confirmButtonText:
+                "Entendido",
+
+            confirmButtonColor:
+                COLORS.primary,
+        });
+
+
+export const warningAlert =
+    (
+        title,
+        text
+    ) =>
+        Swal.fire({
+            icon: "warning",
+
+            title,
+            text,
+
+            confirmButtonText:
+                "Entendido",
+
+            confirmButtonColor:
+                COLORS.primary,
+        });
+
+
+export const infoAlert =
+    (
+        title,
+        text
+    ) =>
+        Swal.fire({
+            icon: "info",
+
+            title,
+            text,
+
+            confirmButtonColor:
+                COLORS.primary,
+        });
 
 /* =========================================================
-   CREATED
+   PRODUCTOS
 ========================================================= */
 
-export const productCreatedAlert = (
-    productName
-) => {
-    return Swal.fire({
-        icon: "success",
+export const productCreatedAlert =
+    (
+        productName
+    ) =>
+        Swal.fire({
+            icon: "success",
 
-        title:
-            "Producto creado",
+            title:
+                "Producto creado",
 
-        text:
-            `${productName} fue guardado correctamente en Virtuosa.`,
+            text:
+                `${productName} fue guardado correctamente.`,
 
-        confirmButtonText:
-            "Continuar",
+            confirmButtonText:
+                "Continuar",
 
-        confirmButtonColor:
-            COLORS.primary,
-    });
-};
+            confirmButtonColor:
+                COLORS.primary,
+        });
+
+
+export const productUpdatedAlert =
+    (
+        productName
+    ) =>
+        Toast.fire({
+            icon: "success",
+
+            title:
+                "Cambios guardados",
+
+            text:
+                `${productName} fue actualizado.`,
+        });
+
+
+export const confirmDelete =
+    async (
+        productName
+    ) => {
+        const result =
+            await Swal.fire({
+                icon: "warning",
+
+                title:
+                    "¿Eliminar producto?",
+
+                text:
+                    `Vas a eliminar "${productName}". Esta acción no se puede deshacer.`,
+
+                showCancelButton:
+                    true,
+
+                confirmButtonText:
+                    "Sí, eliminar",
+
+                cancelButtonText:
+                    "Cancelar",
+
+                confirmButtonColor:
+                    COLORS.danger,
+
+                cancelButtonColor:
+                    COLORS.cancel,
+
+                reverseButtons:
+                    true,
+            });
+
+        return result
+            .isConfirmed;
+    };
+
+
+export const productDeletedAlert =
+    (
+        productName
+    ) =>
+        Toast.fire({
+            icon: "success",
+
+            title:
+                "Producto eliminado",
+
+            text:
+                `${productName} fue eliminado correctamente.`,
+        });
 
 /* =========================================================
-   UPDATED
+   CARRITO
 ========================================================= */
 
-export const productUpdatedAlert = (
-    productName
-) => {
-    return Toast.fire({
-        icon: "success",
+export const cartAlert =
+    (
+        productName
+    ) =>
+        Toast.fire({
+            icon: "success",
 
-        title:
-            "Cambios guardados",
+            title:
+                "Agregado al carrito",
 
-        text:
-            `${productName} fue actualizado correctamente.`,
-    });
-};
+            text:
+                `${productName} fue agregado correctamente.`,
+        });
+
+
+export const confirmCartRemove =
+    async (
+        productName
+    ) => {
+        const result =
+            await Swal.fire({
+                icon: "question",
+
+                title:
+                    "¿Quitar del carrito?",
+
+                text:
+                    `Se eliminará "${productName}" del carrito.`,
+
+                showCancelButton:
+                    true,
+
+                confirmButtonText:
+                    "Quitar",
+
+                cancelButtonText:
+                    "Cancelar",
+
+                confirmButtonColor:
+                    COLORS.danger,
+
+                cancelButtonColor:
+                    COLORS.cancel,
+
+                reverseButtons:
+                    true,
+            });
+
+        return result
+            .isConfirmed;
+    };
+
+
+export const confirmClearCart =
+    async () => {
+        const result =
+            await Swal.fire({
+                icon: "warning",
+
+                title:
+                    "¿Vaciar carrito?",
+
+                text:
+                    "Se eliminarán todos los productos del carrito.",
+
+                showCancelButton:
+                    true,
+
+                confirmButtonText:
+                    "Sí, vaciar",
+
+                cancelButtonText:
+                    "Cancelar",
+
+                confirmButtonColor:
+                    COLORS.danger,
+
+                cancelButtonColor:
+                    COLORS.cancel,
+
+                reverseButtons:
+                    true,
+            });
+
+        return result
+            .isConfirmed;
+    };
+
+
+export const checkoutInfo =
+    () =>
+        Swal.fire({
+            icon: "info",
+
+            title:
+                "Checkout",
+
+            text:
+                "El carrito ya está funcionando. El siguiente paso será registrar pedidos y pagos desde el backend.",
+
+            confirmButtonText:
+                "Entendido",
+
+            confirmButtonColor:
+                COLORS.primary,
+        });
 
 /* =========================================================
-   DELETED
+   FAVORITOS
 ========================================================= */
 
-export const productDeletedAlert = (
-    productName
-) => {
-    return Toast.fire({
-        icon: "success",
+export const favoriteAlert =
+    (
+        productName
+    ) =>
+        Toast.fire({
+            icon: "success",
 
-        title:
-            "Producto eliminado",
+            title:
+                "Agregado a favoritos",
 
-        text:
-            `${productName} fue eliminado correctamente.`,
-    });
-};
-
-/* =========================================================
-   CART
-========================================================= */
-
-export const cartAlert = (
-    productName
-) => {
-    return Toast.fire({
-        icon: "success",
-
-        title:
-            "Agregado al carrito",
-
-        text:
-            `${productName} fue agregado correctamente.`,
-    });
-};
-
-/* =========================================================
-   FAVORITES
-========================================================= */
-
-export const favoriteAlert = (
-    productName
-) => {
-    return Toast.fire({
-        icon: "success",
-
-        title:
-            "Agregado a favoritos",
-
-        text:
-            `${productName} fue agregado a tus favoritos.`,
-    });
-};
+            text:
+                `${productName} fue agregado a favoritos.`,
+        });
 
 /* =========================================================
    LOGOUT
@@ -287,38 +368,34 @@ export const confirmLogout =
                     true,
             });
 
-        return result.isConfirmed;
+        return result
+            .isConfirmed;
     };
 
-/* =========================================================
-   LOADING
-========================================================= */
 
-export const showLoading = (
-    title =
-        "Procesando..."
-) => {
-    Swal.fire({
-        title,
+export const showLoading =
+    (
+        title =
+            "Procesando..."
+    ) => {
+        Swal.fire({
+            title,
 
-        allowOutsideClick:
-            false,
+            allowOutsideClick:
+                false,
 
-        allowEscapeKey:
-            false,
+            allowEscapeKey:
+                false,
 
-        showConfirmButton:
-            false,
+            showConfirmButton:
+                false,
 
-        didOpen: () => {
-            Swal.showLoading();
-        },
-    });
-};
+            didOpen: () => {
+                Swal.showLoading();
+            },
+        });
+    };
 
-/* =========================================================
-   CLOSE CURRENT ALERT
-========================================================= */
 
 export const closeAlert =
     () => {

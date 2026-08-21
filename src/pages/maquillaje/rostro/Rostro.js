@@ -6,6 +6,8 @@ import React, {
 
 import axios from "axios";
 
+import AddToCartControls from "../../../components/cart/AddToCartControls";
+
 import Footer from "../../../components/footer/footer";
 import Header from "../../../components/header/header";
 import Home from "../../../components/home/home";
@@ -820,69 +822,13 @@ function Rostro() {
                   Cantidad
                 </label>
 
-                <select
-                  id="rostro-cantidad"
-                  defaultValue="1"
-                  disabled={
-                    Number(
-                      productoSeleccionado.stock
-                    ) <= 0
+                <AddToCartControls
+                  product={
+                    productoSeleccionado
                   }
-                >
-                  {Array.from(
-                    {
-                      length:
-                        Math.min(
-                          Math.max(
-                            Number(
-                              productoSeleccionado.stock
-                            ),
-                            1
-                          ),
-                          5
-                        ),
-                    },
-                    (_, index) =>
-                      index + 1
-                  ).map(
-                    (
-                      cantidad
-                    ) => (
-                      <option
-                        key={
-                          cantidad
-                        }
-                        value={
-                          cantidad
-                        }
-                      >
-                        {
-                          cantidad
-                        }
-                      </option>
-                    )
-                  )}
-                </select>
+                />
               </div>
 
-              <button
-                type="button"
-                className="rostro-add-button"
-                disabled={
-                  Number(
-                    productoSeleccionado.stock
-                  ) <= 0
-                }
-                onClick={
-                  agregarAlCarrito
-                }
-              >
-                {Number(
-                  productoSeleccionado.stock
-                ) > 0
-                  ? "Agregar al carrito"
-                  : "Producto agotado"}
-              </button>
 
               {mensajeCarrito && (
                 <div className="rostro-cart-message">
