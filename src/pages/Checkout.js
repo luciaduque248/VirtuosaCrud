@@ -155,6 +155,20 @@ function Checkout() {
                     );
                 }
 
+                if (form.paymentMethod === "stripe") {
+                    clearCart();
+                    try {
+                        const paymentResponse = await apiClient.post("/payments/checkout", { reference: order.reference, email: form.customerEmail.trim() });
+                        const paymentUrl = paymentResponse?.data?.data?.url;
+                        if (!paymentUrl) throw new Error("No fue posible iniciar el pago seguro.");
+                        window.location.assign(paymentUrl);
+                    } catch (paymentError) {
+                        setCompletedOrder(order);
+                        await errorAlert("Pedido creado, pago pendiente", "Conserva la referencia e intenta el pago nuevamente desde seguimiento.");
+                    }
+                    return;
+                }
+
                 clearCart();
 
                 setCompletedOrder(
@@ -565,6 +579,7 @@ function Checkout() {
                                     <option value="bank_transfer">
                                         Transferencia bancaria — por confirmar
                                     </option>
+                                    <option value="stripe">Pago en línea seguro</option>
                                 </select>
                             </div>
 
@@ -572,7 +587,7 @@ function Checkout() {
                                 <i className="fa-solid fa-shield-halved" />
 
                                 <p>
-                                    Esta versión de Virtuosa no procesa tarjetas ni transferencias automáticamente. El estado inicial del pago será “pendiente”.
+                                    {form.paymentMethod === "stripe" ? "Serás dirigido a Stripe para completar el pago de forma segura. Virtuosa no almacena los datos de tu tarjeta." : "El estado inicial del pago será pendiente hasta su confirmación."}
                                 </p>
                             </div>
                         </section>

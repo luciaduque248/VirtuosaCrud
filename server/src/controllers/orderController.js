@@ -16,6 +16,7 @@ const VALID_STATUSES = new Set([
 const VALID_PAYMENT_METHODS = new Set([
     "cash_on_delivery",
     "bank_transfer",
+    "stripe",
 ]);
 
 const VALID_SIZES = new Set([

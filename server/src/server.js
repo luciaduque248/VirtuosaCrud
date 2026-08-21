@@ -20,6 +20,8 @@ const authRoutes =
 
 const orderRoutes =
   require("./routes/orderRoutes");
+const paymentRoutes = require("./routes/paymentRoutes");
+const { stripeWebhook } = require("./controllers/paymentController");
 
 const errorHandler =
   require("./middleware/errorHandler");
@@ -133,6 +135,8 @@ app.use(
 );
 
 
+app.post("/api/payments/webhook", express.raw({ type: "application/json" }), stripeWebhook);
+
 app.use(
   express.json({
     limit: "1mb",
@@ -208,6 +212,8 @@ app.use(
   "/api/orders",
   orderRoutes
 );
+
+app.use("/api/payments", paymentRoutes);
 
 
 /* =========================================================

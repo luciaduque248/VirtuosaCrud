@@ -109,6 +109,8 @@ CREATE TABLE IF NOT EXISTS orders (
         ),
 
     payment_method VARCHAR(50) NOT NULL DEFAULT 'pending',
+    stripe_session_id VARCHAR(255) UNIQUE,
+    payment_reference VARCHAR(255),
 
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
