@@ -26,6 +26,21 @@ body {
   text-decoration: none;
 }
 
+/*
+ * Compatibilidad del modal histórico de Vestidos.
+ * AddToCartControls ya incluye sus propios labels de talla/cantidad y CTA.
+ * Ocultamos el wrapper duplicado y el CTA antiguo hasta retirar ese markup
+ * heredado de VestidosRS en la siguiente limpieza estructural.
+ */
+.vestidos-modal-content > .vestidos-modal-option > label {
+  display: none;
+}
+
+.vestidos-modal-content > .vestidos-modal-option:nth-of-type(3),
+.vestidos-modal-content > .vestidos-add-button {
+  display: none !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
