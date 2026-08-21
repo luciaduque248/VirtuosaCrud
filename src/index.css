@@ -17,6 +17,15 @@ body {
   z-index: 30000 !important;
 }
 
+/* El CTA del carrito ahora es un Link y conserva aspecto de botón. */
+.cart-checkout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
