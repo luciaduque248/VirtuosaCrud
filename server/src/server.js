@@ -18,6 +18,9 @@ const productRoutes =
 const authRoutes =
   require("./routes/authRoutes");
 
+const orderRoutes =
+  require("./routes/orderRoutes");
+
 const errorHandler =
   require("./middleware/errorHandler");
 
@@ -117,6 +120,7 @@ app.use(
       "GET",
       "POST",
       "PUT",
+      "PATCH",
       "DELETE",
       "OPTIONS",
     ],
@@ -198,6 +202,11 @@ app.use(
 app.use(
   "/api/products",
   productRoutes
+);
+
+app.use(
+  "/api/orders",
+  orderRoutes
 );
 
 
