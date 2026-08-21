@@ -5,11 +5,14 @@ import Header from "../components/header/header";
 import Home from "../components/home/home";
 import Footer from "../components/footer/footer";
 import apiClient from "../services/apiClient";
+import { useFavorites } from "../context/FavoritesContext";
 import "../components/assets/css/Catalog.css";
+import "../components/assets/css/FavoriteControls.css";
 
 const formatPrice = (value) => new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(Number(value) || 0);
 
 function Catalog() {
+    const { isFavorite, toggleFavorite } = useFavorites();
     const [searchParams, setSearchParams] = useSearchParams();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -96,6 +99,7 @@ function Catalog() {
                                         <img src={product.image_url} alt={product.name} loading="lazy" />
                                         {product.featured ? <span>Selección</span> : null}
                                     </Link>
+                                    <button type="button" className={`catalog-favorite ${isFavorite(product.id) ? "is-favorite" : ""}`} onClick={() => toggleFavorite(product)} aria-label={`${isFavorite(product.id) ? "Eliminar" : "Agregar"} ${product.name} ${isFavorite(product.id) ? "de" : "a"} favoritos`}><i className={`${isFavorite(product.id) ? "fa-solid" : "fa-regular"} fa-heart`} /></button>
                                     <div className="catalog-card-copy">
                                         <span>{product.category_name} · {product.subcategory}</span>
                                         <h3><Link to={`/VirtuosaCrud/producto/${product.id}`}>{product.name}</Link></h3>

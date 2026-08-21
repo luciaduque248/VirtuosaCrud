@@ -6,11 +6,14 @@ import Home from "../components/home/home";
 import Footer from "../components/footer/footer";
 import AddToCartControls from "../components/cart/AddToCartControls";
 import apiClient from "../services/apiClient";
+import { useFavorites } from "../context/FavoritesContext";
 import "../components/assets/css/ProductDetail.css";
+import "../components/assets/css/FavoriteControls.css";
 
 const formatPrice = (value) => new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(Number(value) || 0);
 
 function ProductDetail() {
+    const { isFavorite, toggleFavorite } = useFavorites();
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [related, setRelated] = useState([]);
@@ -62,6 +65,7 @@ function ProductDetail() {
                                 <strong className="product-detail-price">{formatPrice(product.price)}</strong>
                                 <p>{product.description || "Una pieza seleccionada para acompañar tu estilo y rutina."}</p>
                                 <div className={`product-stock ${Number(product.stock) > 0 ? "available" : "sold-out"}`}><i className="fa-solid fa-circle" />{Number(product.stock) > 0 ? `Disponible · ${product.stock} unidades` : "Temporalmente agotado"}</div>
+                                <button type="button" className={`product-favorite ${isFavorite(product.id) ? "is-favorite" : ""}`} onClick={() => toggleFavorite(product)}><i className={`${isFavorite(product.id) ? "fa-solid" : "fa-regular"} fa-heart`} />{isFavorite(product.id) ? "Guardado en favoritos" : "Guardar en favoritos"}</button>
                                 <AddToCartControls product={product} showSize={product.category_slug === "moda"} />
                                 <div className="product-benefits"><p><i className="fa-solid fa-truck-fast" /> Envío gratis desde $200.000</p><p><i className="fa-solid fa-shield-heart" /> Compra protegida</p><p><i className="fa-solid fa-rotate-left" /> Cambios sencillos</p></div>
                             </div>

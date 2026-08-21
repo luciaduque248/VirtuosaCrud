@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import logoVirtuosa from "../assets/img/logo 1.svg";
 import { useCart } from "../../context/CartContext";
+import { useFavorites } from "../../context/FavoritesContext";
 
 import "./header.css";
 import "./HeaderCart.css";
@@ -21,6 +22,7 @@ const searchDestinations = [
 
 function Header() {
     const { itemCount } = useCart();
+    const { favoriteCount } = useFavorites();
     const navigate = useNavigate();
     const searchInputRef = useRef(null);
     const [searchOpen, setSearchOpen] = useState(false);
@@ -76,6 +78,11 @@ function Header() {
                         <i className="fa-regular fa-user" aria-hidden="true" />
                         <span>Cuenta</span>
                     </Link>
+                    <Link to="/VirtuosaCrud/favoritos" className="header-action" aria-label={`Favoritos, ${favoriteCount} productos`}>
+                        <i className="fa-regular fa-heart" aria-hidden="true" />
+                        <span>Favoritos</span>
+                        {favoriteCount > 0 ? <b className="header-cart-count">{favoriteCount > 99 ? "99+" : favoriteCount}</b> : null}
+                    </Link>
                     <Link to="/VirtuosaCrud/carrito" className="header-action header-cart-link" aria-label={`Carrito, ${itemCount} productos`}>
                         <i className="fa-solid fa-bag-shopping" aria-hidden="true" />
                         <span>Carrito</span>
@@ -102,6 +109,7 @@ function Header() {
                             <input ref={searchInputRef} value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Prueba: vestidos, labios, tips..." />
                         </label>
                         <div className="header-search-results" aria-live="polite">
+                            {query.trim() ? <button type="button" onClick={() => visitDestination(`/VirtuosaCrud/productos?buscar=${encodeURIComponent(query.trim())}`)}><span><strong>Buscar “{query.trim()}”</strong><small>Ver coincidencias en todos los productos</small></span><i className="fa-solid fa-magnifying-glass" aria-hidden="true" /></button> : null}
                             {results.length > 0 ? results.map(({ label, detail, path }) => (
                                 <button type="button" key={path} onClick={() => visitDestination(path)}>
                                     <span><strong>{label}</strong><small>{detail}</small></span>
