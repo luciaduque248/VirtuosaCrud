@@ -12,6 +12,7 @@
 }
 
 .text-tips-banner-contacto{
+    max-width: 100%;
     text-shadow: 2px 2px 2px white;
     font-family: 'Bebas Neue', cursive;
     color: #403f3f;
@@ -20,7 +21,16 @@
     align-content: center;
 
     padding: 0 10px;
-    font-size: 70px;
+    font-size: clamp(48px, 8vw, 112px);
+    line-height: .95;
+    overflow-wrap: anywhere;
+}
+
+.text-tips-banner-contacto h1 {
+    max-width: 100%;
+    margin: 0;
+    font-size: 1em;
+    line-height: inherit;
 }
 
 .contact-P{
@@ -51,7 +61,8 @@
 }
 
 .main {
-	width: 150vw;
+	width: min(1170px, calc(100% - 28px));
+    max-width: 100%;
 	margin: auto;
 	padding: 40px;
 
@@ -145,7 +156,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0 2rem;
+        padding: 0 1rem;
     }
 
     .text-tips-banner-contacto{
@@ -157,7 +168,10 @@
         align-content: center;
     
         padding: 0 10px;
-        font-size: 30px;
+        width: 100%;
+        justify-content: center;
+        font-size: clamp(36px, 12vw, 52px);
+        text-align: center;
     }
 
 }

@@ -20,8 +20,8 @@
 .fashion-story-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .55s ease; }
 .fashion-story-image:hover img { transform: scale(1.035); }
 .fashion-story-image > span { position: absolute; top: 26px; left: 26px; width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; background: rgba(38,31,39,.18); color: #fff; font-size: 10px; backdrop-filter: blur(5px); }
-.fashion-story-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(44px,7vw,105px); }
-.fashion-story-copy h2 { margin: 13px 0 18px; font-family: Georgia,"Times New Roman",serif; font-size: clamp(58px,7vw,104px); font-weight: 400; line-height: .9; letter-spacing: -3px; }
+.fashion-story-copy { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(44px,5.5vw,82px); overflow: hidden; }
+.fashion-story-copy h2 { max-width: 100%; margin: 13px 0 18px; font-family: Georgia,"Times New Roman",serif; font-size: clamp(52px,4.8vw,82px); font-weight: 400; line-height: .92; letter-spacing: -2.5px; overflow-wrap: anywhere; }
 .fashion-story-copy p { max-width: 470px; margin: 0; color: #6f686f; font-size: 15px; line-height: 1.75; }
 .fashion-note { width: min(1040px,calc(100% - 48px)); padding: clamp(105px,13vw,190px) 0; margin: 0 auto; text-align: center; }
 .fashion-note-index { display: block; margin-bottom: 25px; color: var(--fashion-plum); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
@@ -34,7 +34,7 @@
     .fashion-story,.fashion-story-reverse { grid-template-columns: 1fr 1fr; min-height: 580px; }
     .fashion-story-image { min-height: 580px; }
     .fashion-story-copy { padding: 42px; }
-    .fashion-story-copy h2 { font-size: 65px; }
+    .fashion-story-copy h2 { font-size: clamp(48px,7vw,62px); }
 }
 @media (max-width: 640px) {
     .fashion-hero { display: flex; flex-direction: column; min-height: auto; margin: 6px; }

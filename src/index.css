@@ -1,8 +1,49 @@
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+main,
+section,
+article,
+header,
+footer,
+nav,
+div {
+  min-width: 0;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+a,
+button,
+label {
+  overflow-wrap: break-word;
 }
 
 /*

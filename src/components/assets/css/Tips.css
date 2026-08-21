@@ -17,11 +17,13 @@
 }
 
 .banner-tips h1{
+    max-width: 100%;
     text-align: center;
     letter-spacing: 2px;
     text-shadow: 3px 3px 5px #403f3f;
     padding: 1rem;
-    font-size: 150px;
+    font-size: clamp(64px, 10vw, 140px);
+    line-height: .92;
     font-weight: 300;
 }
 
@@ -60,7 +62,7 @@
         height: 50vh;
     }
     .banner-tips h1{
-        font-size: 80px;
+        font-size: clamp(48px, 17vw, 68px);
         font-weight: 300;
     }   
 

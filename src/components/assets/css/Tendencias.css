@@ -4,7 +4,7 @@
     background-image: url(https://images.unsplash.com/photo-1590739241856-cc8c15419fc5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1109&q=80);
     background-position: center;
     background-size: cover;
-    width: 100vw;
+    width: 100%;
     height: 60vh;
 }
 
@@ -463,7 +463,7 @@ body{overflow-x: hidden;}
 /* ::::::::::::: MEDIA QUERY: CELULAR A TABLET (medio) ::::::::::::: */
 @media (min-width: 481px) and (max-width: 767px) {
     body{overflow-x: hidden;}
-    .banner{width: 100vw;}
+    .banner{width: 100%;}
     .container-nov {
         display: grid;
         grid-template-rows: 1.4fr 10fr 20fr 20fr 20fr 10fr;
@@ -602,4 +602,126 @@ body{overflow-x: hidden;}
     }
 
     .selection{margin-bottom: 3rem;}
+}
+
+/* Protección responsive moderna: reemplaza anchos heredados en vw. */
+.container-nov {
+    width: 100%;
+    display: block;
+}
+
+.container-nov .content {
+    width: min(1100px, calc(100% - 40px));
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    grid-template-areas:
+        "text1 text1"
+        "text2 text2"
+        "nov1 nov2"
+        "nov3 nov4"
+        "nov5 nov6"
+        "selection selection";
+    gap: 28px;
+    margin: 0 auto;
+    padding: 64px 0 90px;
+}
+
+.container-nov .text1,
+.container-nov .text2,
+.container-nov .nov1,
+.container-nov .nov2,
+.container-nov .nov3,
+.container-nov .nov4,
+.container-nov .nov5,
+.container-nov .nov6,
+.container-nov .selection {
+    min-width: 0;
+    width: 100%;
+}
+
+.container-nov .text1 {
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.container-nov .nov1,
+.container-nov .nov2,
+.container-nov .nov3,
+.container-nov .nov4,
+.container-nov .nov5,
+.container-nov .nov6 {
+    grid-template-rows: 300px auto;
+    overflow: hidden;
+}
+
+.container-nov .summary1,
+.container-nov .summary2,
+.container-nov .summary3,
+.container-nov .summary4,
+.container-nov .summary5,
+.container-nov .summary6 {
+    padding: 20px;
+    font-size: 17px;
+}
+
+.container-nov .selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0 0;
+}
+
+.container-nov .selection a {
+    padding: 12px 17px;
+}
+
+@media (max-width: 640px) {
+    .banner-nov {
+        height: 430px;
+        padding: 24px;
+    }
+
+    .banner-nov h1 {
+        max-width: 100%;
+        padding: 0 18px;
+        font-size: clamp(42px, 14vw, 62px);
+    }
+
+    .container-nov .content {
+        width: calc(100% - 28px);
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "text1"
+            "text2"
+            "nov1"
+            "nov2"
+            "nov3"
+            "nov4"
+            "nov5"
+            "nov6"
+            "selection";
+        gap: 22px;
+        padding: 44px 0 70px;
+    }
+
+    .container-nov .text1 {
+        text-align: left;
+        font-size: 14px;
+    }
+
+    .container-nov .text2 {
+        padding: 0 0 20px;
+        font-size: 16px;
+    }
+
+    .container-nov .nov1,
+    .container-nov .nov2,
+    .container-nov .nov3,
+    .container-nov .nov4,
+    .container-nov .nov5,
+    .container-nov .nov6 {
+        grid-template-rows: 260px auto;
+    }
 }
