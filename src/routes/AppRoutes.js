@@ -17,6 +17,7 @@ import Catalog from "../pages/Catalog";
 import ProductDetail from "../pages/ProductDetail";
 import Favorites from "../pages/Favorites";
 import OrderTracking from "../pages/OrderTracking";
+import Policies from "../pages/Policies";
 
 import Descuentos from "../pages/ropa/DescuentosRS";
 import Tendencias from "../pages/ropa/TendenciasRS";
@@ -119,6 +120,11 @@ function AppRoutes() {
                 <Route
                     path="/VirtuosaCrud/seguimiento"
                     element={<OrderTracking />}
+                />
+
+                <Route
+                    path="/VirtuosaCrud/politicas"
+                    element={<Policies />}
                 />
 
                 <Route

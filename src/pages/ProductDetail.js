@@ -7,6 +7,7 @@ import Footer from "../components/footer/footer";
 import AddToCartControls from "../components/cart/AddToCartControls";
 import apiClient from "../services/apiClient";
 import { useFavorites } from "../context/FavoritesContext";
+import Seo from "../components/seo/Seo";
 import "../components/assets/css/ProductDetail.css";
 import "../components/assets/css/FavoriteControls.css";
 
@@ -40,15 +41,9 @@ function ProductDetail() {
         return () => { active = false; };
     }, [id]);
 
-    useEffect(() => {
-        if (!product) return undefined;
-        const previousTitle = document.title;
-        document.title = `${product.name} | Virtuosa`;
-        return () => { document.title = previousTitle; };
-    }, [product]);
-
     return (
         <div className="product-detail-page">
+            {product ? <Seo title={product.name} description={product.description || `Descubre ${product.name} en Virtuosa.`} image={product.image_url} type="product" structuredData={{ "@context": "https://schema.org", "@type": "Product", name: product.name, image: [product.image_url], description: product.description, sku: String(product.id), brand: { "@type": "Brand", name: "Virtuosa" }, offers: { "@type": "Offer", priceCurrency: "COP", price: Number(product.price), availability: Number(product.stock) > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock", url: `${window.location.origin}/VirtuosaCrud/producto/${product.id}` } }} /> : null}
             <Header />
             <Home />
             <main>

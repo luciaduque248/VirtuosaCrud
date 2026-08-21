@@ -6,6 +6,7 @@ import Home from "../components/home/home";
 import Footer from "../components/footer/footer";
 import apiClient from "../services/apiClient";
 import { useFavorites } from "../context/FavoritesContext";
+import Seo from "../components/seo/Seo";
 import "../components/assets/css/Catalog.css";
 import "../components/assets/css/FavoriteControls.css";
 
@@ -65,6 +66,7 @@ function Catalog() {
 
     return (
         <div className="catalog-page">
+            <Seo title="Tienda de moda y belleza" description="Explora el catálogo de moda, maquillaje y cuidado personal de Virtuosa en Colombia." />
             <Header />
             <Home />
             <main>

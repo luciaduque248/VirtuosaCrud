@@ -28,6 +28,7 @@ function Footer() {
                     <Link to="/VirtuosaCrud/maquillaje">Maquillaje</Link>
                     <Link to="/VirtuosaCrud/carrito">Tu carrito</Link>
                     <Link to="/VirtuosaCrud/seguimiento">Seguir mi pedido</Link>
+                    <Link to="/VirtuosaCrud/politicas">Envíos, cambios y privacidad</Link>
                     <Link to="/VirtuosaCrud/login">Administración</Link>
                 </section>
                 <section className="footer-column footer-newsletter">
