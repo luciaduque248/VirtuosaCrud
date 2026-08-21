@@ -24,6 +24,7 @@ import Piel from "../pages/maquillaje/cuidadoPiel/Piel";
 import Rostro from "../pages/maquillaje/rostro/Rostro";
 
 import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
 
 import TipsM from "../pages/TipsM";
 import TipsR from "../pages/TipsR";
@@ -34,6 +35,7 @@ import ProtectedRoute from "../components/auth/ProtectedRoute";
 
 import InicioAdmin from "../components/Admin/InicioAdmin";
 import AdmVS from "../components/Admin/AdmVS";
+import AdminOrdersPage from "../components/Admin/orders/AdminOrdersPage";
 
 import FormVestido from "../components/Admin/vestidos/FormVestido";
 
@@ -154,6 +156,11 @@ function AppRoutes() {
                 />
 
                 <Route
+                    path="/VirtuosaCrud/checkout"
+                    element={<Checkout />}
+                />
+
+                <Route
                     path="/VirtuosaCrud/login"
                     element={<Login />}
                 />
@@ -168,6 +175,11 @@ function AppRoutes() {
                     <Route
                         path="/VirtuosaCrud/admin"
                         element={<InicioAdmin />}
+                    />
+
+                    <Route
+                        path="/VirtuosaCrud/admin/pedidos"
+                        element={<AdminOrdersPage />}
                     />
 
                     <Route
