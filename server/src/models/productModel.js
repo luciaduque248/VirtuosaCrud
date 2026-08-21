@@ -254,13 +254,19 @@ const update = async (
 };
 
 /* =========================================================
-   DELETE
+   SOFT DELETE
 ========================================================= */
 
 const remove = async (id) => {
   const query = `
-    DELETE FROM products
-    WHERE id = $1
+    UPDATE products
+
+    SET active = FALSE
+
+    WHERE
+      id = $1
+      AND active = TRUE
+
     RETURNING *;
   `;
 
