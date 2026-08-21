@@ -147,6 +147,10 @@ CREATE TABLE IF NOT EXISTS order_items (
         ON DELETE SET NULL
 );
 
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS stripe_session_id VARCHAR(255);
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS payment_reference VARCHAR(255);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_orders_stripe_session ON orders(stripe_session_id) WHERE stripe_session_id IS NOT NULL;
+
 CREATE TABLE IF NOT EXISTS audit_logs (
     id BIGSERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
