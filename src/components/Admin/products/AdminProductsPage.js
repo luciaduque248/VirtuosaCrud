@@ -49,6 +49,20 @@ function AdminProductsPage({
         setSelectedProduct,
     ] = useState(null);
 
+    const [
+        viewMode,
+        setViewMode,
+    ] = useState(() =>
+        window.localStorage.getItem("adminProductsView") === "list"
+            ? "list"
+            : "grid"
+    );
+
+    const changeViewMode = (mode) => {
+        setViewMode(mode);
+        window.localStorage.setItem("adminProductsView", mode);
+    };
+
     /* =========================================================
        CARGAR
     ========================================================= */
@@ -249,6 +263,41 @@ function AdminProductsPage({
                     </section>
                 )}
 
+            {!loading && !error && products.length > 0 && (
+                <section className="admin-products-toolbar">
+                    <p>
+                        Mostrando {products.length}{" "}
+                        {products.length === 1 ? "producto" : "productos"}
+                    </p>
+
+                    <div
+                        className="admin-products-view-switcher"
+                        role="group"
+                        aria-label="Cambiar vista de productos"
+                    >
+                        <button
+                            type="button"
+                            className={viewMode === "grid" ? "active" : ""}
+                            aria-pressed={viewMode === "grid"}
+                            onClick={() => changeViewMode("grid")}
+                        >
+                            <i className="fa-solid fa-grip" aria-hidden="true" />
+                            Tarjetas
+                        </button>
+
+                        <button
+                            type="button"
+                            className={viewMode === "list" ? "active" : ""}
+                            aria-pressed={viewMode === "list"}
+                            onClick={() => changeViewMode("list")}
+                        >
+                            <i className="fa-solid fa-list" aria-hidden="true" />
+                            Lista
+                        </button>
+                    </div>
+                </section>
+            )}
+
             {/* LOADING */}
 
             {loading && (
@@ -331,7 +380,7 @@ function AdminProductsPage({
                 !error &&
                 products.length >
                 0 && (
-                    <main className="admin-products-grid">
+                    <main className={`admin-products-grid admin-products-${viewMode}`}>
                         {products.map(
                             (
                                 product
