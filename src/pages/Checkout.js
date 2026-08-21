@@ -327,6 +327,7 @@ function Checkout() {
 
                 <div className="checkout-layout">
                     <form
+                        id="checkout-form"
                         className="checkout-form"
                         onSubmit={
                             handleSubmit
@@ -684,13 +685,10 @@ function Checkout() {
 
                         <button
                             type="submit"
-                            form=""
+                            form="checkout-form"
                             className="checkout-submit checkout-submit-desktop"
                             disabled={
                                 loading
-                            }
-                            onClick={
-                                handleSubmit
                             }
                         >
                             {loading
