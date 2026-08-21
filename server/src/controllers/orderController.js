@@ -167,7 +167,7 @@ const normalizeItems = (
             );
         }
 
-        let size =
+        const size =
             rawItem?.size
                 ? String(
                     rawItem.size
@@ -255,6 +255,50 @@ const buildReference = () => {
     return `VIR-${date}-${random}`;
 };
 
+const respondKnownError = (
+    error,
+    res
+) => {
+    if (
+        !error?.statusCode
+    ) {
+        return false;
+    }
+
+    res.status(
+        error.statusCode
+    ).json({
+        success: false,
+        message:
+            error.message,
+    });
+
+    return true;
+};
+
+const rollbackSafely =
+    async (
+        client,
+        context
+    ) => {
+        if (!client) {
+            return;
+        }
+
+        try {
+            await client.query(
+                "ROLLBACK"
+            );
+        } catch (
+            rollbackError
+        ) {
+            console.error(
+                `Error haciendo rollback ${context}:`,
+                rollbackError
+            );
+        }
+    };
+
 /* =========================================================
    CREATE ORDER - PUBLIC CHECKOUT
 ========================================================= */
@@ -265,8 +309,7 @@ const createOrder =
         res,
         next
     ) => {
-        const client =
-            await pool.connect();
+        let client = null;
 
         try {
             const customerName =
@@ -370,6 +413,9 @@ const createOrder =
                 normalizeItems(
                     req.body?.items
                 );
+
+            client =
+                await pool.connect();
 
             await client.query(
                 "BEGIN"
@@ -483,11 +529,6 @@ const createOrder =
                     )
                 );
 
-            /*
-              El cálculo de envío se incorporará como regla de negocio
-              separada. Por ahora el pedido registra envío en cero y
-              el total corresponde al valor confirmado de productos.
-            */
             const shippingCost =
                 0;
 
@@ -580,36 +621,25 @@ const createOrder =
                 },
             });
         } catch (error) {
-            try {
-                await client.query(
-                    "ROLLBACK"
-                );
-            } catch (
-                rollbackError
-            ) {
-                console.error(
-                    "Error haciendo rollback del pedido:",
-                    rollbackError
-                );
-            }
+            await rollbackSafely(
+                client,
+                "del pedido"
+            );
 
             if (
-                error.statusCode
+                respondKnownError(
+                    error,
+                    res
+                )
             ) {
-                return res
-                    .status(
-                        error.statusCode
-                    )
-                    .json({
-                        success: false,
-                        message:
-                            error.message,
-                    });
+                return;
             }
 
             next(error);
         } finally {
-            client.release();
+            if (client) {
+                client.release();
+            }
         }
     };
 
@@ -739,8 +769,7 @@ const updateOrderStatus =
         res,
         next
     ) => {
-        const client =
-            await pool.connect();
+        let client = null;
 
         try {
             const id =
@@ -775,6 +804,9 @@ const updateOrderStatus =
                     "El estado indicado no es válido."
                 );
             }
+
+            client =
+                await pool.connect();
 
             await client.query(
                 "BEGIN"
@@ -866,36 +898,25 @@ const updateOrderStatus =
                     updated,
             });
         } catch (error) {
-            try {
-                await client.query(
-                    "ROLLBACK"
-                );
-            } catch (
-                rollbackError
-            ) {
-                console.error(
-                    "Error haciendo rollback del estado del pedido:",
-                    rollbackError
-                );
-            }
+            await rollbackSafely(
+                client,
+                "del estado del pedido"
+            );
 
             if (
-                error.statusCode
+                respondKnownError(
+                    error,
+                    res
+                )
             ) {
-                return res
-                    .status(
-                        error.statusCode
-                    )
-                    .json({
-                        success: false,
-                        message:
-                            error.message,
-                    });
+                return;
             }
 
             next(error);
         } finally {
-            client.release();
+            if (client) {
+                client.release();
+            }
         }
     };
 
