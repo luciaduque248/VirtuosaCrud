@@ -1,143 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-*{
-    padding: 0;
-    margin: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
-}
-:root{
-    --c1-color: #d0c6e3;
-    --c2-color: #aa95c7;
-    --c3-color: #621ced;
-    --c4-color: #d6eefd;
-    --c5-color: #19191a;
-    --c6-color: #ef594c;
-    --c7-color: #d6ceff;
-    --c8-color: #f29778;
-    --c9-color: #f5f5f5;
-    
-}
-    
-/* font-family: 'Bebas Neue', cursive; */
+.contenido { display: grid; gap: 10px; padding: 10px; background: #f5f1f6; }
+.maquillaje-inicio, .ropa { min-height: clamp(360px,58vw,690px); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(28px,7vw,90px); background-position: center; background-size: cover; background-repeat: no-repeat; }
+.maquillaje-inicio { background-image: linear-gradient(90deg,rgba(35,25,40,.48),rgba(35,25,40,.02)),url(../img/makeupIndex.svg); }
+.ropa { background-image: linear-gradient(90deg,rgba(35,25,40,.48),rgba(35,25,40,.02)),url(../img/ropaIndex.svg); }
+.maquillaje-inicio h1, .ropa h1 { max-width: 650px; margin: 0; padding-left: clamp(16px,3vw,32px); border-left: 7px solid rgba(255,255,255,.92); color: white; font-family: "Bebas Neue",sans-serif; font-size: clamp(48px,8vw,104px); font-weight: 400; line-height: .92; text-shadow: 0 4px 20px rgba(30,20,35,.35); }
+.maquillaje-inicio button, .ropa button { margin: 28px 0 0 clamp(23px,3vw,39px); padding: 0; border: 0; border-radius: 999px; background: white; box-shadow: 0 8px 25px rgba(30,20,35,.16); }
+.maquillaje-inicio button a, .ropa button a { min-height: 45px; display: inline-flex; align-items: center; padding: 0 24px; color: #4b4050; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.rosa { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; padding: 0; background: #d8c9d1; }
+.rosa .rose { min-height: 115px; display: flex; align-items: center; justify-content: center; gap: 15px; padding: 22px; background: #e5c4c6; color: #352f38; }
+.iconoRose { font-size: 25px; color: #765f8e; }
+.contentRose h3, .contentRose h4, .contentRose p { margin: 0; font-size: 12px; line-height: 1.5; }
+.contentRose h3 { font-weight: 700; letter-spacing: .7px; }
+.contentRose h4, .contentRose p { font-weight: 400; }
 
-body{
-    
-    font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
+@media (max-width: 800px) {
+    .rosa { grid-template-columns: repeat(2,1fr); }
 }
 
-
-/* ::::::::::::::::::::::::::::::::::::::::: BODY ::::::::::::::::::::::::::::::::::::::::: */
-
-
-.maquillaje-inicio{
-    background-image: url(../img/makeupIndex.svg);
-    background-size: cover;
-    padding-top: 3rem;
-    padding-left: 3rem;
- 
-}
-
-.maquillaje-inicio h1, .ropa h1{
-    font-family: 'Bebas Neue';
-    text-shadow: 3px 3px 2px rgba(46, 45, 45, 0.452);
-    box-shadow: -2px 0px rgba(46, 45, 45, 0.356);
-    border-left: 10px solid white;
-    padding-top: 1rem;
-    padding-left: 2rem;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 7vw;
-    width: 500px;
-    color: white;
-    font-weight: 400;
-}
-
-.maquillaje-inicio button, .ropa button{
-    border-radius: 8px;
-    padding: 0.5rem 1rem;
-    
-    left: 1.5rem;
-    margin: 1rem;
-    border: 1px solid var(--c1-color);
-}
-
-.maquillaje-inicio button a{
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    color: black;
-    
-}
-
-.ropa{
-    margin-top: 10px;
-    background-image: url(../img/ropaIndex.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding-top: 3rem;
-    padding-left: 3rem;
-}
-
-.ropa h1{
-    top: 10%;
-    left: 58%;
-}
-
-
-
-.ropa button a{
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    color: black;
-}
-
-
-
-.rosa{
-    background-color: var(--c8-color);
-    display: flex;
-    justify-content: space-around;
-    padding:  0;
-    padding: 1rem; 
-}
-
-.rosa .rose{
-    display: flex;
-    flex-direction: row;
-    color: #19191a;
-}
-
-.iconoRose{
-    color: #19191a;
-    font-size: 2vw;
-}
-.contentRose p{
-    font-size: 1.3vw;
-}
-.contentRose h3, h4{
-    font-size: 1.5vw;
-   
-}
-
-/*--------------------- | RESOLUCIÓN TABLETA | ---------------------*/
-@media screen and (min-width: 768px) {
-    
-
-}
-/*--------------------- | RESOLUCIÓN MEDIA | ---------------------*/
-@media screen and (min-width: 1024px) {
-
-    .iconoRose{
-        visibility: visible;
-        align-self: center;
-        margin:1rem;
-    }
-    
-}
-
-/*--------------------- | RESOLUCIÓN MACRO | ---------------------*/
-@media screen and (min-width: 1200px) {
-    
-
+@media (max-width: 520px) {
+    .contenido { gap: 6px; padding: 6px; }
+    .maquillaje-inicio, .ropa { min-height: 440px; justify-content: flex-end; padding: 34px 22px; background-position: 58% center; }
+    .maquillaje-inicio h1, .ropa h1 { font-size: clamp(46px,16vw,72px); }
+    .maquillaje-inicio button, .ropa button { margin-top: 22px; }
+    .rosa { grid-template-columns: 1fr; }
+    .rosa .rose { min-height: 90px; justify-content: flex-start; padding-left: max(28px,12vw); }
 }
