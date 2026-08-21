@@ -2,6 +2,7 @@ const crypto = require("crypto");
 
 const pool = require("../config/db");
 const Order = require("../models/orderModel");
+const { sendOrderConfirmation, sendOrderStatus } = require("../services/emailService");
 
 const VALID_STATUSES = new Set([
     "pending",
@@ -620,6 +621,7 @@ const createOrder =
                         createdItems,
                 },
             });
+            sendOrderConfirmation(order).catch((emailError) => console.error("Correo de pedido no enviado:", emailError.message));
         } catch (error) {
             await rollbackSafely(
                 client,
@@ -914,6 +916,7 @@ const updateOrderStatus =
                 data:
                     updated,
             });
+            sendOrderStatus(updated).catch((emailError) => console.error("Correo de estado no enviado:", emailError.message));
         } catch (error) {
             await rollbackSafely(
                 client,

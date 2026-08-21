@@ -35,6 +35,7 @@ import TipsM from "../pages/TipsM";
 import TipsR from "../pages/TipsR";
 
 import Login from "../pages/Login";
+import PasswordRecovery from "../pages/PasswordRecovery";
 
 import ProtectedRoute from "../components/auth/ProtectedRoute";
 import ScrollManager from "../components/navigation/ScrollManager";
@@ -196,6 +197,8 @@ function AppRoutes() {
                     path="/VirtuosaCrud/login"
                     element={<Login />}
                 />
+
+                <Route path="/VirtuosaCrud/recuperar-clave" element={<PasswordRecovery />} />
 
                 {/* =================================================
             PROTECTED ADMIN

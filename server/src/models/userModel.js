@@ -58,8 +58,20 @@ const findById =
         return result.rows[0];
     };
 
+const saveResetToken = async (userId, tokenHash, expiresAt) => {
+    await pool.query("DELETE FROM password_reset_tokens WHERE user_id = $1", [userId]);
+    await pool.query("INSERT INTO password_reset_tokens (user_id, token_hash, expires_at) VALUES ($1, $2, $3)", [userId, tokenHash, expiresAt]);
+};
+
+const resetPassword = async (tokenHash, passwordHash) => {
+    const result = await pool.query(`WITH valid_token AS (DELETE FROM password_reset_tokens WHERE token_hash = $1 AND expires_at > NOW() RETURNING user_id) UPDATE users SET password_hash = $2 WHERE id = (SELECT user_id FROM valid_token) RETURNING id`, [tokenHash, passwordHash]);
+    return result.rows[0] || null;
+};
+
 
 module.exports = {
     findByEmail,
     findById,
+    saveResetToken,
+    resetPassword,
 };

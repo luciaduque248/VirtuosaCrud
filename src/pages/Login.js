@@ -114,6 +114,8 @@ function Login() {
                         {loading ? null : <i className="fa-solid fa-arrow-right" aria-hidden="true" />}
                     </button>
 
+                    <Link className="login-recovery-link" to="/VirtuosaCrud/recuperar-clave">¿Olvidaste tu contraseña?</Link>
+
                     <p className="login-security">
                         <i className="fa-solid fa-shield-halved" aria-hidden="true" />
                         Conexión protegida. Solo personal autorizado.

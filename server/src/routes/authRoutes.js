@@ -7,6 +7,8 @@ const rateLimit =
 const {
     login,
     me,
+    requestPasswordReset,
+    resetPassword,
 } =
     require("../controllers/authController");
 
@@ -57,6 +59,9 @@ router.get(
     requireAuth,
     me
 );
+
+router.post("/forgot-password", loginLimiter, requestPasswordReset);
+router.post("/reset-password", loginLimiter, resetPassword);
 
 
 module.exports =
