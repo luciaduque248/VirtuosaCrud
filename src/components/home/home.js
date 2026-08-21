@@ -42,6 +42,7 @@ function Home() {
 
                 <div id="main-navigation" className={`nav-links ${menuOpen ? "is-open" : ""}`}>
                     <NavLink end className={navClassName} to="/VirtuosaCrud/">Inicio</NavLink>
+                    <NavLink className={navClassName} to="/VirtuosaCrud/productos">Tienda</NavLink>
                     {navGroups.map(({ label, path, children }) => (
                         <div className={`nav-group ${openGroup === label ? "is-expanded" : ""}`} key={path}>
                             <div className="nav-group-heading">

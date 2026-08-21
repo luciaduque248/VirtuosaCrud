@@ -13,6 +13,8 @@ import Moda from "../pages/Moda";
 import Nosotros from "../pages/Nosotros";
 import Tips from "../pages/Tips";
 import Contacto from "../pages/Contacto";
+import Catalog from "../pages/Catalog";
+import ProductDetail from "../pages/ProductDetail";
 
 import Descuentos from "../pages/ropa/DescuentosRS";
 import Tendencias from "../pages/ropa/TendenciasRS";
@@ -95,6 +97,16 @@ function AppRoutes() {
                 <Route
                     path="/VirtuosaCrud/tips"
                     element={<Tips />}
+                />
+
+                <Route
+                    path="/VirtuosaCrud/productos"
+                    element={<Catalog />}
+                />
+
+                <Route
+                    path="/VirtuosaCrud/producto/:id"
+                    element={<ProductDetail />}
                 />
 
                 <Route
