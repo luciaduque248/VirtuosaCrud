@@ -32,6 +32,7 @@ import TipsR from "../pages/TipsR";
 import Login from "../pages/Login";
 
 import ProtectedRoute from "../components/auth/ProtectedRoute";
+import ScrollManager from "../components/navigation/ScrollManager";
 
 import InicioAdmin from "../components/Admin/InicioAdmin";
 import AdmVS from "../components/Admin/AdmVS";
@@ -60,6 +61,7 @@ import FormPiel from "../components/Admin/maquillaje/cuidadodelapiel/FormPiel";
 function AppRoutes() {
     return (
         <BrowserRouter>
+            <ScrollManager />
             <Routes>
                 {/* =================================================
             PUBLIC
