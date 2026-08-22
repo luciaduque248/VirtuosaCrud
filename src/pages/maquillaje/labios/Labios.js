@@ -347,13 +347,6 @@ function Labios() {
        CARRITO
     ======================================================= */
 
-    const agregarAlCarrito =
-        () => {
-            setMensajeCarrito(
-                "Producto preparado para el carrito. Implementaremos el carrito completo en una fase posterior."
-            );
-        };
-
     /* =======================================================
        RENDER
     ======================================================= */

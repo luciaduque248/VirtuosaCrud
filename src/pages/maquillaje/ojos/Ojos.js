@@ -302,13 +302,6 @@ function Ojos() {
      CARRITO - PRÓXIMA FASE
   ======================================================= */
 
-  const agregarAlCarrito =
-    () => {
-      setMensajeCarrito(
-        "Producto preparado para el carrito. Implementaremos el carrito completo en la siguiente fase."
-      );
-    };
-
   /* =======================================================
      RENDER
   ======================================================= */

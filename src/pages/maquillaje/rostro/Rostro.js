@@ -315,13 +315,6 @@ function Rostro() {
       setMensajeCarrito("");
     };
 
-  const agregarAlCarrito =
-    () => {
-      setMensajeCarrito(
-        "Producto preparado para el carrito. El carrito completo se integrará posteriormente."
-      );
-    };
-
   return (
     <div className="rostro-page">
       <Header />

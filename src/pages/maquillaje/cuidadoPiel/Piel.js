@@ -341,13 +341,6 @@ function Piel() {
      CARRITO
   ======================================================= */
 
-  const agregarAlCarrito =
-    () => {
-      setMensajeCarrito(
-        "Producto preparado para el carrito. La funcionalidad completa del carrito se implementará posteriormente."
-      );
-    };
-
   /* =======================================================
      RENDER
   ======================================================= */

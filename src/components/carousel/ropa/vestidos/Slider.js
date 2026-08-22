@@ -58,7 +58,7 @@ function SliderCarousel({ carousel }) {
                                 </div>;
 
                             default:
-                                break;
+                                return null;
                         }
                     })
                 }
