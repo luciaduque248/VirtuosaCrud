@@ -2,6 +2,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": "build",
   "framework": "create-react-app",
+  "redirects": [
+    { "source": "/", "destination": "/VirtuosaCrud/", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/VirtuosaCrud/:path*", "destination": "/index.html" }
   ]
