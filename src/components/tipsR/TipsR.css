@@ -7,7 +7,7 @@
 .guide-hero a { display:inline-flex; gap:12px; align-items:center; margin-top:34px; padding-bottom:7px; border-bottom:1px solid; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
 .guide-hero-image { position:relative; min-height:700px; background:linear-gradient(180deg,transparent 55%,rgba(25,20,26,.32)),url(../assets/img/tips/TipsRopa.png) center 28%/cover no-repeat; }
 .guide-hero-image span { position:absolute; right:35px; bottom:15px; color:#fff; font:italic 400 clamp(100px,12vw,190px)/1 Georgia,serif; letter-spacing:-8px; }
-.guide-intro { width:min(1160px,calc(100% - 48px)); display:grid; grid-template-columns:1.2fr .8fr; align-items:end; gap:80px; padding:clamp(100px,12vw,170px) 0 70px; margin:auto; }
+.guide-intro { width:min(1160px,calc(100% - 48px)); display:grid; grid-template-columns:1.2fr .8fr; align-items:flex-end; gap:80px; padding:clamp(100px,12vw,170px) 0 70px; margin:auto; }
 .guide-intro h2 { margin:14px 0 0; font:400 clamp(52px,5.4vw,82px)/.98 Georgia,serif; letter-spacing:-2.5px; }
 .guide-intro>p { max-width:430px; margin:0; color:#706970; font-size:16px; line-height:1.8; }
 .guide-feature { min-height:670px; display:grid; grid-template-columns:1.1fr .9fr; margin:0 10px 10px; background:#ede5dc; }

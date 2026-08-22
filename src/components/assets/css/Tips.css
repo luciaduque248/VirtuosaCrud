@@ -8,7 +8,7 @@
 .tips-hero-copy a,.tips-edition-copy > a { display: inline-flex; align-items: center; gap: 12px; margin-top: 34px; padding-bottom: 7px; border-bottom: 1px solid currentColor; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
 .tips-hero-art { position: relative; min-height: 680px; background-image: linear-gradient(180deg,rgba(31,26,32,.05),rgba(31,26,32,.35)),url(../img/tips/imgMakeupp.png); background-position: center; background-size: cover; }
 .tips-hero-art > span { position: absolute; right: 34px; bottom: 30px; color: #fff; font-family: Georgia,"Times New Roman",serif; font-size: clamp(68px,8vw,130px); font-style: italic; line-height: .78; text-align: right; letter-spacing: -5px; }
-.tips-intro { width: min(1160px,calc(100% - 48px)); display: grid; grid-template-columns: minmax(0,1.4fr) minmax(260px,.6fr); align-items: end; gap: 70px; margin: 0 auto; padding: clamp(100px,12vw,175px) 0 65px; }
+.tips-intro { width: min(1160px,calc(100% - 48px)); display: grid; grid-template-columns: minmax(0,1.4fr) minmax(260px,.6fr); align-items: flex-end; gap: 70px; margin: 0 auto; padding: clamp(100px,12vw,175px) 0 65px; }
 .tips-intro > span { grid-column: 1/-1; margin-bottom: -54px; }
 .tips-intro h2 { margin: 0; font-family: Georgia,"Times New Roman",serif; font-size: clamp(45px,5vw,76px); font-weight: 400; line-height: 1.03; letter-spacing: -2px; }
 .tips-intro p { margin: 0; color: #706970; font-size: 15px; line-height: 1.8; }

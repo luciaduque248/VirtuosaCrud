@@ -8,7 +8,7 @@
 .fashion-hero-copy p { max-width: 490px; margin: 0; color: #686269; font-size: 16px; line-height: 1.75; }
 .fashion-hero-copy a,.fashion-story-copy > a,.fashion-note > a { display: inline-flex; align-items: center; gap: 12px; margin-top: 34px; padding-bottom: 7px; border-bottom: 1px solid currentColor; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
 .fashion-hero-mark { position: absolute; right: -25px; bottom: -42px; color: rgba(107,86,113,.1); font-family: Georgia,serif; font-size: 230px; line-height: 1; pointer-events: none; }
-.fashion-intro { width: min(1160px,calc(100% - 48px)); display: grid; grid-template-columns: minmax(0,1.4fr) minmax(280px,.6fr); align-items: end; gap: 80px; margin: 0 auto; padding: clamp(100px,12vw,175px) 0 70px; }
+.fashion-intro { width: min(1160px,calc(100% - 48px)); display: grid; grid-template-columns: minmax(0,1.4fr) minmax(280px,.6fr); align-items: flex-end; gap: 80px; margin: 0 auto; padding: clamp(100px,12vw,175px) 0 70px; }
 .fashion-intro > span { grid-column: 1/-1; margin-bottom: -57px; }
 .fashion-intro h2 { max-width: 800px; margin: 0; font-family: Georgia,"Times New Roman",serif; font-size: clamp(44px,5vw,76px); font-weight: 400; line-height: 1.02; letter-spacing: -2px; }
 .fashion-intro p { margin: 0; color: #716b72; font-size: 15px; line-height: 1.8; }

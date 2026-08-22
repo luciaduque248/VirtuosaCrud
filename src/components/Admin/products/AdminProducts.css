@@ -294,7 +294,7 @@
 .admin-products-list .admin-product-content h2 { grid-area: title; }
 .admin-products-list .admin-product-content>p { grid-area: description; min-height: 0; margin-bottom: 0; }
 .admin-products-list .admin-product-meta { grid-area: meta; width: 100%; margin: 0; }
-.admin-products-list .admin-product-actions { grid-area: actions; width: 100%; align-self: end; }
+.admin-products-list .admin-product-actions { grid-area: actions; width: 100%; align-self: flex-end; }
 
 .admin-products-status {
     width: min(850px, calc(100% - 40px));
