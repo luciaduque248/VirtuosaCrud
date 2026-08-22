@@ -22,6 +22,18 @@ const formatDate = (value) => new Intl.DateTimeFormat("es-CO", {
     timeStyle: "short",
 }).format(new Date(value));
 
+const orderStatusLabels = {
+    pending: "Recibido",
+    confirmed: "Confirmado",
+    preparing: "Preparando",
+    shipped: "En camino",
+    delivered: "Entregado",
+    cancelled: "Cancelado",
+};
+
+const getOrderStatusLabel = (status) =>
+    orderStatusLabels[status] || "Estado pendiente";
+
 function AdminProductBuyersModal({ details, loading, error, onClose }) {
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -143,7 +155,12 @@ function AdminProductBuyersModal({ details, loading, error, onClose }) {
                                                 <strong>{buyer.customer_name}</strong>
                                                 <span>Pedido {buyer.reference}</span>
                                             </div>
-                                            <span className="admin-buyer-paid">Pago confirmado</span>
+                                            <div className="admin-buyer-statuses">
+                                                <span className="admin-buyer-paid">Pago confirmado</span>
+                                                <span className={`admin-buyer-order-status status-${buyer.status}`}>
+                                                    Pedido: {getOrderStatusLabel(buyer.status)}
+                                                </span>
+                                            </div>
                                         </div>
 
                                         <div className="admin-buyer-contact">

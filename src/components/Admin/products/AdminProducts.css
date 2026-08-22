@@ -500,13 +500,31 @@ body.admin-modal-open { overflow: hidden; }
 .admin-buyer-heading strong { color: #302a34; font-size: 14px; }
 .admin-buyer-heading span { color: #837a87; font-size: 10px; }
 
-.admin-buyer-paid {
+.admin-buyer-statuses {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.admin-buyer-paid,
+.admin-buyer-order-status {
     padding: 7px 10px;
     border-radius: 999px;
-    background: #e8f6ed;
-    color: #287342 !important;
+    font-size: 9px !important;
     font-weight: 800;
+    white-space: nowrap;
 }
+
+.admin-buyer-paid { background: #e8f6ed; color: #287342 !important; }
+.admin-buyer-order-status { background: #f0ebf3; color: #654e76 !important; }
+.admin-buyer-order-status.status-pending { background: #fff4dc; color: #8a651c !important; }
+.admin-buyer-order-status.status-confirmed { background: #e9efff; color: #3559a4 !important; }
+.admin-buyer-order-status.status-preparing { background: #f1e9fa; color: #6e4791 !important; }
+.admin-buyer-order-status.status-shipped { background: #e5f4f7; color: #226a78 !important; }
+.admin-buyer-order-status.status-delivered { background: #e5f6eb; color: #267040 !important; }
+.admin-buyer-order-status.status-cancelled { background: #fbe8ec; color: #a13e53 !important; }
 
 .admin-buyer-contact {
     display: grid;
@@ -991,7 +1009,7 @@ body.admin-modal-open { overflow: hidden; }
     .admin-buyers-summary { grid-template-columns: 1fr; gap: 8px; }
     .admin-buyers-section-heading { align-items: flex-start; flex-direction: column; gap: 7px; }
     .admin-buyer-heading { grid-template-columns: auto minmax(0, 1fr); }
-    .admin-buyer-paid { grid-column: 1 / -1; justify-self: start; }
+    .admin-buyer-statuses { grid-column: 1 / -1; justify-content: flex-start; }
     .admin-buyer-contact { grid-template-columns: 1fr; }
     .admin-buyer-contact span:last-child { grid-column: auto; }
     .admin-buyer-purchase { align-items: flex-start; flex-direction: column; gap: 8px; }
