@@ -2,10 +2,16 @@
   "buildCommand": "npm run build",
   "outputDirectory": "build",
   "framework": "create-react-app",
+  "functions": {
+    "api/index.js": {
+      "maxDuration": 60
+    }
+  },
   "redirects": [
     { "source": "/", "destination": "/VirtuosaCrud/", "permanent": false }
   ],
   "rewrites": [
+    { "source": "/api/:path*", "destination": "/api" },
     { "source": "/VirtuosaCrud/:path*", "destination": "/index.html" }
   ]
 }

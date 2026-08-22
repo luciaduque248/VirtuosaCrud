@@ -40,11 +40,9 @@ const PORT =
 if (
   !process.env.JWT_SECRET
 ) {
-  console.error(
-    "❌ JWT_SECRET no está configurado."
+  throw new Error(
+    "JWT_SECRET no está configurado."
   );
-
-  process.exit(1);
 }
 
 
@@ -245,11 +243,15 @@ app.use(
    SERVER
 ========================================================= */
 
-app.listen(
-  PORT,
-  () => {
-    console.log(
-      `🚀 Virtuosa API running on http://localhost:${PORT}`
-    );
-  }
-);
+if (require.main === module) {
+  app.listen(
+    PORT,
+    () => {
+      console.log(
+        `🚀 Virtuosa API running on http://localhost:${PORT}`
+      );
+    }
+  );
+}
+
+module.exports = app;

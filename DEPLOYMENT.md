@@ -1,33 +1,39 @@
 # Despliegue de Virtuosa
 
-## Arquitectura recomendada
+## Arquitectura
 
-- Frontend: Vercel, usando `vercel.json`.
-- API y PostgreSQL: Render, usando `render.yaml` y `server/Dockerfile`.
+- Frontend y API Express: Vercel, usando `vercel.json` y `api/index.js`.
+- PostgreSQL: Supabase mediante Shared Pooler (puerto 6543).
 - Correos: Resend.
 - Pagos: Mercado Pago Checkout Pro.
 
-## API y base de datos
+## Base de datos y API en Vercel
 
-1. En Render, crea un Blueprint desde este repositorio.
-2. Completa `CLIENT_URL` y `CLIENT_URLS` con la URL pública del frontend.
-3. Agrega `RESEND_API_KEY`, `EMAIL_FROM`, `MERCADO_PAGO_ACCESS_TOKEN` y `MERCADO_PAGO_WEBHOOK_SECRET` como secretos.
-4. El arranque ejecuta el esquema idempotente antes de iniciar la API.
-5. Crea el administrador con `npm run create-admin` desde la consola privada del servicio.
+Configura estas variables en Vercel para Production, Preview y Development según corresponda:
+
+- `DATABASE_URL`: URI completa del Shared Pooler de Supabase, con la contraseña reemplazando `[YOUR-PASSWORD]`.
+- `DB_POOL_MAX=5`.
+- `JWT_SECRET`: conserva exactamente el mismo secreto usado por la API anterior para no invalidar sesiones vigentes.
+- `CLIENT_URL=https://virtuosa-crud.vercel.app/VirtuosaCrud`.
+- `CLIENT_URLS=https://virtuosa-crud.vercel.app`.
+- `API_PUBLIC_URL=https://virtuosa-crud.vercel.app`.
+- `RESEND_API_KEY`, `EMAIL_FROM`, `MERCADO_PAGO_ACCESS_TOKEN` y `MERCADO_PAGO_WEBHOOK_SECRET`.
+
+No agregues secretos con el prefijo `REACT_APP_`: Create React App incorpora esas variables dentro del JavaScript público.
 
 ## Frontend
 
 1. Importa el repositorio en Vercel y usa la raíz del proyecto.
-2. Configura `REACT_APP_API_URL=https://TU-API.onrender.com/api`.
+2. Elimina la antigua variable `REACT_APP_API_URL` que apunta a Render. En producción el frontend usa `/api` en el mismo dominio.
 3. Despliega primero como Preview, prueba el flujo completo y luego promuévelo a producción.
 
 ## Webhooks
 
-En Mercado Pago registra `https://TU-API.onrender.com/api/payments/webhook` como URL de Webhooks y activa el evento de pagos. Copia la firma secreta en `MERCADO_PAGO_WEBHOOK_SECRET`.
+En Mercado Pago registra `https://virtuosa-crud.vercel.app/api/payments/webhook` como URL de Webhooks y activa el evento de pagos. Copia la firma secreta en `MERCADO_PAGO_WEBHOOK_SECRET`.
 
 ## Antes de producción
 
 - Ejecuta `npm run build` en la raíz.
 - Ejecuta `npm test` dentro de `server`.
-- Ejecuta `npm run backup` dentro de `server` antes de migraciones importantes.
+- Conserva un respaldo externo antes de migraciones importantes.
 - Nunca subas archivos `.env`, respaldos ni claves privadas al repositorio.
