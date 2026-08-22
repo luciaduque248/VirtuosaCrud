@@ -155,7 +155,7 @@ function Checkout() {
                     );
                 }
 
-                if (form.paymentMethod === "stripe") {
+                if (form.paymentMethod === "mercado_pago") {
                     clearCart();
                     try {
                         const paymentResponse = await apiClient.post("/payments/checkout", { reference: order.reference, email: form.customerEmail.trim() });
@@ -579,7 +579,7 @@ function Checkout() {
                                     <option value="bank_transfer">
                                         Transferencia bancaria — por confirmar
                                     </option>
-                                    <option value="stripe">Pago en línea seguro</option>
+                                    <option value="mercado_pago">Mercado Pago — pago en línea</option>
                                 </select>
                             </div>
 
@@ -587,7 +587,7 @@ function Checkout() {
                                 <i className="fa-solid fa-shield-halved" />
 
                                 <p>
-                                    {form.paymentMethod === "stripe" ? "Serás dirigido a Stripe para completar el pago de forma segura. Virtuosa no almacena los datos de tu tarjeta." : "El estado inicial del pago será pendiente hasta su confirmación."}
+                                    {form.paymentMethod === "mercado_pago" ? "Serás dirigido a Mercado Pago para completar el pago de forma segura. Virtuosa no almacena los datos de tu tarjeta." : "El estado inicial del pago será pendiente hasta su confirmación."}
                                 </p>
                             </div>
                         </section>

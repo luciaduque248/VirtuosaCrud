@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS orders (
         ),
 
     payment_method VARCHAR(50) NOT NULL DEFAULT 'pending',
-    stripe_session_id VARCHAR(255) UNIQUE,
+    mercado_pago_preference_id VARCHAR(255) UNIQUE,
     payment_reference VARCHAR(255),
 
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -147,9 +147,9 @@ CREATE TABLE IF NOT EXISTS order_items (
         ON DELETE SET NULL
 );
 
-ALTER TABLE orders ADD COLUMN IF NOT EXISTS stripe_session_id VARCHAR(255);
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS mercado_pago_preference_id VARCHAR(255);
 ALTER TABLE orders ADD COLUMN IF NOT EXISTS payment_reference VARCHAR(255);
-CREATE UNIQUE INDEX IF NOT EXISTS idx_orders_stripe_session ON orders(stripe_session_id) WHERE stripe_session_id IS NOT NULL;
+CREATE UNIQUE INDEX IF NOT EXISTS idx_orders_mercado_pago_preference ON orders(mercado_pago_preference_id) WHERE mercado_pago_preference_id IS NOT NULL;
 
 CREATE TABLE IF NOT EXISTS audit_logs (
     id BIGSERIAL PRIMARY KEY,

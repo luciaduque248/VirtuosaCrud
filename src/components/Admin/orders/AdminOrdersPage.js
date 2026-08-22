@@ -44,7 +44,8 @@ const PAYMENT_LABELS = {
 const PAYMENT_METHOD_LABELS = {
     cash_on_delivery: "Contra entrega",
     bank_transfer: "Transferencia",
-    stripe: "Pago en línea",
+    mercado_pago: "Mercado Pago",
+    stripe: "Stripe (anterior)",
 };
 
 const NEXT_STATUSES = {

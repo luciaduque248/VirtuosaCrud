@@ -135,7 +135,7 @@ function OrderTracking() {
                                 </article>
                             ))}
                         </div>
-                        {order.payment_method === "stripe" && order.payment_status !== "paid" ? <button className="tracking-pay-button" type="button" onClick={startPayment} disabled={loading}><i className="fa-solid fa-lock" /> Pagar pedido de forma segura</button> : null}
+                        {["mercado_pago", "stripe"].includes(order.payment_method) && order.payment_status !== "paid" ? <button className="tracking-pay-button" type="button" onClick={startPayment} disabled={loading}><i className="fa-solid fa-lock" /> Pagar con Mercado Pago</button> : null}
                         <Link className="tracking-help" to="/VirtuosaCrud/contacto">¿Necesitas ayuda con tu pedido? <span>Contáctanos →</span></Link>
                     </section>
                 ) : null}
