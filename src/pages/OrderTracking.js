@@ -33,6 +33,7 @@ function OrderTracking() {
     const [order, setOrder] = useState(null);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
+    const [paymentNotice, setPaymentNotice] = useState("");
 
     const currentStage = useMemo(
         () => stages.findIndex(([status]) => status === order?.status),
@@ -45,7 +46,25 @@ function OrderTracking() {
         setOrder(null);
         try {
             const response = await apiClient.get("/orders/track", { params: { reference, email } });
-            setOrder(response?.data?.data || null);
+            let trackedOrder = response?.data?.data || null;
+
+            if (
+                trackedOrder
+                && ["mercado_pago", "stripe"].includes(trackedOrder.payment_method)
+                && trackedOrder.payment_status !== "paid"
+            ) {
+                try {
+                    const reconciliation = await apiClient.post("/payments/confirm", { reference, email });
+                    trackedOrder = reconciliation?.data?.data || trackedOrder;
+                    if (trackedOrder.payment_status === "paid") {
+                        setPaymentNotice("¡Pago confirmado! Tu pedido ya está confirmado y comenzará su preparación.");
+                    }
+                } catch (reconciliationError) {
+                    // Es normal que todavía no exista un pago si el cliente apenas consulta el pedido.
+                }
+            }
+
+            setOrder(trackedOrder);
             setSearchParams({ reference, email }, { replace: true });
         } catch (error) {
             setMessage(error?.response?.data?.message || "No pudimos consultar el pedido. Inténtalo nuevamente.");
@@ -76,7 +95,41 @@ function OrderTracking() {
     useEffect(() => {
         const reference = searchParams.get("reference")?.trim();
         const email = searchParams.get("email")?.trim();
-        if (reference && email) findOrder(reference, email);
+        const paymentId = (searchParams.get("payment_id") || searchParams.get("collection_id"))?.trim();
+
+        const loadReturnedOrder = async () => {
+            if (!reference || !email) return;
+
+            if (!paymentId) {
+                await findOrder(reference, email);
+                return;
+            }
+
+            setLoading(true);
+            setMessage("");
+            try {
+                const response = await apiClient.post("/payments/confirm", {
+                    paymentId,
+                    reference,
+                    email,
+                });
+                const confirmedOrder = response?.data?.data || null;
+                setOrder(confirmedOrder);
+                setPaymentNotice(
+                    confirmedOrder?.payment_status === "paid"
+                        ? "¡Pago confirmado! Tu pedido ya está confirmado y comenzará su preparación."
+                        : response?.data?.message || "El pago todavía está siendo procesado."
+                );
+                setSearchParams({ reference, email }, { replace: true });
+            } catch (error) {
+                setMessage(error?.response?.data?.message || "No pudimos confirmar el pago todavía. Actualiza la página en unos minutos.");
+                await findOrder(reference, email);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadReturnedOrder();
         // The URL is read once on arrival; later changes are handled by submit.
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -103,6 +156,7 @@ function OrderTracking() {
                 </form>
 
                 {message ? <div className="tracking-message" role="alert"><i className="fa-regular fa-circle-xmark" /> <p>{message}</p></div> : null}
+                {paymentNotice ? <div className="tracking-payment-confirmed" role="status"><i className="fa-solid fa-circle-check" /><p>{paymentNotice}</p></div> : null}
 
                 {order ? (
                     <section className="tracking-result" aria-live="polite">
@@ -110,6 +164,14 @@ function OrderTracking() {
                             <div><span>Pedido</span><strong>{order.reference}</strong><small>{formatDate(order.created_at)}</small></div>
                             <div><span>Total</span><strong>{formatPrice(order.total)}</strong><small>{order.items?.length || 0} producto(s)</small></div>
                             <div><span>Destino</span><strong>{order.shipping_city}</strong><small>{order.shipping_department}</small></div>
+                        </div>
+
+                        <div className={`tracking-payment-state ${order.payment_status}`}>
+                            <i className={`fa-solid ${order.payment_status === "paid" ? "fa-shield-circle-check" : "fa-clock"}`} />
+                            <div>
+                                <span>Estado del pago</span>
+                                <strong>{order.payment_status === "paid" ? "Pago confirmado" : order.payment_status === "failed" ? "Pago no completado" : "Pago pendiente"}</strong>
+                            </div>
                         </div>
 
                         {order.status === "cancelled" ? (

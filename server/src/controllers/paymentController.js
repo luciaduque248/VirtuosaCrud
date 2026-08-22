@@ -40,6 +40,50 @@ const trackingUrl = (order, payment) => {
     return `${getClientUrl()}/seguimiento?${query.toString()}`;
 };
 
+const applyVerifiedPayment = async (payment, expectedOrder = null) => {
+    const reference = String(payment.external_reference || "").trim();
+    const result = await pool.query(
+        "SELECT id, reference, customer_email, total, payment_status FROM orders WHERE reference = $1 LIMIT 1",
+        [reference]
+    );
+    const order = result.rows[0];
+
+    if (!order || (expectedOrder && Number(order.id) !== Number(expectedOrder.id))) {
+        const error = new Error("El pago no corresponde al pedido indicado.");
+        error.status = 404;
+        throw error;
+    }
+
+    const amountMatches = Math.abs(Number(payment.transaction_amount) - Number(order.total)) < 0.01;
+    const currencyMatches = payment.currency_id === "COP";
+    if (!amountMatches || !currencyMatches) {
+        const error = new Error("Los datos del pago no coinciden con el pedido.");
+        error.status = 409;
+        throw error;
+    }
+
+    if (payment.status === "approved") {
+        await pool.query(
+            `UPDATE orders
+             SET payment_status = 'paid',
+                 status = CASE WHEN status = 'pending' THEN 'confirmed' ELSE status END,
+                 payment_reference = $1,
+                 updated_at = CURRENT_TIMESTAMP
+             WHERE id = $2 AND payment_status <> 'paid'`,
+            [String(payment.id), order.id]
+        );
+    } else if (["rejected", "cancelled"].includes(payment.status)) {
+        await pool.query(
+            `UPDATE orders
+             SET payment_status = 'failed', payment_reference = $1, updated_at = CURRENT_TIMESTAMP
+             WHERE id = $2 AND payment_status <> 'paid'`,
+            [String(payment.id), order.id]
+        );
+    }
+
+    return { order, paymentStatus: payment.status };
+};
+
 const createCheckoutSession = async (req, res, next) => {
     try {
         const reference = String(req.body?.reference || "").trim();
@@ -116,11 +160,11 @@ const mercadoPagoWebhook = async (req, res) => {
         return res.status(200).json({ received: true, ignored: true });
     }
 
-    try {
-        if (!process.env.MERCADO_PAGO_WEBHOOK_SECRET) {
-            return res.status(503).json({ success: false, message: "Webhook no configurado." });
-        }
+    if (!process.env.MERCADO_PAGO_WEBHOOK_SECRET) {
+        return res.status(503).json({ success: false, message: "Webhook no configurado." });
+    }
 
+    try {
         WebhookSignatureValidator.validate({
             xSignature: req.headers["x-signature"],
             xRequestId: req.headers["x-request-id"],
@@ -128,49 +172,82 @@ const mercadoPagoWebhook = async (req, res) => {
             secret: process.env.MERCADO_PAGO_WEBHOOK_SECRET,
         });
 
+    } catch (error) {
+        console.error("Mercado Pago webhook signature error:", error.message);
+        return res.status(401).json({ success: false, message: "Firma de webhook inválida." });
+    }
+
+    try {
         const payment = await new Payment(getClient()).get({ id: dataId });
-        const reference = String(payment.external_reference || "").trim();
-        const result = await pool.query(
-            "SELECT id, reference, total, payment_status FROM orders WHERE reference = $1 LIMIT 1",
-            [reference]
-        );
-        const order = result.rows[0];
-
-        if (!order) {
-            return res.status(200).json({ received: true, ignored: true });
-        }
-
-        const amountMatches = Math.abs(Number(payment.transaction_amount) - Number(order.total)) < 0.01;
-        const currencyMatches = payment.currency_id === "COP";
-
-        if (!amountMatches || !currencyMatches) {
-            return res.status(400).json({ success: false, message: "Los datos del pago no coinciden." });
-        }
-
-        if (payment.status === "approved") {
-            await pool.query(
-                `UPDATE orders
-                 SET payment_status = 'paid',
-                     status = CASE WHEN status = 'pending' THEN 'confirmed' ELSE status END,
-                     payment_reference = $1,
-                     updated_at = CURRENT_TIMESTAMP
-                 WHERE id = $2 AND payment_status <> 'paid'`,
-                [String(payment.id), order.id]
-            );
-        } else if (["rejected", "cancelled"].includes(payment.status)) {
-            await pool.query(
-                `UPDATE orders
-                 SET payment_status = 'failed', payment_reference = $1, updated_at = CURRENT_TIMESTAMP
-                 WHERE id = $2 AND payment_status <> 'paid'`,
-                [String(payment.id), order.id]
-            );
-        }
-
+        await applyVerifiedPayment(payment);
         return res.status(200).json({ received: true });
     } catch (error) {
-        console.error("Mercado Pago webhook error:", error.message);
-        return res.status(401).json({ success: false, message: "Firma de webhook inválida." });
+        console.error("Mercado Pago webhook processing error:", error.message);
+        if (error.status === 404) {
+            return res.status(200).json({ received: true, ignored: true });
+        }
+        return res.status(error.status === 409 ? 400 : 500).json({
+            success: false,
+            message: "No fue posible procesar la notificación del pago.",
+        });
     }
 };
 
-module.exports = { createCheckoutSession, mercadoPagoWebhook };
+const confirmPaymentReturn = async (req, res, next) => {
+    try {
+        const paymentId = String(req.body?.paymentId || "").trim();
+        const reference = String(req.body?.reference || "").trim();
+        const email = String(req.body?.email || "").trim();
+
+        if ((paymentId && !/^\d+$/.test(paymentId)) || !reference || !email) {
+            return res.status(400).json({
+                success: false,
+                message: "No recibimos los datos completos del pago.",
+            });
+        }
+
+        const order = await Order.findByReferenceAndEmail(reference, email);
+        if (!order) {
+            return res.status(404).json({ success: false, message: "Pedido no encontrado." });
+        }
+
+        const paymentClient = new Payment(getClient());
+        let payment;
+
+        if (paymentId) {
+            payment = await paymentClient.get({ id: paymentId });
+        } else {
+            const search = await paymentClient.search({
+                options: {
+                    external_reference: reference,
+                    sort: "date_last_updated",
+                    criteria: "desc",
+                    limit: 10,
+                },
+            });
+            payment = search.results?.find((candidate) => candidate.status === "approved")
+                || search.results?.[0];
+        }
+
+        if (!payment?.id) {
+            return res.status(404).json({
+                success: false,
+                message: "Todavía no encontramos un pago asociado a este pedido.",
+            });
+        }
+        await applyVerifiedPayment(payment, order);
+        const updatedOrder = await Order.findByReferenceAndEmail(reference, email);
+
+        return res.status(200).json({
+            success: true,
+            message: updatedOrder.payment_status === "paid"
+                ? "Pago confirmado correctamente."
+                : "El pago todavía está siendo procesado.",
+            data: updatedOrder,
+        });
+    } catch (error) {
+        return next(error);
+    }
+};
+
+module.exports = { createCheckoutSession, mercadoPagoWebhook, confirmPaymentReturn };
