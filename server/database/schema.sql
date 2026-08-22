@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS products (
     image_url TEXT NOT NULL,
     stock INTEGER NOT NULL DEFAULT 0 CHECK (stock >= 0),
     featured BOOLEAN NOT NULL DEFAULT FALSE,
+    on_sale BOOLEAN NOT NULL DEFAULT FALSE,
     active BOOLEAN NOT NULL DEFAULT TRUE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -48,6 +49,16 @@ CREATE TABLE IF NOT EXISTS products (
         REFERENCES categories(id)
         ON DELETE RESTRICT
 );
+
+ALTER TABLE products ADD COLUMN IF NOT EXISTS on_sale BOOLEAN NOT NULL DEFAULT FALSE;
+
+-- Los descuentos antiguos usaban "descuentos" como subcategoría y por eso
+-- desaparecían de Vestidos. Ahora la promoción es un atributo independiente.
+UPDATE products
+SET on_sale = TRUE,
+    subcategory = 'vestidos',
+    updated_at = CURRENT_TIMESTAMP
+WHERE subcategory = 'descuentos';
 
 -- =========================================================
 -- PRODUCT IMAGES

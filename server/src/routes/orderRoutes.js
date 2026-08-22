@@ -4,6 +4,7 @@ const rateLimit = require("express-rate-limit");
 const {
     createOrder,
     trackOrder,
+    getMyOrders,
     getOrders,
     getOrderById,
     updateOrderStatus,
@@ -59,6 +60,12 @@ router.get(
     "/track",
     trackingLimiter,
     trackOrder
+);
+
+router.get(
+    "/mine",
+    requireAuth,
+    getMyOrders
 );
 
 /* =========================================================

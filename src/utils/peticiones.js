@@ -10,7 +10,7 @@ export const api =
     `${API_BASE_URL}/products?subcategory=vestidos`;
 
 export const apidiscount =
-    `${API_BASE_URL}/products?subcategory=descuentos`;
+    `${API_BASE_URL}/products?onSale=true`;
 
 export const apilabios =
     `${API_BASE_URL}/products?subcategory=labios`;

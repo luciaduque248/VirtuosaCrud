@@ -35,6 +35,7 @@ function AdminProductEditModal({
         imageUrl: "",
         stock: "",
         featured: false,
+        onSale: false,
     });
 
     useEffect(() => {
@@ -63,6 +64,7 @@ function AdminProductEditModal({
                 Boolean(
                     product.featured
                 ),
+            onSale: Boolean(product.on_sale),
         });
     }, [product]);
 
@@ -167,6 +169,9 @@ function AdminProductEditModal({
 
                 featured:
                     form.featured,
+
+                onSale:
+                    form.onSale,
             };
 
             try {
@@ -369,6 +374,11 @@ function AdminProductEditModal({
                         />
 
                         Producto destacado
+                    </label>
+
+                    <label className="admin-product-checkbox">
+                        <input type="checkbox" name="onSale" checked={form.onSale} onChange={handleChange} />
+                        Mostrar también en Promociones
                     </label>
 
                     <div className="admin-product-modal-actions">

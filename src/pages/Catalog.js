@@ -100,6 +100,7 @@ function Catalog() {
                                     <Link to={`/VirtuosaCrud/producto/${product.id}`} className="catalog-card-image">
                                         <img src={product.image_url} alt={product.name} loading="lazy" />
                                         {product.featured ? <span>Selección</span> : null}
+                                        {product.on_sale ? <span style={{ top: product.featured ? "46px" : "14px", background: "#9b4454" }}>Promoción</span> : null}
                                     </Link>
                                     <button type="button" className={`catalog-favorite ${isFavorite(product.id) ? "is-favorite" : ""}`} onClick={() => toggleFavorite(product)} aria-label={`${isFavorite(product.id) ? "Eliminar" : "Agregar"} ${product.name} ${isFavorite(product.id) ? "de" : "a"} favoritos`}><i className={`${isFavorite(product.id) ? "fa-solid" : "fa-regular"} fa-heart`} /></button>
                                     <div className="catalog-card-copy">

@@ -1,4 +1,5 @@
 import React, {
+    useEffect,
     useState,
 } from "react";
 
@@ -15,6 +16,7 @@ import {
 } from "../context/CartContext";
 
 import apiClient from "../services/apiClient";
+import { useAuth } from "../context/AuthContext";
 
 import {
     errorAlert,
@@ -24,6 +26,7 @@ import {
 import "../components/assets/css/Checkout.css";
 
 function Checkout() {
+    const { user } = useAuth();
     const {
         cartItems,
         itemCount,
@@ -55,6 +58,15 @@ function Checkout() {
             "cash_on_delivery",
         notes: "",
     });
+
+    useEffect(() => {
+        if (!user) return;
+        setForm((current) => ({
+            ...current,
+            customerName: current.customerName || user.name || "",
+            customerEmail: user.email || current.customerEmail,
+        }));
+    }, [user]);
 
     const formatPrice = (
         value
@@ -164,7 +176,10 @@ function Checkout() {
                         window.location.assign(paymentUrl);
                     } catch (paymentError) {
                         setCompletedOrder(order);
-                        await errorAlert("Pedido creado, pago pendiente", "Conserva la referencia e intenta el pago nuevamente desde seguimiento.");
+                        await errorAlert(
+                            "Pedido creado, pago pendiente",
+                            paymentError?.response?.data?.message || "Conserva la referencia e intenta el pago nuevamente desde tu cuenta."
+                        );
                     }
                     return;
                 }
@@ -408,6 +423,7 @@ function Checkout() {
                                         onChange={
                                             handleChange
                                         }
+                                        readOnly={Boolean(user)}
                                         maxLength="180"
                                         autoComplete="email"
                                         required

@@ -54,6 +54,13 @@ const createCheckoutSession = async (req, res, next) => {
             return res.status(409).json({ success: false, message: "Este pedido ya fue pagado." });
         }
 
+        if (!Number.isFinite(Number(order.total)) || Number(order.total) <= 0) {
+            return res.status(422).json({
+                success: false,
+                message: "Este pedido no tiene un total válido para pagar con Mercado Pago.",
+            });
+        }
+
         const preferenceBody = {
             items: [{
                 id: String(order.id),

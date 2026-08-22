@@ -58,6 +58,7 @@ const getProducts =
                 category,
                 subcategory,
                 featured,
+                onSale,
                 search,
             } = req.query;
 
@@ -66,6 +67,7 @@ const getProducts =
                     category,
                     subcategory,
                     featured,
+                    onSale,
                     search,
                 });
 
@@ -140,6 +142,7 @@ const createProduct =
                 imageUrl,
                 stock = 0,
                 featured = false,
+                onSale = false,
             } = req.body;
 
             if (
@@ -246,6 +249,11 @@ const createProduct =
                         parseBoolean(
                             featured
                         ),
+
+                    onSale:
+                        parseBoolean(
+                            onSale
+                        ),
                 });
 
             res.status(201).json({
@@ -299,6 +307,7 @@ const updateProduct =
                 imageUrl,
                 stock,
                 featured,
+                onSale,
                 active,
             } = req.body;
 
@@ -395,6 +404,11 @@ const updateProduct =
                             parseBoolean(
                                 featured
                             ),
+
+                        onSale:
+                            onSale === undefined
+                                ? existing.on_sale
+                                : parseBoolean(onSale),
 
                         active:
                             active === undefined

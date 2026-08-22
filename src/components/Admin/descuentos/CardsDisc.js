@@ -7,8 +7,7 @@ function CardsDisc() {
     <AdminProductsPage
       title="Descuentos"
       description="Administra los productos y promociones de Virtuosa."
-      categorySlug="moda"
-      subcategory="descuentos"
+      onSale
       createPath="/VirtuosaCrud/form-descuentos"
     />
   );

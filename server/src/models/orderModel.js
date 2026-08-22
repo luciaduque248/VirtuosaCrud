@@ -276,6 +276,41 @@ const findAll = async ({
 };
 
 /* =========================================================
+   CUSTOMER ORDER HISTORY
+========================================================= */
+
+const findByCustomerEmail = async (email) => {
+    const result = await pool.query(
+        `SELECT
+            o.*,
+            COALESCE(SUM(oi.quantity), 0)::int AS item_count,
+            COALESCE(
+                JSON_AGG(
+                    JSON_BUILD_OBJECT(
+                        'id', oi.id,
+                        'product_id', oi.product_id,
+                        'product_name', oi.product_name,
+                        'product_image_url', oi.product_image_url,
+                        'size', oi.size,
+                        'unit_price', oi.unit_price,
+                        'quantity', oi.quantity,
+                        'subtotal', oi.subtotal
+                    ) ORDER BY oi.id
+                ) FILTER (WHERE oi.id IS NOT NULL),
+                '[]'::json
+            ) AS items
+         FROM orders o
+         LEFT JOIN order_items oi ON oi.order_id = o.id
+         WHERE LOWER(o.customer_email) = LOWER($1)
+         GROUP BY o.id
+         ORDER BY o.created_at DESC`,
+        [email]
+    );
+
+    return result.rows;
+};
+
+/* =========================================================
    ADMIN DETAIL
 ========================================================= */
 
@@ -408,7 +443,8 @@ module.exports = {
     createItem,
     decrementStock,
     restoreStock,
-    findAll,
+  findAll,
+  findByCustomerEmail,
     findById,
     findByReferenceAndEmail,
     findByIdForUpdate,

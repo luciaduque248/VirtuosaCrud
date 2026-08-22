@@ -24,6 +24,8 @@ function AdminProductForm({
     categorySlug,
     subcategory,
     backPath,
+    initialOnSale = false,
+    allowTaxonomy = false,
 }) {
     const navigate =
         useNavigate();
@@ -43,6 +45,9 @@ function AdminProductForm({
         imageUrl: "",
         stock: "",
         featured: false,
+        onSale: initialOnSale,
+        categorySlug,
+        subcategory,
     });
 
     const handleChange = (
@@ -145,9 +150,9 @@ function AdminProductForm({
 
                 price,
 
-                categorySlug,
+                categorySlug: allowTaxonomy ? form.categorySlug : categorySlug,
 
-                subcategory,
+                subcategory: allowTaxonomy ? form.subcategory : subcategory,
 
                 imageUrl:
                     form.imageUrl.trim(),
@@ -156,6 +161,9 @@ function AdminProductForm({
 
                 featured:
                     form.featured,
+
+                onSale:
+                    form.onSale,
             };
 
             try {
@@ -220,6 +228,24 @@ function AdminProductForm({
                         handleSubmit
                     }
                 >
+                    {allowTaxonomy ? (
+                        <div className="admin-product-form-row">
+                            <div className="admin-product-field">
+                                <label htmlFor="categorySlug">Categoría original</label>
+                                <select id="categorySlug" name="categorySlug" value={form.categorySlug} onChange={(event) => setForm((current) => ({ ...current, categorySlug: event.target.value, subcategory: event.target.value === "moda" ? "vestidos" : "ojos" }))}>
+                                    <option value="moda">Moda</option>
+                                    <option value="maquillaje">Maquillaje</option>
+                                </select>
+                            </div>
+                            <div className="admin-product-field">
+                                <label htmlFor="subcategory">Sección donde también aparecerá</label>
+                                <select id="subcategory" name="subcategory" value={form.subcategory} onChange={handleChange}>
+                                    {form.categorySlug === "moda" ? <option value="vestidos">Vestidos</option> : null}
+                                    {form.categorySlug === "maquillaje" ? <><option value="ojos">Ojos</option><option value="labios">Labios</option><option value="piel">Piel</option><option value="rostro">Rostro</option></> : null}
+                                </select>
+                            </div>
+                        </div>
+                    ) : null}
                     <div className="admin-product-field">
                         <label htmlFor="name">
                             Nombre
@@ -353,6 +379,11 @@ function AdminProductForm({
                         <span>
                             Producto destacado
                         </span>
+                    </label>
+
+                    <label className="admin-product-checkbox">
+                        <input type="checkbox" name="onSale" checked={form.onSale} onChange={handleChange} />
+                        <span>Mostrar también en Promociones</span>
                     </label>
 
                     <div className="admin-product-form-actions">

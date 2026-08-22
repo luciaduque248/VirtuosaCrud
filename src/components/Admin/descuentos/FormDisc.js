@@ -7,7 +7,9 @@ function FormDisc() {
     <AdminProductForm
       title="Nuevo producto en descuento"
       categorySlug="moda"
-      subcategory="descuentos"
+      subcategory="vestidos"
+      initialOnSale
+      allowTaxonomy
       backPath="/VirtuosaCrud/edit-descuentos"
     />
   );

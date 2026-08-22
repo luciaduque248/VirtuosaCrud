@@ -387,7 +387,8 @@
 }
 
 .admin-product-field input,
-.admin-product-field textarea {
+.admin-product-field textarea,
+.admin-product-field select {
     width: 100%;
     padding: 12px 14px;
     border: 1px solid #ddd5e2;
@@ -398,7 +399,8 @@
 }
 
 .admin-product-field input:focus,
-.admin-product-field textarea:focus {
+.admin-product-field textarea:focus,
+.admin-product-field select:focus {
     border-color: #765f8e;
     box-shadow: 0 0 0 3px rgba(118, 95, 142, 0.1);
 }

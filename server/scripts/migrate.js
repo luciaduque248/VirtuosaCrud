@@ -36,6 +36,13 @@ async function migrate() {
         const seed = fs.readFileSync(path.resolve(__dirname, "../database/seed.sql"), "utf8");
         await pool.query(schema);
         await pool.query(seed);
+        await pool.query(
+            `UPDATE products
+                SET on_sale = TRUE,
+                    subcategory = 'vestidos',
+                    updated_at = CURRENT_TIMESTAMP
+              WHERE subcategory = 'descuentos'`
+        );
         await migrateCustomerEmail("luciaduque248@gmail.com", "sarisdu248@gmail.com");
         console.log("Esquema y catálogo inicial de PostgreSQL actualizados.");
     } finally {

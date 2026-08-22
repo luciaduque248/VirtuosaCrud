@@ -11,10 +11,11 @@ import {
 } from "../../context/AuthContext";
 
 
-function ProtectedRoute() {
+function ProtectedRoute({ allowedRoles }) {
     const {
         loading,
         isAuthenticated,
+        user,
     } = useAuth();
 
     const location =
@@ -52,6 +53,15 @@ function ProtectedRoute() {
                     from:
                         location,
                 }}
+            />
+        );
+    }
+
+    if (allowedRoles?.length && !allowedRoles.includes(user?.role)) {
+        return (
+            <Navigate
+                to={user?.role === "admin" ? "/VirtuosaCrud/admin" : "/VirtuosaCrud/mi-cuenta"}
+                replace
             />
         );
     }

@@ -26,8 +26,12 @@ function Login() {
 
         try {
             setLoading(true);
-            await login(email.trim(), password);
-            const destination = location.state?.from?.pathname || "/VirtuosaCrud/admin";
+            const loggedUser = await login(email.trim(), password);
+            const requestedDestination = location.state?.from?.pathname;
+            const defaultDestination = loggedUser.role === "admin"
+                ? "/VirtuosaCrud/admin"
+                : "/VirtuosaCrud/mi-cuenta";
+            const destination = requestedDestination || defaultDestination;
             navigate(destination, { replace: true });
         } catch (error) {
             console.error("Login error:", error);
@@ -61,7 +65,7 @@ function Login() {
                     <div className="login-heading">
                         <span>Acceso privado</span>
                         <h2 id="login-title">Bienvenida de nuevo</h2>
-                        <p>Ingresa tus datos para continuar al panel administrativo.</p>
+                    <p>Ingresa tus datos para consultar tu cuenta o administrar Virtuosa.</p>
                     </div>
 
                     <div className="login-field">
@@ -110,7 +114,7 @@ function Login() {
                     </div>
 
                     <button className="login-submit" type="submit" disabled={loading}>
-                        <span>{loading ? "Verificando acceso..." : "Ingresar al panel"}</span>
+                        <span>{loading ? "Verificando acceso..." : "Ingresar a mi cuenta"}</span>
                         {loading ? null : <i className="fa-solid fa-arrow-right" aria-hidden="true" />}
                     </button>
 
@@ -118,7 +122,7 @@ function Login() {
 
                     <p className="login-security">
                         <i className="fa-solid fa-shield-halved" aria-hidden="true" />
-                        Conexión protegida. Solo personal autorizado.
+                        Conexión protegida para clientes y administración.
                     </p>
                     <span className="sr-only" role="status" aria-live="polite">
                         {loading ? "Verificando tus credenciales" : ""}

@@ -30,6 +30,7 @@ function AdminProductsPage({
     subcategory,
     categorySlug,
     createPath,
+    onSale,
 }) {
     const [
         products,
@@ -99,6 +100,7 @@ function AdminProductsPage({
                             {
                                 params: {
                                     subcategory,
+                                    onSale: onSale ? true : undefined,
                                 },
                             }
                         );
@@ -130,7 +132,7 @@ function AdminProductsPage({
                     setLoading(false);
                 }
             },
-            [subcategory]
+            [onSale, subcategory]
         );
 
     useEffect(() => {
@@ -436,6 +438,11 @@ function AdminProductsPage({
                                         {product.featured && (
                                             <span className="admin-product-featured">
                                                 Destacado
+                                            </span>
+                                        )}
+                                        {product.on_sale && (
+                                            <span className="admin-product-featured" style={{ top: product.featured ? "42px" : "12px", background: "#9b4454" }}>
+                                                Promoción
                                             </span>
                                         )}
                                     </div>

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logoVirtuosa from "../assets/img/logo 1.svg";
 import { useCart } from "../../context/CartContext";
 import { useFavorites } from "../../context/FavoritesContext";
+import { useAuth } from "../../context/AuthContext";
 
 import "./header.css";
 import "./HeaderCart.css";
@@ -24,6 +25,7 @@ const searchDestinations = [
 function Header() {
     const { itemCount } = useCart();
     const { favoriteCount } = useFavorites();
+    const { user } = useAuth();
     const navigate = useNavigate();
     const searchInputRef = useRef(null);
     const [searchOpen, setSearchOpen] = useState(false);
@@ -75,9 +77,9 @@ function Header() {
                         <i className="fa-solid fa-magnifying-glass" aria-hidden="true" />
                         <span>Buscar</span>
                     </button>
-                    <Link to="/VirtuosaCrud/login" className="header-action">
+                    <Link to={user ? (user.role === "admin" ? "/VirtuosaCrud/admin" : "/VirtuosaCrud/mi-cuenta") : "/VirtuosaCrud/login"} className="header-action">
                         <i className="fa-regular fa-user" aria-hidden="true" />
-                        <span>Cuenta</span>
+                        <span>{user ? "Mi cuenta" : "Cuenta"}</span>
                     </Link>
                     <Link to="/VirtuosaCrud/favoritos" className="header-action" aria-label={`Favoritos, ${favoriteCount} productos`}>
                         <i className="fa-regular fa-heart" aria-hidden="true" />

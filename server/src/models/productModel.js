@@ -8,6 +8,7 @@ const findAll = async ({
   category,
   subcategory,
   featured,
+  onSale,
   search,
 } = {}) => {
   const values = [];
@@ -41,6 +42,10 @@ const findAll = async ({
     );
   }
 
+  if (onSale === "true" || onSale === true) {
+    conditions.push("p.on_sale = TRUE");
+  }
+
   if (search) {
     values.push(`%${search}%`);
 
@@ -63,6 +68,7 @@ const findAll = async ({
       p.image_url,
       p.stock,
       p.featured,
+      p.on_sale,
       p.active,
       p.created_at,
       p.updated_at,
@@ -107,6 +113,7 @@ const findById = async (id) => {
       p.image_url,
       p.stock,
       p.featured,
+      p.on_sale,
       p.active,
       p.created_at,
       p.updated_at,
@@ -147,6 +154,7 @@ const create = async ({
   imageUrl,
   stock,
   featured = false,
+  onSale = false,
 }) => {
   const query = `
     INSERT INTO products (
@@ -157,7 +165,8 @@ const create = async ({
       subcategory,
       image_url,
       stock,
-      featured
+      featured,
+      on_sale
     )
 
     VALUES (
@@ -168,7 +177,8 @@ const create = async ({
       $5,
       $6,
       $7,
-      $8
+      $8,
+      $9
     )
 
     RETURNING *;
@@ -183,6 +193,7 @@ const create = async ({
     imageUrl,
     stock,
     featured,
+    onSale,
   ];
 
   const result =
@@ -209,6 +220,7 @@ const update = async (
     imageUrl,
     stock,
     featured,
+    onSale,
     active,
   }
 ) => {
@@ -224,9 +236,10 @@ const update = async (
       image_url = $6,
       stock = $7,
       featured = $8,
-      active = $9
+      on_sale = $9,
+      active = $10
 
-    WHERE id = $10
+    WHERE id = $11
 
     RETURNING *;
   `;
@@ -240,6 +253,7 @@ const update = async (
     imageUrl,
     stock,
     featured,
+    onSale,
     active,
     id,
   ];

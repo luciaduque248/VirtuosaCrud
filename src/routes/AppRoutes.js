@@ -36,6 +36,7 @@ import TipsR from "../pages/TipsR";
 
 import Login from "../pages/Login";
 import PasswordRecovery from "../pages/PasswordRecovery";
+import CustomerAccount from "../pages/CustomerAccount";
 
 import ProtectedRoute from "../components/auth/ProtectedRoute";
 import ScrollManager from "../components/navigation/ScrollManager";
@@ -200,12 +201,16 @@ function AppRoutes() {
 
                 <Route path="/VirtuosaCrud/recuperar-clave" element={<PasswordRecovery />} />
 
+                <Route element={<ProtectedRoute allowedRoles={["customer"]} />}>
+                    <Route path="/VirtuosaCrud/mi-cuenta" element={<CustomerAccount />} />
+                </Route>
+
                 {/* =================================================
             PROTECTED ADMIN
         ================================================= */}
 
                 <Route
-                    element={<ProtectedRoute />}
+                    element={<ProtectedRoute allowedRoles={["admin"]} />}
                 >
                     <Route
                         path="/VirtuosaCrud/admin"

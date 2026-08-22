@@ -779,6 +779,19 @@ const trackOrder = async (req, res, next) => {
     }
 };
 
+const getMyOrders = async (req, res, next) => {
+    try {
+        const orders = await Order.findByCustomerEmail(req.user.email);
+        return res.status(200).json({
+            success: true,
+            count: orders.length,
+            data: orders,
+        });
+    } catch (error) {
+        return next(error);
+    }
+};
+
 /* =========================================================
    ADMIN - UPDATE STATUS
 ========================================================= */
@@ -944,6 +957,7 @@ const updateOrderStatus =
 module.exports = {
     createOrder,
     trackOrder,
+    getMyOrders,
     getOrders,
     getOrderById,
     updateOrderStatus,
