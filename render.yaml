@@ -2,11 +2,13 @@ databases:
   - name: virtuosa-db
     databaseName: virtuosa
     user: virtuosa
+    plan: free
 
 services:
   - type: web
     name: virtuosa-api
     runtime: docker
+    plan: free
     rootDir: server
     dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
