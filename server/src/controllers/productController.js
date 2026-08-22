@@ -122,6 +122,60 @@ const getProductById =
 
 
 /* =========================================================
+   GET PAID BUYERS (ADMIN)
+========================================================= */
+
+const getProductBuyers = async (req, res, next) => {
+    try {
+        const productId = Number(req.params.id);
+
+        if (!Number.isInteger(productId) || productId <= 0) {
+            return res.status(400).json({
+                success: false,
+                message: "El producto indicado no es válido.",
+            });
+        }
+
+        const product = await Product.findById(productId);
+
+        if (!product) {
+            return res.status(404).json({
+                success: false,
+                message: "Producto no encontrado.",
+            });
+        }
+
+        const buyers = await Product.findBuyersByProductId(productId);
+        const uniqueBuyers = new Set(
+            buyers.map((buyer) => String(buyer.customer_email).toLowerCase())
+        ).size;
+
+        return res.status(200).json({
+            success: true,
+            data: {
+                product,
+                buyers,
+                summary: {
+                    purchases: buyers.length,
+                    uniqueBuyers,
+                    unitsSold: buyers.reduce(
+                        (total, buyer) => total + Number(buyer.quantity || 0),
+                        0
+                    ),
+                    revenue: buyers.reduce(
+                        (total, buyer) => total + Number(buyer.subtotal || 0),
+                        0
+                    ),
+                },
+            },
+        });
+    } catch (error) {
+        return next(error);
+    }
+};
+
+
+/* =========================================================
    CREATE
 ========================================================= */
 
@@ -478,6 +532,7 @@ const deleteProduct =
 module.exports = {
     getProducts,
     getProductById,
+    getProductBuyers,
     createProduct,
     updateProduct,
     deleteProduct,

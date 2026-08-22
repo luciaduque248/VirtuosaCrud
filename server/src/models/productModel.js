@@ -293,10 +293,43 @@ const remove = async (id) => {
   return result.rows[0];
 };
 
+/* =========================================================
+   PAID BUYERS (ADMIN)
+========================================================= */
+
+const findBuyersByProductId = async (id) => {
+  const result = await pool.query(
+    `SELECT
+       o.reference,
+       o.customer_name,
+       o.customer_email,
+       o.customer_phone,
+       o.shipping_address,
+       o.shipping_city,
+       o.shipping_department,
+       o.status,
+       o.payment_status,
+       o.created_at,
+       oi.quantity,
+       oi.size,
+       oi.unit_price,
+       oi.subtotal
+     FROM public.order_items oi
+     INNER JOIN public.orders o ON o.id = oi.order_id
+     WHERE oi.product_id = $1
+       AND o.payment_status = 'paid'
+     ORDER BY o.created_at DESC, oi.id DESC`,
+    [id]
+  );
+
+  return result.rows;
+};
+
 module.exports = {
   findAll,
   findById,
   create,
   update,
   remove,
+  findBuyersByProductId,
 };

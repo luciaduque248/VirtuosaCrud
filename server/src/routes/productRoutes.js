@@ -4,6 +4,7 @@ const express =
 const {
     getProducts,
     getProductById,
+    getProductBuyers,
     createProduct,
     updateProduct,
     deleteProduct,
@@ -39,6 +40,13 @@ router.get(
 /* =========================================================
    ADMIN ONLY
 ========================================================= */
+
+router.get(
+    "/:id/buyers",
+    requireAuth,
+    requireAdmin,
+    getProductBuyers
+);
 
 router.post(
     "/",

@@ -8,10 +8,21 @@ import React, {
 import {
     Link,
 } from "react-router-dom";
+import {
+    Download,
+    Eye,
+    Grid2X2,
+    List,
+    Pencil,
+    Plus,
+    Search,
+    Trash2,
+} from "lucide-react";
 
 import NavbarAdmin from "../navbar/NavbarAdmin";
 
 import AdminProductEditModal from "./AdminProductEditModal";
+import AdminProductBuyersModal from "./AdminProductBuyersModal";
 
 import apiClient from "../../../services/apiClient";
 
@@ -63,6 +74,9 @@ function AdminProductsPage({
 
     const [search, setSearch] = useState("");
     const [stockFilter, setStockFilter] = useState("all");
+    const [buyerDetails, setBuyerDetails] = useState(null);
+    const [buyersLoading, setBuyersLoading] = useState(false);
+    const [buyersError, setBuyersError] = useState("");
 
     const visibleProducts = useMemo(() => products.filter((product) => {
         const normalizedSearch = search.trim().toLocaleLowerCase("es");
@@ -81,6 +95,25 @@ function AdminProductsPage({
     const changeViewMode = (mode) => {
         setViewMode(mode);
         window.localStorage.setItem("adminProductsView", mode);
+    };
+
+    const openBuyerDetails = async (product) => {
+        setBuyerDetails({ product, buyers: [], summary: {} });
+        setBuyersLoading(true);
+        setBuyersError("");
+
+        try {
+            const response = await apiClient.get(`/products/${product.id}/buyers`);
+            setBuyerDetails(response?.data?.data);
+        } catch (err) {
+            console.error("Error cargando compradores:", err);
+            setBuyersError(
+                err?.response?.data?.message ||
+                "No fue posible consultar los compradores de este producto."
+            );
+        } finally {
+            setBuyersLoading(false);
+        }
     };
 
     /* =========================================================
@@ -223,7 +256,7 @@ function AdminProductsPage({
                     to={createPath}
                     className="admin-products-create"
                 >
-                    <i className="fa-solid fa-plus" />
+                    <Plus size={17} aria-hidden="true" />
 
                     Nuevo producto
                 </Link>
@@ -287,9 +320,9 @@ function AdminProductsPage({
             {!loading && !error && products.length > 0 && (
                 <section className="admin-products-toolbar">
                     <div className="admin-products-filters">
-                        <label><i className="fa-solid fa-magnifying-glass" /><input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Buscar producto" /></label>
+                        <label><Search size={16} aria-hidden="true" /><input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Buscar producto" /></label>
                         <select value={stockFilter} onChange={(event) => setStockFilter(event.target.value)} aria-label="Filtrar inventario"><option value="all">Todo el inventario</option><option value="available">Con stock</option><option value="low">Stock bajo</option><option value="empty">Agotados</option></select>
-                        <button type="button" className="admin-products-export" onClick={handleExport} disabled={visibleProducts.length === 0}><i className="fa-solid fa-file-arrow-down" /> Exportar CSV</button>
+                        <button type="button" className="admin-products-export" onClick={handleExport} disabled={visibleProducts.length === 0}><Download size={16} aria-hidden="true" /> Exportar CSV</button>
                     </div>
 
                     <p>Mostrando {visibleProducts.length} de {products.length}</p>
@@ -305,7 +338,7 @@ function AdminProductsPage({
                             aria-pressed={viewMode === "grid"}
                             onClick={() => changeViewMode("grid")}
                         >
-                            <i className="fa-solid fa-grip" aria-hidden="true" />
+                            <Grid2X2 size={16} aria-hidden="true" />
                             Tarjetas
                         </button>
 
@@ -315,7 +348,7 @@ function AdminProductsPage({
                             aria-pressed={viewMode === "list"}
                             onClick={() => changeViewMode("list")}
                         >
-                            <i className="fa-solid fa-list" aria-hidden="true" />
+                            <List size={16} aria-hidden="true" />
                             Lista
                         </button>
                     </div>
@@ -494,6 +527,17 @@ function AdminProductsPage({
                                         <div className="admin-product-actions">
                                             <button
                                                 type="button"
+                                                className="admin-product-view"
+                                                onClick={() => openBuyerDetails(product)}
+                                                aria-label={`Ver detalle y compradores de ${product.name}`}
+                                            >
+                                                <Eye size={17} aria-hidden="true" />
+                                                Ver detalle
+                                            </button>
+
+                                            <div className="admin-product-crud-actions">
+                                            <button
+                                                type="button"
                                                 className="admin-product-edit"
                                                 onClick={() =>
                                                     setSelectedProduct(
@@ -501,7 +545,7 @@ function AdminProductsPage({
                                                     )
                                                 }
                                             >
-                                                <i className="fa-solid fa-pen" />
+                                                <Pencil size={16} aria-hidden="true" />
 
                                                 Editar
                                             </button>
@@ -515,10 +559,11 @@ function AdminProductsPage({
                                                     )
                                                 }
                                             >
-                                                <i className="fa-solid fa-trash" />
+                                                <Trash2 size={16} aria-hidden="true" />
 
                                                 Eliminar
                                             </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </article>
@@ -546,6 +591,15 @@ function AdminProductsPage({
                     onUpdated={
                         loadProducts
                     }
+                />
+            )}
+
+            {buyerDetails && (
+                <AdminProductBuyersModal
+                    details={buyerDetails}
+                    loading={buyersLoading}
+                    error={buyersError}
+                    onClose={() => setBuyerDetails(null)}
                 />
             )}
         </div>
