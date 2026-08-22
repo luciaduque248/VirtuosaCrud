@@ -6,8 +6,10 @@ const pool = require("../src/config/db");
 async function migrate() {
     try {
         const schema = fs.readFileSync(path.resolve(__dirname, "../database/schema.sql"), "utf8");
+        const seed = fs.readFileSync(path.resolve(__dirname, "../database/seed.sql"), "utf8");
         await pool.query(schema);
-        console.log("Esquema de PostgreSQL actualizado.");
+        await pool.query(seed);
+        console.log("Esquema y catálogo inicial de PostgreSQL actualizados.");
     } finally {
         await pool.end();
     }
